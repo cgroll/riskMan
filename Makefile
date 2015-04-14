@@ -18,7 +18,7 @@ $(OUTDIR)/intro.slides.html: src/intro.md Makefile refs.bib
 	-s -V revealjs-url=../reveal.js -t revealjs -f markdown \
 	--filter pandoc-citeproc --csl=$(CSL) \
 	--bibliography=refs.bib \
-	-o output/intro.slides.html src/intro.md
+	-o $@ $<
 
 $(OUTDIR)/intro.pdf: src/intro.md Makefile refs.bib
 	pandoc -s -t beamer -f markdown \
@@ -28,7 +28,7 @@ $(OUTDIR)/intro.pdf: src/intro.md Makefile refs.bib
 	--filter pandoc_custom/filters/skip_pause.hs \
 	--filter pandoc-citeproc --csl=pandoc_custom/csl/elsevier-harvard.csl \
 	--bibliography=refs.bib \
-	-o output/intro.pdf src/intro.md
+	-o $@ $<
 
 # publish: $(OUT) Makefile refs.bib
 # 	git checkout gh-pages
