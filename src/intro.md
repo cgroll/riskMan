@@ -422,9 +422,11 @@ r=\frac{\left(\ln P_{T}-\ln P_{0}\right)}{T}
   different investment horizons requires computation of an *average*
   gross return $\bar{R}$ for each investment, fulfilling:
 
-\begin{equation*}
-P_{t}\bar{R}^{n}\overset{!}{=}P_{t}R_{t}\cdot\ldots\cdot R_{t+n-1}=P_{t+n}
-\end{equation*}
+	\begin{equation*}
+	P_{t}\bar{R}^{n}\overset{!}{=}P_{t}R_{t}\cdot\ldots\cdot R_{t+n-1}=P_{t+n}
+	\end{equation*}
+
+. . .
 
 - in *net returns*:
 
@@ -432,31 +434,39 @@ P_{t}\bar{R}^{n}\overset{!}{=}P_{t}R_{t}\cdot\ldots\cdot R_{t+n-1}=P_{t+n}
 P_{t}\left(1+\bar{r}\right)^{n}\overset{!}{=}P_{t}\left(1+r_{t}\right)\cdot\ldots\cdot\left(1+r_{t+n-1}\right)
 \end{equation*}
 
+
+### 
+
 - solving for $\bar{r}$ leads to
 
 \begin{equation*}
 \bar{r}=\left(\prod_{i=0}^{n-1}\left(1+r_{t+i}\right)\right)^{1/n}-1
 \end{equation*}
 
+. . .
+
 - the *annualized gross return* is not an *arithmetic* mean, but a
   *geometric* mean
 
 ### Example
 
-The annualized return of 1.0392 is *unequal* to the simple arithmetic
-mean over the randomly generated interest rates of 1.0395!
-
-![random variable with discrete values](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_intRates.png)
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_intRates.png)
 
 Left: randomly generated returns between 0 and 8 percent, plotted
 against annualized net return rate. Right: comparison of associated
 compound interest rates. 
 
+###
+
+The annualized return of 1.0392 is *unequal* to the simple arithmetic
+mean over the randomly generated interest rates of 1.0395!
 
 ### Example
 
 - two ways to calculate annualized net returns for previously
   generated random returns: 
+
+. . .
 
 #### Direct way
 
@@ -473,21 +483,29 @@ using gross returns, taking $50$-th root:
 
 transfer the problem to the *logarithmic world*:  
 
+. . .
+
 - convert gross returns to log returns:
 
 \begin{equation*}
 \left[1.0626,1.0555,\ldots,1.0734\right]\overset{log}{\longrightarrow}\left[0.0607,0.0540,\ldots,0.0708\right]
 \end{equation*}
 
+. . .
+
 - use arithmetic mean to calculate annualized return in the *logarithmic world*:
 
 \begin{equation*}
-r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}=\left(0.0607+0.0540+...+0.0708\right)=1.9226
-\end{equation*}
-
-\begin{equation*}
+r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}=\left(0.0607+0.0540+...+0.0708\right)=1.9226\\
 \bar{r}_{t,t+n-1}^{log}=\frac{1}{n}r_{t,t+n-1}^{log}=\frac{1}{50}1.9226=0.0385
 \end{equation*}
+
+
+### Example
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_logRets.png)
+
+###
 
 - convert result back to *normal world*:
 
@@ -495,10 +513,81 @@ r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}=\left(0.0607+0.0540+...+0.0708\r
 \bar{r}_{t,t+n-1}^{ann}=e^{\bar{r}_{t,t+n-1}^{log}}-1=e^{0.0385}-1=0.0391
 \end{equation*}
 
-### Example
+### Summary
 
-![random variable with discrete values](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_logRets.png)
+- multi-period gross returns result from *multiplication* of
+  one-period returns: hence, *exponentially increasing* 
 
+- multi-period logarithmic returns result from *summation* of
+  one-period returns: hence, *linearly increasing*
+
+- different calculation of returns from given portfolio values:
+
+\begin{equation*}
+r_{t}=\frac{P_{t}-P_{t-1}}{P_{t}}\quad\quad r_{t}^{log}=\ln\left(\frac{P_{t}}{P_{t-1}}\right)=\ln P_{t}-\ln P_{t-1}
+\end{equation*}
+
+###
+
+However, because of
+
+\begin{equation*}
+\ln\left(1+x\right)\approx x
+\end{equation*}
+
+discrete net returns and log returns are approximately equal:
+
+\begin{equation*}
+r_{t}^{log}=\ln\left(R_{t}\right)=\ln\left(1+r_{t}\right)\approx r_{t}
+\end{equation*}
+
+### Conclusions for known price evolutions
+
+- given that prices / returns are already known, with *no uncertainty*
+  left, *continuous* returns are computationally *more efficient*
+
+- discrete returns can be calculated via a detour to continuous returns 
+
+- as the transformation of discrete to continuous returns does not change
+ the ordering of investments, and as *logarithmic returns* are *still
+  interpretable* since they are the limiting case of discrete
+  compounding, why shouldn't we just stick with continuous returns
+  overall?
+
+- however: the *main advantage* only crops up in a setting of
+  uncertain future returns, and their modelling as random variables! 
+
+
+### Importance of returns
+
+Why are *asset returns* so pervasive if *asset prices* are the real
+quantity of interest in many cases?
+
+### Non-stationarity
+
+Most prices are not stationary: 
+
+- over long horizons stocks tend to exhibit a positive trend
+
+. . .
+
+- distribution changes over time 
+
+. . .
+
+#### Consequence
+
+. . .
+
+- historic prices are not representative for future prices: mean past
+  prices are a bad forecast for future prices
+
+### Returns
+
+- returns are stationary in most cases
+
+$\Rightarrow$ historic data can be used to estimate their current
+distribution
 
 ###
 
@@ -506,38 +595,70 @@ r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}=\left(0.0607+0.0540+...+0.0708\r
 \bf{Z}=g(\bf{X}),\quad \bf{X}=(X_{1},\ldots, X_{d})
 \end{equation*}
 
-- most likely, some of $X_{i}$ are single period returns
-- why?
-- why logarithmic?
+- as statistical requirements tend to force us to use returns instead
+  of prices, some $X_{i}$ are returns almost always
 
-Why do we look at returns? non-stationarity
-Why do we need multi-periods? increases sample size
-Why log-returns? 
-- better fit to normal distribution?
-- linear aggregation
+### Time horizon and aggregation
 
-###
+- lower frequency returns can be expressed as aggregation of higher
+  frequency returns 
 
-Why is aggregation over time so important?
-aren't we interested in prices, instead of returns
+. . .
+
+- lack of data for lower frequency returns (need to be
+  non-overlapping) 
+
+. . .
+
+$Rightarrow$ long horizons usually require aggregation of higher
+frequency returns: $X_{t}, X_{t+1}, \ldots$
+
+### Outlook: mathematical tractability
+
+Only with log-returns we preserve a chance to end up with a linear
+function: 
+
+\begin{align*}
+\bf{Z}&=g(\bf{X})\\
+&=g(Y_{t}, Y_{t+1}, \ldots, X_{i}) \\
+&=\hat{g}(Y_{t} + Y_{t+1} + \ldots, X_{i})
+\end{align*}
+
+### Outlook: statistical fitting
+
+- *central limit theorem* could justify modelling *logarithmic*
+  returns as *normally distributed*, since returns can be decomposed
+  into *summation* over returns of *lower* frequency: e.g. annual
+  returns are the sum of 12 monthly returns, 52 weakly returns, 365
+  daily returns,... 
+
+- independent of the distribution of low frequency returns, the
+  *central limit theorem* states that any sum of these low frequency
+  returns follows a *normal distribution*, provided that the sum
+  involves sufficiently many summands, and the following requirements
+  are fulfilled: 
+
+- the high frequency returns are *independent* of each other
+
+- the distribution of the low frequency returns allows finite second
+  moments (variance)
+
 
 ### 
 
-Prices, non-stationarity, returns
+- this reasoning *does not apply to net / gross returns*, since they
+  can not be decomposed into a sum of lower frequency returns 
 
-### 
+- keep in mind: these are *only hypothetical considerations*, since we
+  have not seen any real world data so far! 
 
-why not regression models?
-- too much noise
 
-###
+### Difference to regression setting
 
-We need multi-dimensional setting: X consists of multiple random
-variables 
-
--> what does that mean for f?
--> first: univariate case
-
+- regression models tend to explain first moments
+- many financial variables tend to exhibit almost constant mean over
+  time
+- hence: determining the residual distribution is main task
 
 # Probability theory
 
