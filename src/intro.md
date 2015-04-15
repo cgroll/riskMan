@@ -270,5 +270,483 @@ The 3-tuple $\left\{ \Omega,\mathcal{F},\mathbb{P}\right\}$ is called
 *probability space*. 
 
  
+### Random variable
 
+- instead of outcome $\omega$ itself, usually a mapping or function of
+  $\omega$ is in the focus: when playing roulette, instead of outcome
+  "red" it is more useful to consider associated gain or loss of a bet
+  on "color"
+
+. . .
+
+- conversion of *categoral* outcomes to *real numbers* allows for
+  further measurements / information extraction: expectation,
+  dispersion,...
+
+. . .
+
+#### Definition
+
+Let $\left\{ \Omega,\mathcal{F},\mathbb{P}\right\}$ be a probability
+space. If $X:\Omega\rightarrow\mathbb{R}$ is a real-valued function
+with the elements of $\Omega$ as its domain, then $X$ is called
+*random variable*. 
+
+### Example
+
+![random variable with discrete values](/home/chris/research/teaching/riskMan/pics/intro_pics/01categToRandVar.png)
+
+
+### Density function
+
+- a *discrete* random variable consists of a countable number of
+  elements, while a *continuous* random variable can take any real
+  value in a given interval 
+
+. . .
+
+- a *probability density function* determines the probability
+  (possibly $0$) for each event 
+
+. . .
+
+#### Discrete density function
+
+For each $x_{i}\in X\left(\Omega\right)=\left\{
+x_{i}|x_{i}=X\left(\omega\right),\omega\in\Omega\right\}$, the
+function 
+\begin{equation*}
+f\left(x_{i}\right)=\mathbb{P}\left(X=x_{i}\right)
+\end{equation*}
+
+assigns a value corresponding to the probability.
+
+###
+
+#### Continuous density function
+
+In contrast, the values of a continuous density function
+$f\left(x\right),$ $x\in\left\{
+x|x=X\left(\omega\right),\omega\in\Omega\right\}$ are not
+probabilities itself. However, they shed light on the relative
+probabilities of occurrence. Given $f\left(y\right)=2\cdot
+f\left(z\right),$ the occurrence of $y$ is twice as probable as the
+occurrence of $z$.
+
+
+### Example
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/exDiscCont02.png)
+
+### 
+
+#### Cumulative distribution function
+The *cumulative distribution function* (cdf) of random variable $X$,
+denoted by $F\left(x\right),$ indicates the probability that $X$
+assumes a value that is lower than or equal to $x,$ where $x$ is any
+real number. That is 
+
+\begin{equation*}
+F\left(x\right)=\mathbb{P}\left(X\leq x\right),\quad-\infty<x<\infty.
+\end{equation*}
+
+###
+
+a cdf has the following properties:
+
+. . .
+
+- $F\left(x\right)$ is a nondecreasing function of $x;$
+
+. . .
+
+- $\lim_{x\rightarrow\infty}F\left(x\right)=1;$
+
+. . .
+
+- $\lim_{x\rightarrow-\infty}F\left(x\right)=0.$
+
+. . .
+
+- furthermore:
+\begin{equation*}
+\mathbb{P}\left(a<X\leq b\right)=F\left(b\right)-F\left(a\right),\quad\mbox{for all }b>a
+\end{equation*}
+
+
+### 
+
+Interrelation pdf and cdf: **discrete case**
+
+\begin{equation*}
+F\left(x\right)=\mathbb{P}\left(X\leq x\right)=\sum_{x_{i}\leq x}\mathbb{P}\left(X=x_{i}\right)
+\end{equation*}
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/discrPdfCdf03.png)
+
+
+### 
+
+Interrelation pdf and cdf: **continuous case**
+
+\begin{equation*}
+F\left(x\right)=\mathbb{P}\left(X\leq x\right)=\int_{-\infty}^{x}f\left(u\right)du
+\end{equation*}
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/contPdfCdf04.png)
+
+## Information reduction
+
+### Modelling information
+
+. . .
+
+- both cdf as well as pdf, which is the derivative of the cdf, provide
+  complete information about the distribution of the random variable 
+
+. . .
+
+- may not always be necessary / possible to have complete distribution
+
+. . .
+
+- incomplete information modelled via *event space* $\mathcal{F}$
+
+
+### Example
+
+- sample space given by $\Omega=\{1,3,5,6,7\}$
+
+. . .
+
+- modeling complete information about possible realizations:
+
+	\begin{align*}
+	\mathcal{P}\left(\Omega\right) & =\left\{ 1\right\} \cup\left\{ 3\right\} \cup\left\{ 5\right\} \cup\left\{ 6\right\} \cup\left\{ 7\right\} \cup\\
+	& \cup\left\{ 1,3\right\} \cup\left\{ 1,5\right\} \cup...\cup\left\{ 6,7\right\} \cup\left\{ 1,3,5\right\} \cup...\cup\left\{ 5,6,7\right\} \cup\\
+	& \cup\left\{ 1,3,5,6\right\} \cup...\cup\left\{ 3,5,6,7\right\} \cup\left\{ \Omega,\left\{ \right\} \right\} 
+	\end{align*}
+
+. . .
+
+###
+
+- example of event space representing incomplete information could be 
+
+	\begin{equation*}
+	\mathcal{F}=\left\{ \left\{ 1,3\right\} ,\left\{ 5\right\} ,\left\{ 6,7\right\} \right\} \cup\left\{ \left\{ 1,3,5\right\} ,\left\{ 1,3,6,7\right\} ,\left\{ 5,6,7\right\} \right\} \cup\left\{ \Omega,\left\{ \right\} \right\} 
+	\end{equation*}
+	
+. . .
+
+- given only incomplete information, originally distinct distributions
+  can become indistinguishable 
+
+### Information reduction discrete
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/coarseFiltr05.png)
+
+
+### Information reduction discrete
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/diffDistr06.png)
+
+
+
+### Information reduction continuous
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/contCoarse07.png)
+
+
+### Measures of random variables
+
+- complete distribution may not always be necessary
+
+. . .
+
+- compress information of complete distribution for better
+  comparability with  other distributions
+
+. . .
+
+- compressed information is easier to interpret
+
+. . .
+
+- example: knowing "central location" together with an idea by how
+  much $X$ may fluctuate around the center may be sufficient 
+
+
+###
+
+Classification with respect to several measures can be sufficient:
+
+- probability of negative / positive return
+
+. . .
+
+- return on average
+
+. . .
+
+- worst case
+
+. . .
+
+- measures of *location* and *dispersion*
+
+. . .
+
+
+Given only incomplete information conveyed by measures, distinct
+distributions can become indistinguishable.
+
+
+
+### Expectation
+
+The *expectation*, or *mean*, is defined as a weighted average of all
+possible realizations of a random variable.
+
+. . .
+
+#### Discrete random variables
+
+The *expected value* $\mathbb{E}\left[X\right]$ is defined as
+
+\begin{equation*}
+\mathbb{E}\left[X\right]=\mu_{X}=\sum_{i=1}^{N}x_{i}\mathbb{P}\left(X=x_{i}\right).
+\end{equation*}
+
+###
+
+#### Continuous random variables
+
+For a continuous random variable with density function
+$f\left(x\right):$ 
+
+\begin{equation*}
+\mathbb{E}\left[X\right]=\mu_{X}=\int_{-\infty}^{\infty}xf\left(x\right)dx
+\end{equation*}
+
+### Examples
+
+####
+
+\begin{align*}
+\mathbb{E}\left[X\right] & =\sum_{i=1}^{5}x_{i}\mathbb{P}\left(X=x_{i}\right)\\
+& =1\cdot0.1+3\cdot0.2+5\cdot0.6+6\cdot0.06+7\cdot0.04=4.34
+\end{align*}
+
+####
+
+\begin{equation*}
+\mathbb{E}\left[X\right]=-2\cdot0.1-1\cdot0.2+7\cdot0.6+8\cdot0.06+9\cdot0.0067=4.34
+\end{equation*}
+
+###
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp08.png)
+
+
+### 
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp09.png)
+
+### Variance
+
+The *variance* provides a measure of dispersion around the mean. 
+
+. . .
+
+#### Discrete random variables
+
+The *variance* is defined by
+
+\begin{equation*}
+\mathbb{V}\left[X\right]=\sigma_{X}^{2}=\sum_{i=1}^{N}\left(X_{i}-\mu_{X}\right)^{2}\mathbb{P}\left(X=x_{i}\right),
+\end{equation*}
+
+where $\sigma_{X}=\sqrt{\mathbb{V}\left[X\right]}$ denotes the
+*standard deviation* of $X.$
+
+###
+
+#### Continuous random variables
+
+For continuous variables, the *variance* is defined by
+
+\begin{equation*}
+\mathbb{V}\left[X\right]=\sigma_{X}^{2}=\int_{-\infty}^{\infty}\left(x-\mu_{X}\right)^{2}f\left(x\right)dx
+\end{equation*}
+
+. . .
+
+### Example
+
+\begin{align*}
+\mathbb{V}\left[X\right] & =\sum_{i=1}^{5}\left(x_{i}-\mu\right)^{2}\mathbb{P}\left(X=x_{i}\right)\\
+ & =3.34^{2}\cdot0.1+1.34^{2}\cdot0.2+0.66^{2}\cdot0.6+1.66^{2}\cdot0.06+2.66^{2}\cdot0.04\\
+ & =2.1844\neq14.913
+\end{align*}
+
+###
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp10.png)
+
+
+### Quantiles
+
+#### Quantile
+
+Let $X$ be a random variable with cumulative distribution function
+$F$. For each $p\in\left(0,1\right)$, the $p$-*quantile* is defined as 
+
+\begin{equation*}
+F^{-1}\left(p\right)=\inf\left\{ x|F\left(x\right)\geq p\right\} .
+\end{equation*}
+
+### Quantile
+
+- *measure of location*
+
+. . .
+
+- divides distribution in two parts, with *exactly* $p*100$ *percent* of
+  the probability mass of the distribution to the left *in the
+  continuous case*: random draws from the given distribution $F$ would
+  fall $p*100$ percent of the time below the $p$-quantile
+
+. . .
+
+- for *discrete* distributions, the probability mass on the left has
+  to be at least $p*100$ percent:
+
+\begin{equation*}
+F\left(F^{-1}\left(p\right)\right)=\mathbb{P}\left(X\leq F^{-1}\left(p\right)\right)\geq p
+\end{equation*}
+
+
+### Example
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm11.png)
+
+
+### Example: cdf
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm12.png)
+
+
+### Example
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm13.png)
+
+
+### Example
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm14.png)
+
+
+### 
+
+#### Summary: information reduction
+
+*Incomplete information* can occur in two ways: 
+
+. . . 
+
+- a *coarse filtration*
+
+. . .
+
+- only values of some *measures* of the underlying distribution are
+  known (*mean*, *dispersion*, *quantiles*)
+
+. . .
+
+Any reduction of information implicitly induces that some formerly
+distinguishable distributions are *undistinguishable* on the basis of
+the limited information.
+
+. . .
+
+- *tradeoff*: reducing information for better *comprehensibility /
+  comparability*, or keeping as much information as possible 
+
+
+## Updating information
+
+### 
+
+- opposite direction: *updating* information on the basis of new
+  arriving information 
+
+- concept of *conditional probability*
+
+
+### Example
+
+- with knowledge of the underlying distribution, the information has
+  to be updated, given that the occurrence of some event of the
+  filtration is known 
+
+. . .
+
+- normal distribution with mean 2 
+
+. . .
+
+- incorporating the knowledge of a realization *greater than the mean*
+
+
+### Unconditional density
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens12.png)
+
+
+
+### 
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens13.png)
+
+
+### 
+
+Given the knowledge of a realization higher than 2, probabilities of
+values below become zero:
+	
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens14.png)
+
+### 
+
+Without changing relative proportions, the density has to be rescaled
+in order to enclose an area of 1:
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens15.png)
+
+###
+
+- original density function compared to updated conditional density
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens16.png)
+
+
+### Decomposing density
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp20.png)
+
+
+### 
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp21.png)
+
+
+### 
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp22.png)
+
+
+### 
+
+![](/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp23.png)
 
