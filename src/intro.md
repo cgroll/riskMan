@@ -118,12 +118,12 @@ r_{1:t}^{log}&=\ln\left( 1+r_{1:t} \right) \\
 &=\ln\left(\prod_{i=1}^{t}\left(1+r_{i}\right)\right) \\
 &=\ln\left(1+r_{1}\right)+\ln\left(1+r_{2}\right)+\ldots+\ln\left(1+r_{t}\right)\\
  & =r_{1}^{log}+r_{2}^{log}+\ldots+r_{t}^{log}\\
-&=\sum_{i=1}^{t} \left( \ln (1+r_{i})\right)
+&=\sum_{i=1}^{t} r_{i}^{log}
 \end{align*}
 
 ###
 
-Example: it really works
+Example: it really works -> only when returns are introduced
 
 ### Compounding at higher frequency
 
@@ -251,8 +251,13 @@ r^{log; eff}&=\ln(R^{eff})\\
 
 ###
 
-If the bank were compounding interest rates continuously, the nominal
-interest rate $r$ would equal the logarithmic effective rate.
+**Interpretation**: If the bank were compounding interest rates
+continuously, the nominal interest rate $r$ would equal the
+logarithmic effective rate.
+
+. . .
+
+Also:
 
 - if $r^{log;eff}=r$ for continuous compounding,
 
@@ -264,7 +269,7 @@ interest rate $r$ would equal the logarithmic effective rate.
 . . .
 
 - the logarithmic transformation $r^{log}=\ln(1+r)$ does change the
-  value only marginally
+  value only marginally: $r^{log}\approx r$
 
 ### Conclusion
 
@@ -277,13 +282,239 @@ In other words:
 - still, log-interest rates are better to work with, as they increase
   linearly through aggregation over time
 
+### Conclusion
+
+But: if interest rates get bigger, the approximation of simple
+compounding by continuous compounding gets worse!
+
+- $\ln(1+x)=x$ for $x=0$
+- $\ln(1+x)\approx x$ for $x\neq 0$
+
+## Prices and returns
+
+### Returns on speculative assets
+
+- while interest rates of fixed-income assets are usually known
+  *prior* to the investment, returns of speculative assets have to be
+  calculated *after* observation of prices
+
+. . .
+
+- returns on speculative assets usually vary from period to period 
+
+### 
+
+- let $P_{t}$ denote the price of a speculative asset at time $t$
+
+. . .
+
+- *net return* during period $t$:
+
+	\begin{equation*}
+	r_{t}:=\frac{P_{t}-P_{t-1}}{P_{t-1}}=\frac{P_{t}}{P_{t-1}}-1
+	\end{equation*}
+
+. . .
+
+- gross return during period $t$:
+
+	\begin{equation*}
+	R_{t}:=(1+r_{t})=\frac{P_{t}}{P_{t-1}}
+	\end{equation*}
+
+. . .
+
+- returns calculated this way are called *discrete returns*
+
+### Continuously compounded returns
+
+- defining the *log return*, or *continuously compounded return*, by 
+
+\begin{equation*}
+r_{t}^{log}:=\ln R_{t}=\ln\left(1+r_{t}\right)=\ln\frac{P_{t}}{P_{t-1}}=\ln P_{t}-\ln P_{t-1}
+\end{equation*}
+
+
+### Exercise
+
+Investor $A$ and investor $B$ both made one investment each. While
+investor $A$ was able to increase his investment sum of 100 to 140
+within 3 years, investor $B$ increased his initial wealth of 230  to
+340 within 5 years. Which investor did perform better?
+
+### Exercise: solution
+
+- calculate mean annual interest rate for both investors
+
+. . .
+
+- investor $A:$
+
+	\begin{align*}
+	P_{T} & =P_{0}\left(1+r\right)^{T} & \Leftrightarrow\\
+	140 & =100\left(1+r\right)^{3} & \Leftrightarrow\\
+	\sqrt[3]{\frac{140}{100}} & =\left(1+r\right) & \Leftrightarrow\\
+	r_{A} & =0.1187
+	\end{align*}
+
 ###
 
-But: if interest rates get bigger, continuous compounding and simple
-compounding will lead to different results
+- investor $B:$
 
-- approximation becomes worse
-- best: for $\ln(1+x)=x$ for $x=0$
+	\begin{equation*}
+	r_{B}=\left(\sqrt[5]{\frac{340}{230}}-1\right)=0.0813
+	\end{equation*}
+
+- hence, investor $A$ has achieved a higher return on his investment 
+
+### Using continuous returns
+
+- for comparison, using continuous returns
+
+. . .
+
+- *continuously compounded returns* associated with an evolution of
+  prices over a longer time period is given by
+
+#### Continuous case
+
+\begin{equation*}
+P_{T}=P_{0}e^{rT}\Leftrightarrow\frac{P_{T}}{P_{0}}=e^{rT}\Leftrightarrow\ln\left(\frac{P_{T}}{P_{0}}\right)=\ln\left(e^{rT}\right)=rT
+\end{equation*}
+
+\begin{equation*}
+r=\frac{\left(\ln P_{T}-\ln P_{0}\right)}{T}
+\end{equation*}
+
+### Continuous case
+
+- plugging in leads to
+
+	\begin{equation*}
+	r_{A}=\frac{\left(\ln130-\ln100\right)}{3}=0.0875
+	\end{equation*}
+
+	\begin{equation*}
+	r_{B}=\frac{\left(\ln340-\ln230\right)}{5}=0.0782
+	\end{equation*}
+
+### 
+
+- conclusion: while the case of discrete returns involves calculation
+  of the $n$-th root, the continuous case is computationally less
+  demanding 
+
+. . .
+
+- while continuous returns differ from their discrete counterparts,
+  the ordering of both investors is unchanged
+
+ . . .
+
+- keep in mind: *so far* we only treat returns retrospectively, that
+  is, with given and *known realization of prices*, where any
+  uncertainty involved in asset price evolutions already has been
+  resolved 
+
+### Comparing different investments
+
+- comparison of returns of alternative investment opportunities over
+  different investment horizons requires computation of an *average*
+  gross return $\bar{R}$ for each investment, fulfilling:
+
+\begin{equation*}
+P_{t}\bar{R}^{n}\overset{!}{=}P_{t}R_{t}\cdot\ldots\cdot R_{t+n-1}=P_{t+n}
+\end{equation*}
+
+- in *net returns*:
+
+\begin{equation*}
+P_{t}\left(1+\bar{r}\right)^{n}\overset{!}{=}P_{t}\left(1+r_{t}\right)\cdot\ldots\cdot\left(1+r_{t+n-1}\right)
+\end{equation*}
+
+- solving for $\bar{r}$ leads to
+
+\begin{equation*}
+\bar{r}=\left(\prod_{i=0}^{n-1}\left(1+r_{t+i}\right)\right)^{1/n}-1
+\end{equation*}
+
+- the *annualized gross return* is not an *arithmetic* mean, but a
+  *geometric* mean
+
+### Example
+
+The annualized return of 1.0392 is *unequal* to the simple arithmetic
+mean over the randomly generated interest rates of 1.0395!
+
+![random variable with discrete values](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_intRates.png)
+
+Left: randomly generated returns between 0 and 8 percent, plotted
+against annualized net return rate. Right: comparison of associated
+compound interest rates. 
+
+
+### Example
+
+- two ways to calculate annualized net returns for previously
+  generated random returns: 
+
+#### Direct way
+
+using gross returns, taking $50$-th root:
+
+\begin{align*}
+\bar{r}_{t,t+n-1}^{ann} & =\left(\prod_{i=0}^{n-1}\left(1+r_{t+i}\right)\right)^{1/n}-1\\
+ & =\left(1.0626\cdot1.0555\cdot...\cdot1.0734\right)^{1/50}-1\\
+ & =\left(6.8269\right)^{1/50}-1\\
+ & =0.0391
+\end{align*}
+
+### Via log returns
+
+transfer the problem to the *logarithmic world*:  
+
+- convert gross returns to log returns:
+
+\begin{equation*}
+\left[1.0626,1.0555,\ldots,1.0734\right]\overset{log}{\longrightarrow}\left[0.0607,0.0540,\ldots,0.0708\right]
+\end{equation*}
+
+- use arithmetic mean to calculate annualized return in the *logarithmic world*:
+
+\begin{equation*}
+r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}=\left(0.0607+0.0540+...+0.0708\right)=1.9226
+\end{equation*}
+
+\begin{equation*}
+\bar{r}_{t,t+n-1}^{log}=\frac{1}{n}r_{t,t+n-1}^{log}=\frac{1}{50}1.9226=0.0385
+\end{equation*}
+
+- convert result back to *normal world*:
+
+\begin{equation*}
+\bar{r}_{t,t+n-1}^{ann}=e^{\bar{r}_{t,t+n-1}^{log}}-1=e^{0.0385}-1=0.0391
+\end{equation*}
+
+### Example
+
+![random variable with discrete values](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_logRets.png)
+
+
+###
+
+\begin{equation*}
+\bf{Z}=g(\bf{X}),\quad \bf{X}=(X_{1},\ldots, X_{d})
+\end{equation*}
+
+- most likely, some of $X_{i}$ are single period returns
+- why?
+- why logarithmic?
+
+Why do we look at returns? non-stationarity
+Why do we need multi-periods? increases sample size
+Why log-returns? 
+- better fit to normal distribution?
+- linear aggregation
 
 ###
 
@@ -306,20 +537,6 @@ variables
 
 -> what does that mean for f?
 -> first: univariate case
-
-
-###
-
-- interest rate aggregation
-- log interest rate aggregation
-
-- relation: log interest rates as limit of discrete interest rates 
-
-
-### Returns
-
-- non-stationarity: look at returns, not prices
-- going back to prices naturally involves aggregation 
 
 
 # Probability theory
