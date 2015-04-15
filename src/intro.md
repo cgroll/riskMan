@@ -123,15 +123,192 @@ r_{1:t}^{log}&=\ln\left( 1+r_{1:t} \right) \\
 
 ###
 
-\begin{align*}
-r_{t,t+n}^{log} & :=\ln\left(1+r_{t,t+n}\right)\\
- & =\ln\left[\left(1+r_{t}\right)\left(1+r_{t+1}\right)\ldots\left(1+r_{t+n}\right)\right]\\
- & =\ln\left(1+r_{t}\right)+\ln\left(1+r_{t+1}\right)+\ldots+\ln\left(1+r_{t+n}\right)\\
- & =r_{t}^{log}+r_{t+1}^{log}+\ldots+r_{t+n}^{log}
-\end{align*}
+Example: it really works
+
+### Compounding at higher frequency
+
+- compounding can occur more frequently than at annual intervals
+- $m$ times per year: $W_{m,t}\left(r\right)$ denotes wealth in $t$
+  for $W_{0}=1$ 
+
+. . .
+
+#### Biannually
+
+after six months:
+
+\begin{equation*}
+W_{2,\frac{1}{2}}(r)=\left(1+\frac{r}{2}\right)
+\end{equation*}
+
+
+### Effective annual rate
+
+- the *effective annual rate* $R^{eff}$ is defined as the wealth after
+  one year, given an initial wealth $W_{0}=1$
+
+. . .
+
+- with biannual compounding, we get
+
+\begin{equation*}
+R^{eff}:=W_{2,1}(r)=\left(1+\frac{r}{2}\right)\left(1+\frac{r}{2}\right)=\left(1+\frac{r}{2}\right)^{2}
+\end{equation*}
+
+. . .
+
+- it exceeds the simple annual rate:
+
+\begin{equation*}
+\left(1+\frac{r}{2}\right)^{2}>\left(1+r\right)\Rightarrow W_{2,1}\left(r\right)>W_{1,1}\left(r\right)
+\end{equation*}
+
+
+### $m$ interest payments within a year
+
+- *effective annual rate* after one year:
+
+\begin{equation*}
+R^{eff}=W_{m,1}(r)=\left(1+\frac{r}{m}\right)^{m}
+\end{equation*}
+
+. . .
+
+- for wealth after $T$ years we get:
+
+\begin{equation*}
+W_{m,T}(r)=\left(1+\frac{r}{m}\right)^{mT}
+\end{equation*}
+
+###
+
+wealth is an increasing function of the interest payment frequency: 
+
+\begin{equation*}
+W_{m_{1},t}\left(r\right)>W_{m_{2},t}\left(r\right),\,\forall t\,\mbox{and}\, m_{1}>m_{2}
+\end{equation*}
+
+
+### Continuous compounding
+
+- the *continuously compounded rate* is given by the limit
+
+	\begin{equation*}
+	W_{\infty,1}\left(r\right)=\lim_{m\rightarrow\infty}\left(1+\frac{r}{m}\right)^{m}=e^{r}
+	\end{equation*}
+
+. . .
+
+- compounding over $T$ periods leads to
+
+	\begin{equation*}
+	W_{\infty,T}\left(r\right)=\lim_{m\rightarrow\infty}\left(1+\frac{r}{m}\right)^{mT}=\left(\lim_{m\rightarrow\infty}\left(1+\frac{r}{m}\right)^{m}\right)^{T}=e^{rT}
+	\end{equation*}
+
+###
+
+- under continuous compounding the value of an initial investment of
+  $W_{0}$ grows *exponentially fast*
+
+. . .
+
+- comparatively simple for calculation of interest accrued in between
+  dates of interest *payments* 
+
 
 
 ### 
+
+|        T |  $m=1$ |    $m=2$ |  $m=3$ | $\infty$ |
+|----------+--------+----------+--------+----------|
+|        1 |   1030 |   1030.2 | 1030.3 |   1030.5 |
+|        2 | 1060.9 |   1061.4 | 1061.6 |   1061.8 |
+|        3 | 1092.7 |   1093.4 | 1093.8 |   1094.2 |
+|        5 | 1159.3 |   1160.5 | 1161.2 |   1161.8 |
+| $\cdots$ |        | $\cdots$ |        | $\cdots$ |
+|        9 | 1304.8 |   1307.3 | 1308.6 |     1310 |
+|       10 | 1343.9 |   1346.9 | 1348.3 |   1349.9 |
+
+
+
+Development of initial investment $W_{0}=1000$ over 10 years, subject
+to different interest rate frequencies, with annual interest rate
+$r=0.03$
+
+
+### Effective logarithmic rates
+
+For logarithmic interest rates, a higher compounding frequency leads
+to 
+
+\begin{align*}
+r^{log; eff}&=\ln(R^{eff})\\
+&=\ln(W_{m,1})\\
+&=\ln\left( \left(1 + \frac{r}{m}\right)^{m} \right)\\
+&\overset{m\rightarrow\infty}{\rightarrow}\ln(\exp{(r)})\\
+&=r
+\end{align*}
+
+###
+
+If the bank were compounding interest rates continuously, the nominal
+interest rate $r$ would equal the logarithmic effective rate.
+
+- if $r^{log;eff}=r$ for continuous compounding,
+
+. . .
+
+- and continuous compounding leads to almost identical end of period
+  wealth as simple compounding (see table above)
+
+. . .
+
+- the logarithmic transformation $r^{log}=\ln(1+r)$ does change the
+  value only marginally
+
+### Conclusion
+
+In other words:
+
+- we can interpret log-interest rates as roughly equal to simple rates
+
+. . .
+
+- still, log-interest rates are better to work with, as they increase
+  linearly through aggregation over time
+
+###
+
+But: if interest rates get bigger, continuous compounding and simple
+compounding will lead to different results
+
+- approximation becomes worse
+- best: for $\ln(1+x)=x$ for $x=0$
+
+###
+
+Why is aggregation over time so important?
+aren't we interested in prices, instead of returns
+
+### 
+
+Prices, non-stationarity, returns
+
+### 
+
+why not regression models?
+- too much noise
+
+###
+
+We need multi-dimensional setting: X consists of multiple random
+variables 
+
+-> what does that mean for f?
+-> first: univariate case
+
+
+###
 
 - interest rate aggregation
 - log interest rate aggregation
