@@ -27,12 +27,14 @@ $(OUTDIR)/intro.slides.html: src/intro.md Makefile refs.bib
 $(OUTDIR)/intro.pdf: src/intro.md Makefile refs.bib
 	pandoc -s -t beamer -f markdown \
 	--slide-level=3 \
-	-V theme=CambridgeUS -V colortheme=dolphin \
+	-V theme=Frankfurt -V colortheme=default \
 	--mathjax \
 	--filter pandoc_custom/filters/skip_pause.hs \
 	--filter pandoc-citeproc --csl=pandoc_custom/csl/elsevier-harvard.csl \
 	--bibliography=refs.bib \
 	-o $@ $<
+
+#-V theme=CambridgeUS -V colortheme=dolphin \
 
 $(OUTDIR)/intro.tex: src/intro.md Makefile refs.bib
 	pandoc -s -t beamer -f markdown \
