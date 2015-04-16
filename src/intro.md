@@ -31,6 +31,34 @@
 - $g$ is payoff function
 
 
+
+### Difference to regression setting
+
+. . .
+
+- $X_{i}$ part of the model: 
+	- in regression analysis, all $X_{i}$ are taken as given
+	- here we need to specify a distribution for $(X_{1},\ldots,
+     X_{d})$
+
+. . .
+
+#### Justification
+
+- in regression analysis, explanatory variables with influence on
+  first moment are observable upfront
+
+. . .
+
+- for financial variables, explanatory variables
+  $(X_{1},\ldots,X_{d})$ only become observable simultaneously to $Z$ 
+
+. . .
+
+- many financial variables tend to exhibit almost constant mean over
+  time: determining the "residual distribution" is main task
+
+
 ### Certain future payments
 
 - in the simplest case, all risk factors $(X_{1},\ldots, X_{d})$ are
@@ -121,9 +149,6 @@ r_{1:t}^{log}&=\ln\left( 1+r_{1:t} \right) \\
 &=\sum_{i=1}^{t} r_{i}^{log}
 \end{align*}
 
-###
-
-Example: it really works -> only when returns are introduced
 
 ### Compounding at higher frequency
 
@@ -653,13 +678,6 @@ function:
 - keep in mind: these are *only hypothetical considerations*, since we
   have not seen any real world data so far! 
 
-
-### Difference to regression setting
-
-- regression models tend to explain first moments
-- many financial variables tend to exhibit almost constant mean over
-  time
-- hence: determining the residual distribution is main task
 
 # Probability theory
 
