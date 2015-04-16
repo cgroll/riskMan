@@ -216,7 +216,6 @@ W_{m_{1},t}\left(r\right)>W_{m_{2},t}\left(r\right),\,\forall t\,\mbox{and}\, m_
   dates of interest *payments* 
 
 
-
 ### 
 
 |        T |  $m=1$ |    $m=2$ |  $m=3$ | $\infty$ |
@@ -448,6 +447,7 @@ P_{t}\left(1+\bar{r}\right)^{n}\overset{!}{=}P_{t}\left(1+r_{t}\right)\cdot\ldot
 - the *annualized gross return* is not an *arithmetic* mean, but a
   *geometric* mean
 
+
 ### Example
 
 ![](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_intRates.png)
@@ -495,10 +495,10 @@ transfer the problem to the *logarithmic world*:
 
 - use arithmetic mean to calculate annualized return in the *logarithmic world*:
 
-\begin{equation*}
-r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}=\left(0.0607+0.0540+...+0.0708\right)=1.9226\\
-\bar{r}_{t,t+n-1}^{log}=\frac{1}{n}r_{t,t+n-1}^{log}=\frac{1}{50}1.9226=0.0385
-\end{equation*}
+\begin{align*}
+r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}&=\left(0.0607+0.0540+...+0.0708\right)=1.9226\\
+\bar{r}_{t,t+n-1}^{log}&=\frac{1}{n}r_{t,t+n-1}^{log}=\frac{1}{50}1.9226=0.0385
+\end{align*}
 
 
 ### Example
@@ -512,6 +512,7 @@ r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}=\left(0.0607+0.0540+...+0.0708\r
 \begin{equation*}
 \bar{r}_{t,t+n-1}^{ann}=e^{\bar{r}_{t,t+n-1}^{log}}-1=e^{0.0385}-1=0.0391
 \end{equation*}
+
 
 ### Summary
 
