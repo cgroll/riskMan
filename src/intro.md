@@ -51,12 +51,13 @@
 . . .
 
 - for financial variables, explanatory variables
-  $(X_{1},\ldots,X_{d})$ only become observable simultaneously to $Z$ 
+  $(X_{1},\ldots,X_{d})$ sometimes only become observable
+  simultaneously to $Z$
 
 . . .
 
 - many financial variables tend to exhibit almost constant mean over
-  time: determining the "residual distribution" is main task
+  time: how they are distributed around their mean is important
 
 
 ### Certain future payments
@@ -397,10 +398,10 @@ within 3 years, investor $B$ increased his initial wealth of 230  to
 
 . . .
 
+#### Continuous case
+
 - *continuously compounded returns* associated with an evolution of
   prices over a longer time period is given by
-
-#### Continuous case
 
 \begin{equation*}
 P_{T}=P_{0}e^{rT}\Leftrightarrow\frac{P_{T}}{P_{0}}=e^{rT}\Leftrightarrow\ln\left(\frac{P_{T}}{P_{0}}\right)=\ln\left(e^{rT}\right)=rT
@@ -572,13 +573,19 @@ r_{t}^{log}=\ln\left(R_{t}\right)=\ln\left(1+r_{t}\right)\approx r_{t}
 - given that prices / returns are already known, with *no uncertainty*
   left, *continuous* returns are computationally *more efficient*
 
+. . .
+
 - discrete returns can be calculated via a detour to continuous returns 
+
+. . .
 
 - as the transformation of discrete to continuous returns does not change
  the ordering of investments, and as *logarithmic returns* are *still
   interpretable* since they are the limiting case of discrete
   compounding, why shouldn't we just stick with continuous returns
   overall?
+
+. . .
 
 - however: the *main advantage* only crops up in a setting of
   uncertain future returns, and their modelling as random variables! 
@@ -612,17 +619,21 @@ Most prices are not stationary:
 
 - returns are stationary in most cases
 
+. . .
+
 $\Rightarrow$ historic data can be used to estimate their current
 distribution
 
-###
+### General problem
+
+**Quantity of interest**
 
 \begin{equation*}
 \bf{Z}=g(\bf{X}),\quad \bf{X}=(X_{1},\ldots, X_{d})
 \end{equation*}
 
 - as statistical requirements tend to force us to use returns instead
-  of prices, some $X_{i}$ are returns almost always
+  of prices, almost always at least some $X_{i}$ represent returns
 
 ### Time horizon and aggregation
 
@@ -631,18 +642,20 @@ distribution
 
 . . .
 
-- lack of data for lower frequency returns (need to be
-  non-overlapping) 
+- lack of data for lower frequency returns (as they need to be
+  non-overlapping)
 
 . . .
 
-$Rightarrow$ long horizons usually require aggregation of higher
+$\Rightarrow$ long horizons usually require aggregation of higher
 frequency returns: $X_{t}, X_{t+1}, \ldots$
 
 ### Outlook: mathematical tractability
 
 Only with log-returns we preserve a chance to end up with a linear
 function: 
+
+**Quantity of interest**
 
 \begin{align*}
 \bf{Z}&=g(\bf{X})\\
@@ -652,19 +665,29 @@ function:
 
 ### Outlook: statistical fitting
 
-- *central limit theorem* could justify modelling *logarithmic*
-  returns as *normally distributed*, since returns can be decomposed
-  into *summation* over returns of *lower* frequency: e.g. annual
-  returns are the sum of 12 monthly returns, 52 weakly returns, 365
-  daily returns,... 
+The *central limit theorem* could justify modelling *logarithmic*
+returns as *normally distributed*:
 
-- independent of the distribution of low frequency returns, the
-  *central limit theorem* states that any sum of these low frequency
-  returns follows a *normal distribution*, provided that the sum
-  involves sufficiently many summands, and the following requirements
-  are fulfilled: 
+. . .
+
+- returns can be decomposed into *summation* over returns of *higher*
+  frequency: e.g. annual returns are the sum of 12 monthly returns, 52
+  weakly returns, 365 daily returns,... 
+
+### 
+
+**The central limit theorem states:**
+
+Independent of the distribution of high frequency returns, any sum of
+them follows a *normal distribution*, provided that the sum involves
+sufficiently many summands, and the following requirements are
+fulfilled:
+
+. . .
 
 - the high frequency returns are *independent* of each other
+
+. . .
 
 - the distribution of the low frequency returns allows finite second
   moments (variance)
@@ -673,7 +696,9 @@ function:
 ### 
 
 - this reasoning *does not apply to net / gross returns*, since they
-  can not be decomposed into a sum of lower frequency returns 
+  can not be decomposed into a *sum* of lower frequency returns 
+
+. . .
 
 - keep in mind: these are *only hypothetical considerations*, since we
   have not seen any real world data so far! 
@@ -849,6 +874,7 @@ with the elements of $\Omega$ as its domain, then $X$ is called
 For each $x_{i}\in X\left(\Omega\right)=\left\{
 x_{i}|x_{i}=X\left(\omega\right),\omega\in\Omega\right\}$, the
 function 
+
 \begin{equation*}
 f\left(x_{i}\right)=\mathbb{P}\left(X=x_{i}\right)
 \end{equation*}
@@ -874,11 +900,10 @@ occurrence of $z$.
 
 ### 
 
-#### Cumulative distribution function
-The *cumulative distribution function* (cdf) of random variable $X$,
-denoted by $F\left(x\right),$ indicates the probability that $X$
-assumes a value that is lower than or equal to $x,$ where $x$ is any
-real number. That is 
+#### Cumulative distribution function The *cumulative distribution
+function* (cdf) of random variable $X$, denoted by $F\left(x\right),$
+indicates the probability that $X$ takes on a value that is lower than
+or equal to $x,$ where $x$ is any real number. That is
 
 \begin{equation*}
 F\left(x\right)=\mathbb{P}\left(X\leq x\right),\quad-\infty<x<\infty.
@@ -931,9 +956,7 @@ F\left(x\right)=\mathbb{P}\left(X\leq x\right)=\int_{-\infty}^{x}f\left(u\right)
 
 ## Information reduction
 
-### Modelling information
-
-. . .
+### Modeling information
 
 - both cdf as well as pdf, which is the derivative of the cdf, provide
   complete information about the distribution of the random variable 
@@ -1207,6 +1230,17 @@ the limited information.
 - *tradeoff*: reducing information for better *comprehensibility /
   comparability*, or keeping as much information as possible 
 
+
+### General problem
+
+**Quantity of interest**
+
+\begin{equation*}
+\varrho(\bf{Z})=g(\bf{X}),\quad \bf{X}=(X_{1},\ldots, X_{d})
+\end{equation*}
+
+- instead of the complete distribution of $Z$, interest only lies in
+  some measure $\varrho$ (expectation, variance, ...)
 
 ## Updating information
 
