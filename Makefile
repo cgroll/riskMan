@@ -56,7 +56,8 @@ publish: $(OUT) Makefile refs.bib
 # TODO: push files to ftp server
 
 clean:
-	rm -f $(OUTDIR)/*.slides.html
+	rm -f $(OUTDIR)/*.slides.html \
+	rm -f $(OUTDIR)/*.pdf
 
 again:
 	make clean
