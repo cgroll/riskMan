@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+        <meta name="author" content="Introduction to the modeling of assets" />
+            <title>Risk management</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+            <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme">
+            <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = '../reveal.js/css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+            <style type="text/css">
+    p { text-align: left; }
+    .reveal ul {
+        width: 900px;
+    }
+    
+    .reveal strong { color: lawngreen;
+                     font-style: normal;
+                     font-weight: bold;
+                   }
+    
+    /* all headers are transformed to h1 by reveal.js, */
+    /* even individual slide headers. */
+    /* hence, h1 font size should not be too large */
+    .reveal h1 { 
+        font-style: normal;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    </style>
+        
+    <!-- include local MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      "HTML-CSS": {
+      scale: 80,
+      },
+      extensions: ["tex2jax.js"],
+      TeX: { equationNumbers: { autoNumber: "AMS" } },
+      jax: ["input/TeX","output/HTML-CSS"],
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}});
+    </script>
+    <script type="text/javascript" src="../MathJax/MathJax.js"></script>
+    
+  </head>
+  <body>
+        <div class="reveal">
+      <div class="slides">
+        
+                <section>
+          <h1 class="title">Risk management</h1>
+                              <h2 class="author">Introduction to the modeling of assets</h2>
+                    <h3 class="date">Christian Groll</h3>
+        </section>
+                        <section id="TOC">
+          <ul>
+          <li><a href="#/interest-rates-and-returns">Interest rates and returns</a></li>
+          <li><a href="#/probability-theory">Probability theory</a></li>
+          </ul>
+        </section>
+                
+        <section><section id="interest-rates-and-returns" class="titleslide slide level1"><h1>Interest rates and returns</h1></section><section id="general-problem" class="slide level3">
+        <h1>General problem</h1>
+        <p><strong>Quantity of interest</strong></p>
+         <br /><span class="math">$$\begin{equation*}
+        \bf{Z}=g(\bf{X}),\quad \bf{X}=(X_{1},\ldots, X_{d})
+        \end{equation*}$$</span><br />
+        <ul>
+        <li><span class="math"><em>X</em><sub><em>i</em></sub></span> are random variables</li>
+        <li><span class="math"><em>X</em><sub><em>i</em></sub></span> represent <em>uncertain risk factors</em></li>
+        </ul>
+        </section><section id="examples" class="slide level3">
+        <h1>Examples</h1>
+        <div class="fragment">
+        <p><strong>portfolio return</strong></p>
+        <ul>
+        <li>individual stocks <span class="math">(<em>X</em><sub>1</sub>, …, <em>X</em><sub><em>d</em></sub>)</span></li>
+        <li><span class="math"><em>g</em></span> is aggregation function</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><strong>option payoff</strong></p>
+        <ul>
+        <li>single underlying <span class="math"><em>X</em><sub>1</sub></span></li>
+        <li><span class="math"><em>g</em></span> is payoff function</li>
+        </ul>
+        </div>
+        </section><section id="difference-to-regression-setting" class="slide level3">
+        <h1>Difference to regression setting</h1>
+        <div class="fragment">
+        <ul>
+        <li><span class="math"><em>X</em><sub><em>i</em></sub></span> part of the model:
+        <ul>
+        <li>in regression analysis, all <span class="math"><em>X</em><sub><em>i</em></sub></span> are taken as given</li>
+        <li>here we need to specify a distribution for <span class="math">(<em>X</em><sub>1</sub>, …, <em>X</em><sub><em>d</em></sub>)</span></li>
+        </ul></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><strong>Justification</strong></p>
+        <ul>
+        <li>in regression analysis, explanatory variables with influence on first moment are observable upfront</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>for financial variables, explanatory variables <span class="math">(<em>X</em><sub>1</sub>, …, <em>X</em><sub><em>d</em></sub>)</span> sometimes only become observable simultaneously to <span class="math"><em>Z</em></span></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>many financial variables tend to exhibit almost constant mean over time: how they are distributed around their mean is important</li>
+        </ul>
+        </div>
+        </section><section id="certain-future-payments" class="slide level3">
+        <h1>Certain future payments</h1>
+        <ul>
+        <li>in the simplest case, all risk factors <span class="math">(<em>X</em><sub>1</sub>, …, <em>X</em><sub><em>d</em></sub>)</span> are perfectly known</li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Example</strong></p>
+        <ul>
+        <li><em>bank account</em> with given interest rate</li>
+        </ul>
+        </div>
+        </section><section id="aggregation" class="slide level3">
+        <h1>Aggregation</h1>
+        <ul>
+        <li>even without uncertainty, our quantity of interest commonly implies a <em>multi-dimensional</em> setting</li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Example</strong></p>
+        <ul>
+        <li><em>multi-period wealth</em> calculation with given annual interest rates</li>
+        </ul>
+        </div>
+        </section><section class="slide level3">
+        <h1>Interest and compounding</h1>
+        </section><section id="section" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li><p>given an interest rate of <span class="math"><em>r</em></span> per period and initial wealth <span class="math"><em>W</em><sub><em>t</em></sub></span>, the wealth one period ahead is calculated as</p>
+         <br /><span class="math">$$\begin{equation*}
+        W_{t+1}=W_{t}\left(1+r\right)
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Example</strong></p>
+        <ul>
+        <li><span class="math"><em>r</em> = 0.05</span> (annual rate), <span class="math"><em>W</em><sub>0</sub> = 500.000</span>, after one year</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><br /><span class="math">$$500.000\left(1+\frac{5}{100}\right)= 500.000\left(1+0.05\right)=525.000$$</span><br /></p>
+        </div>
+        </section><section id="section-1" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>multi-period compound interest:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        W_{T}(r,W_{0})=W_{0}(1+r)^{T}
+        \end{equation*}$$</span><br />
+        <div class="fragment">
+        <p><strong>Non-constant interest rates</strong></p>
+        <ul>
+        <li>for the case of <em>changing annual interest rates</em>, end-of-period wealth is given by</li>
+        </ul>
+         <br /><span class="math">$$\begin{align*}
+        W_{1:t} &amp; =\left(1+r_{0}\right)\cdot\left(1+r_{1}\right)\cdot...\cdot\left(1+r_{t-1}\right)\\
+         &amp; =\prod_{i=0}^{t-1}\left(1+r_{i}\right)
+        \end{align*}$$</span><br />
+        </div>
+        </section><section id="logarithmic-interest-rates" class="slide level3">
+        <h1>Logarithmic interest rates</h1>
+        <ul>
+        <li>logarithmic interest rates or <em>continuously compounded</em> interest rates are given by</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        r_{t}^{log}:=\ln\left(1+r_{t}\right)
+        \end{equation*}$$</span><br />
+        </section><section id="aggregation-1" class="slide level3">
+        <h1>Aggregation</h1>
+        <ul>
+        <li>with logarithmic interest rates aggregation becomes a <em>sum</em> rather than a <em>product</em> of sub-period interest rates:</li>
+        </ul>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{align*}
+        r_{1:t}^{log}&amp;=\ln\left( 1+r_{1:t} \right) \\
+        &amp;=\ln\left(\prod_{i=1}^{t}\left(1+r_{i}\right)\right) \\
+        &amp;=\ln\left(1+r_{1}\right)+\ln\left(1+r_{2}\right)+\ldots+\ln\left(1+r_{t}\right)\\
+         &amp; =r_{1}^{log}+r_{2}^{log}+\ldots+r_{t}^{log}\\
+        &amp;=\sum_{i=1}^{t} r_{i}^{log}
+        \end{align*}$$</span><br />
+        </div>
+        </section><section id="compounding-at-higher-frequency" class="slide level3">
+        <h1>Compounding at higher frequency</h1>
+        <ul>
+        <li>compounding can occur more frequently than at annual intervals</li>
+        <li><span class="math"><em>m</em></span> times per year: <span class="math"><em>W</em><sub><em>m</em>, <em>t</em></sub>(<em>r</em>)</span> denotes wealth in <span class="math"><em>t</em></span> for <span class="math"><em>W</em><sub>0</sub> = 1</span></li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Biannually</strong></p>
+        <p>after six months:</p>
+         <br /><span class="math">$$\begin{equation*}
+        W_{2,\frac{1}{2}}(r)=\left(1+\frac{r}{2}\right)
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="effective-annual-rate" class="slide level3">
+        <h1>Effective annual rate</h1>
+        <ul>
+        <li>the <em>effective annual rate</em> <span class="math"><em>R</em><sup><em>e</em><em>f</em><em>f</em></sup></span> is defined as the wealth after one year, given an initial wealth <span class="math"><em>W</em><sub>0</sub> = 1</span></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>with biannual compounding, we get</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        R^{eff}:=W_{2,1}(r)=\left(1+\frac{r}{2}\right)\left(1+\frac{r}{2}\right)=\left(1+\frac{r}{2}\right)^{2}
+        \end{equation*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>it exceeds the simple annual rate:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        \left(1+\frac{r}{2}\right)^{2}&gt;\left(1+r\right)\Rightarrow W_{2,1}\left(r\right)&gt;W_{1,1}\left(r\right)
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="m-interest-payments-within-a-year" class="slide level3">
+        <h1><span class="math"><em>m</em></span> interest payments within a year</h1>
+        <ul>
+        <li><em>effective annual rate</em> after one year:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        R^{eff}=W_{m,1}(r)=\left(1+\frac{r}{m}\right)^{m}
+        \end{equation*}$$</span><br />
+        <div class="fragment">
+        <ul>
+        <li>for wealth after <span class="math"><em>T</em></span> years we get:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        W_{m,T}(r)=\left(1+\frac{r}{m}\right)^{mT}
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="section-2" class="slide level3">
+        <h1></h1>
+        <p>wealth is an increasing function of the interest payment frequency:</p>
+         <br /><span class="math">$$\begin{equation*}
+        W_{m_{1},t}\left(r\right)&gt;W_{m_{2},t}\left(r\right),\,\forall t\,\mbox{and}\, m_{1}&gt;m_{2}
+        \end{equation*}$$</span><br />
+        </section><section id="continuous-compounding" class="slide level3">
+        <h1>Continuous compounding</h1>
+        <ul>
+        <li><p>the <em>continuously compounded rate</em> is given by the limit</p>
+         <br /><span class="math">$$\begin{equation*}
+        W_{\infty,1}\left(r\right)=\lim_{m\rightarrow\infty}\left(1+\frac{r}{m}\right)^{m}=e^{r}
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li><p>compounding over <span class="math"><em>T</em></span> periods leads to</p>
+         <br /><span class="math">$$\begin{equation*}
+        W_{\infty,T}\left(r\right)=\lim_{m\rightarrow\infty}\left(1+\frac{r}{m}\right)^{mT}=\left(\lim_{m\rightarrow\infty}\left(1+\frac{r}{m}\right)^{m}\right)^{T}=e^{rT}
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        </div>
+        </section><section id="section-3" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>under continuous compounding the value of an initial investment of <span class="math"><em>W</em><sub>0</sub></span> grows <em>exponentially fast</em></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>comparatively simple for calculation of interest accrued in between dates of interest <em>payments</em></li>
+        </ul>
+        </div>
+        </section><section id="section-4" class="slide level3">
+        <h1></h1>
+        <table>
+        <thead>
+        <tr class="header">
+        <th style="text-align: left;">T</th>
+        <th style="text-align: left;"><span class="math"><em>m</em> = 1</span></th>
+        <th style="text-align: left;"><span class="math"><em>m</em> = 2</span></th>
+        <th style="text-align: left;"><span class="math"><em>m</em> = 3</span></th>
+        <th style="text-align: left;"><span class="math">∞</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="odd">
+        <td style="text-align: left;">1</td>
+        <td style="text-align: left;">1030</td>
+        <td style="text-align: left;">1030.2</td>
+        <td style="text-align: left;">1030.3</td>
+        <td style="text-align: left;">1030.5</td>
+        </tr>
+        <tr class="even">
+        <td style="text-align: left;">2</td>
+        <td style="text-align: left;">1060.9</td>
+        <td style="text-align: left;">1061.4</td>
+        <td style="text-align: left;">1061.6</td>
+        <td style="text-align: left;">1061.8</td>
+        </tr>
+        <tr class="odd">
+        <td style="text-align: left;">3</td>
+        <td style="text-align: left;">1092.7</td>
+        <td style="text-align: left;">1093.4</td>
+        <td style="text-align: left;">1093.8</td>
+        <td style="text-align: left;">1094.2</td>
+        </tr>
+        <tr class="even">
+        <td style="text-align: left;">5</td>
+        <td style="text-align: left;">1159.3</td>
+        <td style="text-align: left;">1160.5</td>
+        <td style="text-align: left;">1161.2</td>
+        <td style="text-align: left;">1161.8</td>
+        </tr>
+        <tr class="odd">
+        <td style="text-align: left;"><span class="math">⋯</span></td>
+        <td style="text-align: left;"></td>
+        <td style="text-align: left;"><span class="math">⋯</span></td>
+        <td style="text-align: left;"></td>
+        <td style="text-align: left;"><span class="math">⋯</span></td>
+        </tr>
+        <tr class="even">
+        <td style="text-align: left;">9</td>
+        <td style="text-align: left;">1304.8</td>
+        <td style="text-align: left;">1307.3</td>
+        <td style="text-align: left;">1308.6</td>
+        <td style="text-align: left;">1310</td>
+        </tr>
+        <tr class="odd">
+        <td style="text-align: left;">10</td>
+        <td style="text-align: left;">1343.9</td>
+        <td style="text-align: left;">1346.9</td>
+        <td style="text-align: left;">1348.3</td>
+        <td style="text-align: left;">1349.9</td>
+        </tr>
+        </tbody>
+        </table>
+        <p>Development of initial investment <span class="math"><em>W</em><sub>0</sub> = 1000</span> over 10 years, subject to different interest rate frequencies, with annual interest rate <span class="math"><em>r</em> = 0.03</span></p>
+        </section><section id="effective-logarithmic-rates" class="slide level3">
+        <h1>Effective logarithmic rates</h1>
+        <p>For logarithmic interest rates, a higher compounding frequency leads to</p>
+         <br /><span class="math">$$\begin{align*}
+        r^{log; eff}&amp;=\ln(R^{eff})\\
+        &amp;=\ln(W_{m,1})\\
+        &amp;=\ln\left( \left(1 + \frac{r}{m}\right)^{m} \right)\\
+        &amp;\overset{m\rightarrow\infty}{\rightarrow}\ln(\exp{(r)})\\
+        &amp;=r
+        \end{align*}$$</span><br />
+        </section><section id="section-5" class="slide level3">
+        <h1></h1>
+        <p><strong>Interpretation</strong>: If the bank were compounding interest rates continuously, the nominal interest rate <span class="math"><em>r</em></span> would equal the logarithmic effective rate.</p>
+        <div class="fragment">
+        <p>Also:</p>
+        <ul>
+        <li>if <span class="math"><em>r</em><sup><em>l</em><em>o</em><em>g</em>; <em>e</em><em>f</em><em>f</em></sup> = <em>r</em></span> for continuous compounding,</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>and continuous compounding leads to almost identical end of period wealth as simple compounding (see table above)</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>the logarithmic transformation <span class="math"><em>r</em><sup><em>l</em><em>o</em><em>g</em></sup> = ln(1 + <em>r</em>)</span> does change the value only marginally: <span class="math"><em>r</em><sup><em>l</em><em>o</em><em>g</em></sup> ≈ <em>r</em></span></li>
+        </ul>
+        </div>
+        </section><section id="conclusion" class="slide level3">
+        <h1>Conclusion</h1>
+        <p>In other words:</p>
+        <ul>
+        <li>we can interpret log-interest rates as roughly equal to simple rates</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>still, log-interest rates are better to work with, as they increase linearly through aggregation over time</li>
+        </ul>
+        </div>
+        </section><section id="conclusion-1" class="slide level3">
+        <h1>Conclusion</h1>
+        <p>But: if interest rates get bigger, the approximation of simple compounding by continuous compounding gets worse!</p>
+        <ul>
+        <li><span class="math">ln(1 + <em>x</em>) = <em>x</em></span> for <span class="math"><em>x</em> = 0</span></li>
+        <li><span class="math">ln(1 + <em>x</em>) ≈ <em>x</em></span> for <span class="math"><em>x</em> ≠ 0</span></li>
+        </ul>
+        </section><section class="slide level3">
+        <h1>Prices and returns</h1>
+        </section><section id="returns-on-speculative-assets" class="slide level3">
+        <h1>Returns on speculative assets</h1>
+        <ul>
+        <li>while interest rates of fixed-income assets are usually known <em>prior</em> to the investment, returns of speculative assets have to be calculated <em>after</em> observation of prices</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>returns on speculative assets usually vary from period to period</li>
+        </ul>
+        </div>
+        </section><section id="section-6" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>let <span class="math"><em>P</em><sub><em>t</em></sub></span> denote the price of a speculative asset at time <span class="math"><em>t</em></span></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li><p><em>net return</em> during period <span class="math"><em>t</em></span>:</p>
+         <br /><span class="math">$$\begin{equation*}
+        r_{t}:=\frac{P_{t}-P_{t-1}}{P_{t-1}}=\frac{P_{t}}{P_{t-1}}-1
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><p>gross return during period <span class="math"><em>t</em></span>:</p>
+         <br /><span class="math">$$\begin{equation*}
+        R_{t}:=(1+r_{t})=\frac{P_{t}}{P_{t-1}}
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>returns calculated this way are called <em>discrete returns</em></li>
+        </ul>
+        </div>
+        </section><section id="continuously-compounded-returns" class="slide level3">
+        <h1>Continuously compounded returns</h1>
+        <ul>
+        <li>defining the <em>log return</em>, or <em>continuously compounded return</em>, by</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        r_{t}^{log}:=\ln R_{t}=\ln\left(1+r_{t}\right)=\ln\frac{P_{t}}{P_{t-1}}=\ln P_{t}-\ln P_{t-1}
+        \end{equation*}$$</span><br />
+        </section><section id="exercise" class="slide level3">
+        <h1>Exercise</h1>
+        <p>Investor <span class="math"><em>A</em></span> and investor <span class="math"><em>B</em></span> both made one investment each. While investor <span class="math"><em>A</em></span> was able to increase his investment sum of 100 to 140 within 3 years, investor <span class="math"><em>B</em></span> increased his initial wealth of 230 to 340 within 5 years. Which investor did perform better?</p>
+        </section><section id="exercise-solution" class="slide level3">
+        <h1>Exercise: solution</h1>
+        <ul>
+        <li>calculate mean annual interest rate for both investors</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li><p>investor <span class="math"><em>A</em> : </span></p>
+         <br /><span class="math">$$\begin{align*}
+        P_{T} &amp; =P_{0}\left(1+r\right)^{T} &amp; \Leftrightarrow\\
+        140 &amp; =100\left(1+r\right)^{3} &amp; \Leftrightarrow\\
+        \sqrt[3]{\frac{140}{100}} &amp; =\left(1+r\right) &amp; \Leftrightarrow\\
+        r_{A} &amp; =0.1187
+        \end{align*}$$</span><br /></li>
+        </ul>
+        </div>
+        </section><section id="section-7" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li><p>investor <span class="math"><em>B</em> : </span></p>
+         <br /><span class="math">$$\begin{equation*}
+        r_{B}=\left(\sqrt[5]{\frac{340}{230}}-1\right)=0.0813
+        \end{equation*}$$</span><br /></li>
+        <li><p>hence, investor <span class="math"><em>A</em></span> has achieved a higher return on his investment</p></li>
+        </ul>
+        </section><section id="using-continuous-returns" class="slide level3">
+        <h1>Using continuous returns</h1>
+        <ul>
+        <li>for comparison, using continuous returns</li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Continuous case</strong></p>
+        <ul>
+        <li><em>continuously compounded returns</em> associated with an evolution of prices over a longer time period is given by</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        P_{T}=P_{0}e^{rT}\Leftrightarrow\frac{P_{T}}{P_{0}}=e^{rT}\Leftrightarrow\ln\left(\frac{P_{T}}{P_{0}}\right)=\ln\left(e^{rT}\right)=rT
+        \end{equation*}$$</span><br />
+         <br /><span class="math">$$\begin{equation*}
+        r=\frac{\left(\ln P_{T}-\ln P_{0}\right)}{T}
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="continuous-case-1" class="slide level3">
+        <h1>Continuous case</h1>
+        <ul>
+        <li><p>plugging in leads to</p>
+         <br /><span class="math">$$\begin{equation*}
+        r_{A}=\frac{\left(\ln130-\ln100\right)}{3}=0.0875
+        \end{equation*}$$</span><br />
+         <br /><span class="math">$$\begin{equation*}
+        r_{B}=\frac{\left(\ln340-\ln230\right)}{5}=0.0782
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        </section><section id="section-8" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>conclusion: while the case of discrete returns involves calculation of the <span class="math"><em>n</em></span>-th root, the continuous case is computationally less demanding</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>while continuous returns differ from their discrete counterparts, the ordering of both investors is unchanged</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>keep in mind: <em>so far</em> we only treat returns retrospectively, that is, with given and <em>known realization of prices</em>, where any uncertainty involved in asset price evolutions already has been resolved</li>
+        </ul>
+        </div>
+        </section><section id="comparing-different-investments" class="slide level3">
+        <h1>Comparing different investments</h1>
+        <ul>
+        <li><p>comparison of returns of alternative investment opportunities over different investment horizons requires computation of an <em>average</em> gross return <span class="math">$\bar{R}$</span> for each investment, fulfilling:</p>
+         <br /><span class="math">$$\begin{equation*}
+        P_{t}\bar{R}^{n}\overset{!}{=}P_{t}R_{t}\cdot\ldots\cdot R_{t+n-1}=P_{t+n}
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>in <em>net returns</em>:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        P_{t}\left(1+\bar{r}\right)^{n}\overset{!}{=}P_{t}\left(1+r_{t}\right)\cdot\ldots\cdot\left(1+r_{t+n-1}\right)
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="section-9" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>solving for <span class="math">$\bar{r}$</span> leads to</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        \bar{r}=\left(\prod_{i=0}^{n-1}\left(1+r_{t+i}\right)\right)^{1/n}-1
+        \end{equation*}$$</span><br />
+        <div class="fragment">
+        <ul>
+        <li>the <em>annualized gross return</em> is not an <em>arithmetic</em> mean, but a <em>geometric</em> mean</li>
+        </ul>
+        </div>
+        </section><section id="example-3" class="slide level3">
+        <h1>Example</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_intRates.png" />
+        </figure>
+        <p>Left: randomly generated returns between 0 and 8 percent, plotted against annualized net return rate. Right: comparison of associated compound interest rates.</p>
+        </section><section id="section-10" class="slide level3">
+        <h1></h1>
+        <p>The annualized return of 1.0392 is <em>unequal</em> to the simple arithmetic mean over the randomly generated interest rates of 1.0395!</p>
+        </section><section id="example-4" class="slide level3">
+        <h1>Example</h1>
+        <ul>
+        <li>two ways to calculate annualized net returns for previously generated random returns:</li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Direct way</strong></p>
+        <p>using gross returns, taking <span class="math">50</span>-th root:</p>
+         <br /><span class="math">$$\begin{align*}
+        \bar{r}_{t,t+n-1}^{ann} &amp; =\left(\prod_{i=0}^{n-1}\left(1+r_{t+i}\right)\right)^{1/n}-1\\
+         &amp; =\left(1.0626\cdot1.0555\cdot...\cdot1.0734\right)^{1/50}-1\\
+         &amp; =\left(6.8269\right)^{1/50}-1\\
+         &amp; =0.0391
+        \end{align*}$$</span><br />
+        </div>
+        </section><section id="via-log-returns" class="slide level3">
+        <h1>Via log returns</h1>
+        <p>transfer the problem to the <em>logarithmic world</em>:</p>
+        <div class="fragment">
+        <ul>
+        <li>convert gross returns to log returns:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        \left[1.0626,1.0555,\ldots,1.0734\right]\overset{log}{\longrightarrow}\left[0.0607,0.0540,\ldots,0.0708\right]
+        \end{equation*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>use arithmetic mean to calculate annualized return in the <em>logarithmic world</em>:</li>
+        </ul>
+         <br /><span class="math">$$\begin{align*}
+        r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}&amp;=\left(0.0607+0.0540+...+0.0708\right)=1.9226\\
+        \bar{r}_{t,t+n-1}^{log}&amp;=\frac{1}{n}r_{t,t+n-1}^{log}=\frac{1}{50}1.9226=0.0385
+        \end{align*}$$</span><br />
+        </div>
+        </section><section id="example-5" class="slide level3">
+        <h1>Example</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_logRets.png" />
+        </figure>
+        </section><section id="section-11" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>convert result back to <em>normal world</em>:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        \bar{r}_{t,t+n-1}^{ann}=e^{\bar{r}_{t,t+n-1}^{log}}-1=e^{0.0385}-1=0.0391
+        \end{equation*}$$</span><br />
+        </section><section id="summary" class="slide level3">
+        <h1>Summary</h1>
+        <ul>
+        <li><p>multi-period gross returns result from <em>multiplication</em> of one-period returns: hence, <em>exponentially increasing</em></p></li>
+        <li><p>multi-period logarithmic returns result from <em>summation</em> of one-period returns: hence, <em>linearly increasing</em></p></li>
+        <li><p>different calculation of returns from given portfolio values:</p></li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        r_{t}=\frac{P_{t}-P_{t-1}}{P_{t}}\quad\quad r_{t}^{log}=\ln\left(\frac{P_{t}}{P_{t-1}}\right)=\ln P_{t}-\ln P_{t-1}
+        \end{equation*}$$</span><br />
+        </section><section id="section-12" class="slide level3">
+        <h1></h1>
+        <p>However, because of</p>
+         <br /><span class="math">$$\begin{equation*}
+        \ln\left(1+x\right)\approx x
+        \end{equation*}$$</span><br />
+        <p>discrete net returns and log returns are approximately equal:</p>
+         <br /><span class="math">$$\begin{equation*}
+        r_{t}^{log}=\ln\left(R_{t}\right)=\ln\left(1+r_{t}\right)\approx r_{t}
+        \end{equation*}$$</span><br />
+        </section><section id="section-13" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>given that prices / returns are already known, with <em>no uncertainty</em> left, <em>continuous</em> returns are computationally <em>more efficient</em></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>discrete returns can be calculated via a detour to continuous returns</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>as the transformation of discrete to continuous returns does not change the ordering of investments, and as <em>logarithmic returns</em> are <em>still interpretable</em> since they are the limiting case of discrete compounding, why shouldn't we just stick with continuous returns overall?</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>however: the <em>main advantage</em> only crops up in a setting of uncertain future returns, and their modelling as random variables!</li>
+        </ul>
+        </div>
+        </section><section id="importance-of-returns" class="slide level3">
+        <h1>Importance of returns</h1>
+        <p>Why are <em>asset returns</em> so pervasive if <em>asset prices</em> are the real quantity of interest in many cases?</p>
+        </section><section id="non-stationarity" class="slide level3">
+        <h1>Non-stationarity</h1>
+        <p>Most prices are not stationary:</p>
+        <ul>
+        <li>over long horizons stocks tend to exhibit a positive trend</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>distribution changes over time</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><strong>Consequence</strong></p>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>historic prices are not representative for future prices: mean past prices are a bad forecast for future prices</li>
+        </ul>
+        </div>
+        </section><section id="returns" class="slide level3">
+        <h1>Returns</h1>
+        <ul>
+        <li>returns are stationary in most cases</li>
+        </ul>
+        <div class="fragment">
+        <p><span class="math"> ⇒ </span> historic data can be used to estimate their current distribution</p>
+        </div>
+        </section><section id="general-problem-1" class="slide level3">
+        <h1>General problem</h1>
+        <p><strong>Quantity of interest</strong></p>
+         <br /><span class="math">$$\begin{equation*}
+        \bf{Z}=g(\bf{X}),\quad \bf{X}=(X_{1},\ldots, X_{d})
+        \end{equation*}$$</span><br />
+        <ul>
+        <li>as statistical requirements tend to force us to use returns instead of prices, almost always at least some <span class="math"><em>X</em><sub><em>i</em></sub></span> represent returns</li>
+        </ul>
+        </section><section id="time-horizon-and-aggregation" class="slide level3">
+        <h1>Time horizon and aggregation</h1>
+        <ul>
+        <li>lower frequency returns can be expressed as aggregation of higher frequency returns</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>lack of data for lower frequency returns (as they need to be non-overlapping)</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><span class="math"> ⇒ </span> long horizons usually require aggregation of higher frequency returns: <span class="math"><em>X</em><sub><em>t</em></sub>, <em>X</em><sub><em>t</em> + 1</sub>, …</span></p>
+        </div>
+        </section><section id="outlook-mathematical-tractability" class="slide level3">
+        <h1>Outlook: mathematical tractability</h1>
+        <p>Only with log-returns we preserve a chance to end up with a linear function:</p>
+        <p><strong>Quantity of interest</strong></p>
+         <br /><span class="math">$$\begin{align*}
+        \bf{Z}&amp;=g(\bf{X})\\
+        &amp;=g(Y_{t}, Y_{t+1}, \ldots, X_{i}) \\
+        &amp;=\hat{g}(Y_{t} + Y_{t+1} + \ldots, X_{i})
+        \end{align*}$$</span><br />
+        </section><section id="outlook-statistical-fitting" class="slide level3">
+        <h1>Outlook: statistical fitting</h1>
+        <p>The <em>central limit theorem</em> could justify modelling <em>logarithmic</em> returns as <em>normally distributed</em>:</p>
+        <div class="fragment">
+        <ul>
+        <li>returns can be decomposed into <em>summation</em> over returns of <em>higher</em> frequency: e.g. annual returns are the sum of 12 monthly returns, 52 weakly returns, 365 daily returns,...</li>
+        </ul>
+        </div>
+        </section><section id="section-14" class="slide level3">
+        <h1></h1>
+        <p><strong>The central limit theorem states:</strong></p>
+        <p>Independent of the distribution of high frequency returns, any sum of them follows a <em>normal distribution</em>, provided that the sum involves sufficiently many summands, and the following requirements are fulfilled:</p>
+        <div class="fragment">
+        <ul>
+        <li>the high frequency returns are <em>independent</em> of each other</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>the distribution of the low frequency returns allows finite second moments (variance)</li>
+        </ul>
+        </div>
+        </section><section id="section-15" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>this reasoning <em>does not apply to net / gross returns</em>, since they can not be decomposed into a <em>sum</em> of lower frequency returns</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>keep in mind: these are <em>only hypothetical considerations</em>, since we have not seen any real world data so far!</li>
+        </ul>
+        </div>
+        </section></section>
+        <section><section id="probability-theory" class="titleslide slide level1"><h1>Probability theory</h1></section><section id="section-16" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li><em>randomness</em>: the result is not known in advance</li>
+        <li><em>probability theory</em>: captures randomness in mathematical framework</li>
+        </ul>
+        </section><section class="slide level3">
+        <h1>Probability spaces and random variables</h1>
+        </section><section id="section-17" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li><em>sample space</em> <span class="math">Ω</span>: set of all possible outcomes or elementary events <span class="math"><em>ω</em></span></li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Examples: <em>discrete</em> sample space:</strong></p>
+        <ul>
+        <li>roulette: <span class="math">Ω<sub>1</sub> = {<em>r</em><em>e</em><em>d</em>, <em>b</em><em>l</em><em>a</em><em>c</em><em>k</em>}</span></li>
+        <li>performance: <span class="math">Ω<sub>2</sub> = {<em>g</em><em>o</em><em>o</em><em>d</em>, <em>m</em><em>o</em><em>d</em><em>e</em><em>r</em><em>a</em><em>t</em><em>e</em>, <em>b</em><em>a</em><em>d</em>}</span></li>
+        <li>die: <span class="math">Ω<sub>3</sub> = {1, 2, 3, 4, 5, 6}</span></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><strong>Examples: <em>continuous</em> sample space:</strong></p>
+        <ul>
+        <li>temperature: <span class="math">Ω<sub>4</sub> = [ − 40, 50]</span></li>
+        <li>log-returns: <span class="math">Ω<sub>5</sub> = ] − ∞, ∞[</span></li>
+        </ul>
+        </div>
+        </section><section id="events" class="slide level3">
+        <h1>Events</h1>
+        <ul>
+        <li>a subset <span class="math"><em>A</em> ⊂ Ω</span> consisting of more than one elementary event <span class="math"><em>ω</em></span> is called <em>event</em></li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Examples</strong></p>
+        <ul>
+        <li>&quot;at least moderate performance&quot;:
+         <br /><span class="math">$$\begin{equation*}
+        A=\left\{ \mbox{good,moderate}\right\} \subset\Omega_{2}
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>&quot;even number&quot;:
+         <br /><span class="math">$$\begin{equation*}
+        A=\left\{ 2,4,6\right\} \subset\Omega_{3}
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>&quot;warmer than 10 degrees&quot;:
+         <br /><span class="math">$$\begin{equation*}
+        A=]10,\infty[\subset\Omega_{4}
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        </div>
+        </section><section id="event-space" class="slide level3">
+        <h1>Event space</h1>
+        <ul>
+        <li>the set of all events of <span class="math">Ω</span> is called <em>event space</em> <span class="math">ℱ</span></li>
+        <li>usually it contains all possible subsets of <span class="math">Ω</span>: it is the <em>power set</em> of <span class="math">𝒫(Ω)</span></li>
+        </ul>
+        </section><section id="events-1" class="slide level3">
+        <h1>Events</h1>
+        <ul>
+        <li><span class="math">{}</span> denotes the <em>empty set</em></li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Event space example</strong></p>
+         <br /><span class="math">$$\begin{align*}
+        \mathcal{P}\left(\Omega_{2}\right)&amp;=\left\{ \Omega,\left\{ \right\} \right\} \cup\left\{ \mbox{good}\right\} \cup\left\{ \mbox{moderate}\right\} \\
+        &amp;=\cup\left\{ \mbox{bad}\right\} \cup\left\{ \mbox{good,moderate}\right\} \cup\left\{ \mbox{good,bad}\right\} \cup\left\{ \mbox{moderate,bad}\right\}
+        \end{align*}$$</span><br />
+        </div>
+        </section><section id="events-2" class="slide level3">
+        <h1>Events</h1>
+        <ul>
+        <li>an event <span class="math"><em>A</em></span> is said to <em>occur</em> if any <span class="math"><em>ω</em> ∈ <em>A</em></span> occurs</li>
+        </ul>
+        <div class="fragment">
+        <p><strong>Example</strong></p>
+        <p>If the performance happens to be <span class="math"><em>ω</em> = {<em>g</em><em>o</em><em>o</em><em>d</em>}, </span> then also the event <span class="math"><em>A</em> = </span> &quot;at least moderate performance&quot; has occured, since <span class="math"><em>ω</em> ⊂ <em>A</em></span>.</p>
+        </div>
+        </section><section id="section-18" class="slide level3">
+        <h1></h1>
+        <p><strong>Probability measure</strong></p>
+        <p>A real-valued set function <span class="math">ℙ : ℱ → ℝ</span>, with properties</p>
+        <div class="fragment">
+        <ul>
+        <li><span class="math">ℙ(<em>A</em>) &gt; 0</span> for all <span class="math"><em>A</em> ⊆ Ω</span></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><span class="math">ℙ(Ω) = 1</span></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>For each finite or countably infinite collection of <em>disjoint</em> events <span class="math">(<em>A</em><sub><em>i</em></sub>)</span> it holds: <br /><span class="math">ℙ( ∪ <sub><em>i</em> ∈ <em>I</em></sub><em>A</em><sub><em>i</em></sub>) = ∑<sub><em>i</em> ∈ <em>I</em></sub>ℙ(<em>A</em><sub><em>i</em></sub>)</span><br /></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><span class="math"> ⇒ </span> quantifies for each event a probability of occurance</p>
+        </div>
+        <div class="fragment">
+        <p><strong>Definition</strong></p>
+        <p>The 3-tuple <span class="math">{Ω, ℱ, ℙ}</span> is called <em>probability space</em>.</p>
+        </div>
+        </section><section id="random-variable" class="slide level3">
+        <h1>Random variable</h1>
+        <ul>
+        <li>instead of outcome <span class="math"><em>ω</em></span> itself, usually a mapping or function of <span class="math"><em>ω</em></span> is in the focus: when playing roulette, instead of outcome &quot;red&quot; it is more useful to consider associated gain or loss of a bet on &quot;color&quot;</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>conversion of <em>categoral</em> outcomes to <em>real numbers</em> allows for further measurements / information extraction: expectation, dispersion,...</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><strong>Definition</strong></p>
+        <p>Let <span class="math">{Ω, ℱ, ℙ}</span> be a probability space. If <span class="math"><em>X</em> : Ω → ℝ</span> is a real-valued function with the elements of <span class="math">Ω</span> as its domain, then <span class="math"><em>X</em></span> is called <em>random variable</em>.</p>
+        </div>
+        </section><section id="example-7" class="slide level3">
+        <h1>Example</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/01categToRandVar.png" alt="random variable with discrete values" /><figcaption>random variable with discrete values</figcaption>
+        </figure>
+        </section><section id="density-function" class="slide level3">
+        <h1>Density function</h1>
+        <ul>
+        <li>a <em>discrete</em> random variable consists of a countable number of elements, while a <em>continuous</em> random variable can take any real value in a given interval</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>a <em>probability density function</em> determines the probability (possibly <span class="math">0</span>) for each event</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p><strong>Discrete density function</strong></p>
+        <p>For each <span class="math"><em>x</em><sub><em>i</em></sub> ∈ <em>X</em>(Ω) = {<em>x</em><sub><em>i</em></sub>|<em>x</em><sub><em>i</em></sub> = <em>X</em>(<em>ω</em>), <em>ω</em> ∈ Ω}</span>, the function</p>
+         <br /><span class="math">$$\begin{equation*}
+        f\left(x_{i}\right)=\mathbb{P}\left(X=x_{i}\right)
+        \end{equation*}$$</span><br />
+        <p>assigns a value corresponding to the probability.</p>
+        </div>
+        </section><section id="section-19" class="slide level3">
+        <h1></h1>
+        <p><strong>Continuous density function</strong></p>
+        <p>In contrast, the values of a continuous density function <span class="math"><em>f</em>(<em>x</em>), </span> <span class="math"><em>x</em> ∈ {<em>x</em>|<em>x</em> = <em>X</em>(<em>ω</em>), <em>ω</em> ∈ Ω}</span> are not probabilities itself. However, they shed light on the relative probabilities of occurrence. Given <span class="math"><em>f</em>(<em>y</em>) = 2 ⋅ <em>f</em>(<em>z</em>), </span> the occurrence of <span class="math"><em>y</em></span> is twice as probable as the occurrence of <span class="math"><em>z</em></span>.</p>
+        </section><section id="example-8" class="slide level3">
+        <h1>Example</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/exDiscCont02.png" />
+        </figure>
+        </section><section id="section-20" class="slide level3">
+        <h1></h1>
+        <p><strong>Cumulative distribution function The <em>cumulative distribution function</em> (cdf) of random variable <span class="math"><em>X</em></span>, denoted by <span class="math"><em>F</em>(<em>x</em>), </span></strong></p>
+        <p>indicates the probability that <span class="math"><em>X</em></span> takes on a value that is lower than or equal to <span class="math"><em>x</em>, </span> where <span class="math"><em>x</em></span> is any real number. That is</p>
+         <br /><span class="math">$$\begin{equation*}
+        F\left(x\right)=\mathbb{P}\left(X\leq x\right),\quad-\infty&lt;x&lt;\infty.
+        \end{equation*}$$</span><br />
+        </section><section id="section-21" class="slide level3">
+        <h1></h1>
+        <p>a cdf has the following properties:</p>
+        <div class="fragment">
+        <ul>
+        <li><span class="math"><em>F</em>(<em>x</em>)</span> is a nondecreasing function of <span class="math"><em>x</em>; </span></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><span class="math">lim<sub><em>x</em> → ∞</sub><em>F</em>(<em>x</em>) = 1; </span></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><span class="math">lim<sub><em>x</em> →  − ∞</sub><em>F</em>(<em>x</em>) = 0.</span></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>furthermore:
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{P}\left(a&lt;X\leq b\right)=F\left(b\right)-F\left(a\right),\quad\mbox{for all }b&gt;a
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        </div>
+        </section><section id="section-22" class="slide level3">
+        <h1></h1>
+        <p>Interrelation pdf and cdf: <strong>discrete case</strong></p>
+         <br /><span class="math">$$\begin{equation*}
+        F\left(x\right)=\mathbb{P}\left(X\leq x\right)=\sum_{x_{i}\leq x}\mathbb{P}\left(X=x_{i}\right)
+        \end{equation*}$$</span><br />
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/discrPdfCdf03.png" />
+        </figure>
+        </section><section id="section-23" class="slide level3">
+        <h1></h1>
+        <p>Interrelation pdf and cdf: <strong>continuous case</strong></p>
+         <br /><span class="math">$$\begin{equation*}
+        F\left(x\right)=\mathbb{P}\left(X\leq x\right)=\int_{-\infty}^{x}f\left(u\right)du
+        \end{equation*}$$</span><br />
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/contPdfCdf04.png" />
+        </figure>
+        </section><section class="slide level3">
+        <h1>Information reduction</h1>
+        </section><section id="modeling-information" class="slide level3">
+        <h1>Modeling information</h1>
+        <ul>
+        <li>both cdf as well as pdf, which is the derivative of the cdf, provide complete information about the distribution of the random variable</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>may not always be necessary / possible to have complete distribution</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>incomplete information modelled via <em>event space</em> <span class="math">ℱ</span></li>
+        </ul>
+        </div>
+        </section><section id="example-9" class="slide level3">
+        <h1>Example</h1>
+        <ul>
+        <li>sample space given by <span class="math">Ω = {1, 3, 5, 6, 7}</span></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li><p>modeling complete information about possible realizations:</p>
+         <br /><span class="math">$$\begin{align*}
+        \mathcal{P}\left(\Omega\right) &amp; =\left\{ 1\right\} \cup\left\{ 3\right\} \cup\left\{ 5\right\} \cup\left\{ 6\right\} \cup\left\{ 7\right\} \cup\\
+        &amp; \cup\left\{ 1,3\right\} \cup\left\{ 1,5\right\} \cup...\cup\left\{ 6,7\right\} \cup\left\{ 1,3,5\right\} \cup...\cup\left\{ 5,6,7\right\} \cup\\
+        &amp; \cup\left\{ 1,3,5,6\right\} \cup...\cup\left\{ 3,5,6,7\right\} \cup\left\{ \Omega,\left\{ \right\} \right\} 
+        \end{align*}$$</span><br /></li>
+        </ul>
+        </div>
+        </section><section id="section-24" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li><p>example of event space representing incomplete information could be</p>
+         <br /><span class="math">$$\begin{equation*}
+        \mathcal{F}=\left\{ \left\{ 1,3\right\} ,\left\{ 5\right\} ,\left\{ 6,7\right\} \right\} \cup\left\{ \left\{ 1,3,5\right\} ,\left\{ 1,3,6,7\right\} ,\left\{ 5,6,7\right\} \right\} \cup\left\{ \Omega,\left\{ \right\} \right\} 
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>given only incomplete information, originally distinct distributions can become indistinguishable</li>
+        </ul>
+        </div>
+        </section><section id="information-reduction-discrete" class="slide level3">
+        <h1>Information reduction discrete</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/coarseFiltr05.png" />
+        </figure>
+        </section><section id="information-reduction-discrete-1" class="slide level3">
+        <h1>Information reduction discrete</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/diffDistr06.png" />
+        </figure>
+        </section><section id="information-reduction-continuous" class="slide level3">
+        <h1>Information reduction continuous</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/contCoarse07.png" />
+        </figure>
+        </section><section id="measures-of-random-variables" class="slide level3">
+        <h1>Measures of random variables</h1>
+        <ul>
+        <li>complete distribution may not always be necessary</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>compress information of complete distribution for better comparability with other distributions</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>compressed information is easier to interpret</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>example: knowing &quot;central location&quot; together with an idea by how much <span class="math"><em>X</em></span> may fluctuate around the center may be sufficient</li>
+        </ul>
+        </div>
+        </section><section id="section-25" class="slide level3">
+        <h1></h1>
+        <p>Classification with respect to several measures can be sufficient:</p>
+        <ul>
+        <li>probability of negative / positive return</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>return on average</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>worst case</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>measures of <em>location</em> and <em>dispersion</em></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p>Given only incomplete information conveyed by measures, distinct distributions can become indistinguishable.</p>
+        </div>
+        </section><section id="expectation" class="slide level3">
+        <h1>Expectation</h1>
+        <p>The <em>expectation</em>, or <em>mean</em>, is defined as a weighted average of all possible realizations of a random variable.</p>
+        <div class="fragment">
+        <p><strong>Discrete random variables</strong></p>
+        <p>The <em>expected value</em> <span class="math">𝔼[<em>X</em>]</span> is defined as</p>
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{E}\left[X\right]=\mu_{X}=\sum_{i=1}^{N}x_{i}\mathbb{P}\left(X=x_{i}\right).
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="section-26" class="slide level3">
+        <h1></h1>
+        <p><strong>Continuous random variables</strong></p>
+        <p>For a continuous random variable with density function <span class="math"><em>f</em>(<em>x</em>) : </span></p>
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{E}\left[X\right]=\mu_{X}=\int_{-\infty}^{\infty}xf\left(x\right)dx
+        \end{equation*}$$</span><br />
+        </section><section id="examples-2" class="slide level3">
+        <h1>Examples</h1>
+        <p><strong></strong></p>
+         <br /><span class="math">$$\begin{align*}
+        \mathbb{E}\left[X\right] &amp; =\sum_{i=1}^{5}x_{i}\mathbb{P}\left(X=x_{i}\right)\\
+        &amp; =1\cdot0.1+3\cdot0.2+5\cdot0.6+6\cdot0.06+7\cdot0.04=4.34
+        \end{align*}$$</span><br />
+        <p><strong></strong></p>
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{E}\left[X\right]=-2\cdot0.1-1\cdot0.2+7\cdot0.6+8\cdot0.06+9\cdot0.0067=4.34
+        \end{equation*}$$</span><br />
+        </section><section id="section-29" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp08.png" />
+        </figure>
+        </section><section id="section-30" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp09.png" />
+        </figure>
+        </section><section id="variance" class="slide level3">
+        <h1>Variance</h1>
+        <p>The <em>variance</em> provides a measure of dispersion around the mean.</p>
+        <div class="fragment">
+        <p><strong>Discrete random variables</strong></p>
+        <p>The <em>variance</em> is defined by</p>
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{V}\left[X\right]=\sigma_{X}^{2}=\sum_{i=1}^{N}\left(X_{i}-\mu_{X}\right)^{2}\mathbb{P}\left(X=x_{i}\right),
+        \end{equation*}$$</span><br />
+        <p>where <span class="math">$\sigma_{X}=\sqrt{\mathbb{V}\left[X\right]}$</span> denotes the <em>standard deviation</em> of <span class="math"><em>X</em>.</span></p>
+        </div>
+        </section><section id="section-31" class="slide level3">
+        <h1></h1>
+        <p><strong>Continuous random variables</strong></p>
+        <p>For continuous variables, the <em>variance</em> is defined by</p>
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{V}\left[X\right]=\sigma_{X}^{2}=\int_{-\infty}^{\infty}\left(x-\mu_{X}\right)^{2}f\left(x\right)dx
+        \end{equation*}$$</span><br />
+        </section><section id="example-10" class="slide level3">
+        <h1>Example</h1>
+         <br /><span class="math">$$\begin{align*}
+        \mathbb{V}\left[X\right] &amp; =\sum_{i=1}^{5}\left(x_{i}-\mu\right)^{2}\mathbb{P}\left(X=x_{i}\right)\\
+         &amp; =3.34^{2}\cdot0.1+1.34^{2}\cdot0.2+0.66^{2}\cdot0.6+1.66^{2}\cdot0.06+2.66^{2}\cdot0.04\\
+         &amp; =2.1844\neq14.913
+        \end{align*}$$</span><br />
+        </section><section id="section-32" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp10.png" />
+        </figure>
+        </section><section id="quantiles" class="slide level3">
+        <h1>Quantiles</h1>
+        <p><strong>Quantile</strong></p>
+        <p>Let <span class="math"><em>X</em></span> be a random variable with cumulative distribution function <span class="math"><em>F</em></span>. For each <span class="math"><em>p</em> ∈ (0, 1)</span>, the <span class="math"><em>p</em></span>-<em>quantile</em> is defined as</p>
+         <br /><span class="math">$$\begin{equation*}
+        F^{-1}\left(p\right)=\inf\left\{ x|F\left(x\right)\geq p\right\} .
+        \end{equation*}$$</span><br />
+        </section><section id="quantile-1" class="slide level3">
+        <h1>Quantile</h1>
+        <ul>
+        <li><em>measure of location</em></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>divides distribution in two parts, with <em>exactly</em> <span class="math"><em>p</em> * 100</span> <em>percent</em> of the probability mass of the distribution to the left <em>in the continuous case</em>: random draws from the given distribution <span class="math"><em>F</em></span> would fall <span class="math"><em>p</em> * 100</span> percent of the time below the <span class="math"><em>p</em></span>-quantile</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>for <em>discrete</em> distributions, the probability mass on the left has to be at least <span class="math"><em>p</em> * 100</span> percent:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        F\left(F^{-1}\left(p\right)\right)=\mathbb{P}\left(X\leq F^{-1}\left(p\right)\right)\geq p
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="example-11" class="slide level3">
+        <h1>Example</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm11.png" />
+        </figure>
+        </section><section id="example-cdf" class="slide level3">
+        <h1>Example: cdf</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm12.png" />
+        </figure>
+        </section><section id="example-12" class="slide level3">
+        <h1>Example</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm13.png" />
+        </figure>
+        </section><section id="example-13" class="slide level3">
+        <h1>Example</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm14.png" />
+        </figure>
+        </section><section id="section-33" class="slide level3">
+        <h1></h1>
+        <p><strong>Summary: information reduction</strong></p>
+        <p><em>Incomplete information</em> can occur in two ways:</p>
+        <div class="fragment">
+        <ul>
+        <li>a <em>coarse filtration</em></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>only values of some <em>measures</em> of the underlying distribution are known (<em>mean</em>, <em>dispersion</em>, <em>quantiles</em>)</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p>Any reduction of information implicitly induces that some formerly distinguishable distributions are <em>undistinguishable</em> on the basis of the limited information.</p>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><em>tradeoff</em>: reducing information for better <em>comprehensibility / comparability</em>, or keeping as much information as possible</li>
+        </ul>
+        </div>
+        </section><section id="general-problem-2" class="slide level3">
+        <h1>General problem</h1>
+        <p><strong>Quantity of interest</strong></p>
+         <br /><span class="math">$$\begin{equation*}
+        \varrho(\bf{Z})=g(\bf{X}),\quad \bf{X}=(X_{1},\ldots, X_{d})
+        \end{equation*}$$</span><br />
+        <ul>
+        <li>instead of the complete distribution of <span class="math"><em>Z</em></span>, interest only lies in some measure <span class="math">$\varrho$</span> (expectation, variance, ...)</li>
+        </ul>
+        </section><section class="slide level3">
+        <h1>Updating information</h1>
+        </section><section id="section-34" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li><p>opposite direction: <em>updating</em> information on the basis of new arriving information</p></li>
+        <li><p>concept of <em>conditional probability</em></p></li>
+        </ul>
+        </section><section id="example-14" class="slide level3">
+        <h1>Example</h1>
+        <ul>
+        <li>with knowledge of the underlying distribution, the information has to be updated, given that the occurrence of some event of the filtration is known</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>normal distribution with mean 2</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>incorporating the knowledge of a realization <em>greater than the mean</em></li>
+        </ul>
+        </div>
+        </section><section id="unconditional-density" class="slide level3">
+        <h1>Unconditional density</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens12.png" />
+        </figure>
+        </section><section id="section-35" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens13.png" />
+        </figure>
+        </section><section id="section-36" class="slide level3">
+        <h1></h1>
+        <p>Given the knowledge of a realization higher than 2, probabilities of values below become zero:</p>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens14.png" />
+        </figure>
+        </section><section id="section-37" class="slide level3">
+        <h1></h1>
+        <p>Without changing relative proportions, the density has to be rescaled in order to enclose an area of 1:</p>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens15.png" />
+        </figure>
+        </section><section id="section-38" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>original density function compared to updated conditional density</li>
+        </ul>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens16.png" />
+        </figure>
+        </section><section id="decomposing-density" class="slide level3">
+        <h1>Decomposing density</h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp20.png" />
+        </figure>
+        </section><section id="section-39" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp21.png" />
+        </figure>
+        </section><section id="section-40" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp22.png" />
+        </figure>
+        </section><section id="section-41" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp23.png" />
+        </figure>
+        <div class="references">
+        
+        </div>
+        </section></section>
+      </div>
+    </div>
+    
+    
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.js"></script>
+    
+    <script>
+      
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,         // Display controls in the bottom right corner
+      progress: true,         // Display a presentation progress bar
+      history: true,          // Push each slide change to the browser history
+      center: true,                       // Vertical centering of slides
+      maxScale: 1.5,                  // Bounds for smallest/largest possible content scale
+      slideNumber: true,                // Display the page number of the current slide
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+      
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      //          { src: '../reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+      //          { src: '../reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]});
+    </script>
+      </body>
+</html>

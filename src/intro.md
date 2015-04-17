@@ -568,7 +568,7 @@ discrete net returns and log returns are approximately equal:
 r_{t}^{log}=\ln\left(R_{t}\right)=\ln\left(1+r_{t}\right)\approx r_{t}
 \end{equation*}
 
-### Conclusions for known price evolutions
+###
 
 - given that prices / returns are already known, with *no uncertainty*
   left, *continuous* returns are computationally *more efficient*
