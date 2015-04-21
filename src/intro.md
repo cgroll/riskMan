@@ -449,7 +449,7 @@ r=\frac{\left(\ln P_{T}-\ln P_{0}\right)}{T}
 - plugging in leads to
 
 	\begin{equation*}
-	r_{A}=\frac{\left(\ln130-\ln100\right)}{3}=0.0875
+	r_{A}=\frac{\left(\ln140-\ln100\right)}{3}=0.1122
 	\end{equation*}
 
 	\begin{equation*}
@@ -509,7 +509,7 @@ P_{t}\left(1+\bar{r}\right)^{n}\overset{!}{=}P_{t}\left(1+r_{t}\right)\cdot\ldot
 
 ### Example
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_intRates.png)
+![](pics/intro_pics/ex_annual_intRates.png)
 
 Left: randomly generated returns between 0 and 8 percent, plotted
 against annualized net return rate. Right: comparison of associated
@@ -562,7 +562,7 @@ r_{t,t+n-1}^{log}=\sum_{i=0}^{n-1}r_{t+i}^{log}&=\left(0.0607+0.0540+...+0.0708\
 
 ### Example
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/ex_annual_logRets.png)
+![](pics/intro_pics/ex_annual_logRets.png)
 
 ###
 
@@ -601,7 +601,7 @@ discrete net returns and log returns are approximately equal:
 r_{t}^{log}=\ln\left(R_{t}\right)=\ln\left(1+r_{t}\right)\approx r_{t}
 \end{equation*}
 
-### Conclusions for known price evolutions
+### 
 
 - given that prices / returns are already known, with *no uncertainty*
   left, *continuous* returns are computationally *more efficient*
@@ -886,7 +886,7 @@ with the elements of $\Omega$ as its domain, then $X$ is called
 
 ### Example
 
-![random variable with discrete values](/home/chris/research/teaching/riskMan/pics/intro_pics/01categToRandVar.png)
+![random variable with discrete values](pics/intro_pics/01categToRandVar.png)
 
 
 ### Density function
@@ -929,7 +929,7 @@ occurrence of $z$.
 
 ### Example
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/exDiscCont02.png)
+![](pics/intro_pics/exDiscCont02.png)
 
 ### 
 
@@ -974,7 +974,7 @@ Interrelation pdf and cdf: **discrete case**
 F\left(x\right)=\mathbb{P}\left(X\leq x\right)=\sum_{x_{i}\leq x}\mathbb{P}\left(X=x_{i}\right)
 \end{equation*}
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/discrPdfCdf03.png)
+![](pics/intro_pics/discrPdfCdf03.png)
 
 
 ### 
@@ -985,7 +985,7 @@ Interrelation pdf and cdf: **continuous case**
 F\left(x\right)=\mathbb{P}\left(X\leq x\right)=\int_{-\infty}^{x}f\left(u\right)du
 \end{equation*}
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/contPdfCdf04.png)
+![](pics/intro_pics/contPdfCdf04.png)
 
 ## Information reduction
 
@@ -1034,18 +1034,18 @@ F\left(x\right)=\mathbb{P}\left(X\leq x\right)=\int_{-\infty}^{x}f\left(u\right)
 
 ### Information reduction discrete
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/coarseFiltr05.png)
+![](pics/intro_pics/coarseFiltr05.png)
 
 
 ### Information reduction discrete
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/diffDistr06.png)
+![](pics/intro_pics/diffDistr06.png)
 
 
 
 ### Information reduction continuous
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/contCoarse07.png)
+![](pics/intro_pics/contCoarse07.png)
 
 
 ### Measures of random variables
@@ -1136,12 +1136,12 @@ $f\left(x\right):$
 
 ###
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp08.png)
+![](pics/intro_pics/discrExp08.png)
 
 
 ### 
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp09.png)
+![](pics/intro_pics/discrExp09.png)
 
 ### Variance
 
@@ -1182,7 +1182,7 @@ For continuous variables, the *variance* is defined by
 
 ###
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/discrExp10.png)
+![](pics/intro_pics/discrExp10.png)
 
 
 ### Quantiles
@@ -1219,22 +1219,22 @@ F\left(F^{-1}\left(p\right)\right)=\mathbb{P}\left(X\leq F^{-1}\left(p\right)\ri
 
 ### Example
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm11.png)
+![](pics/intro_pics/quantNorm11.png)
 
 
 ### Example: cdf
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm12.png)
+![](pics/intro_pics/quantNorm12.png)
 
 
 ### Example
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm13.png)
+![](pics/intro_pics/quantNorm13.png)
 
 
 ### Example
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/quantNorm14.png)
+![](pics/intro_pics/quantNorm14.png)
 
 
 ### 
@@ -1302,13 +1302,13 @@ the limited information.
 
 ### Unconditional density
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens12.png)
+![](pics/intro_pics/generCondDens12.png)
 
 
 
 ### 
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens13.png)
+![](pics/intro_pics/generCondDens13.png)
 
 
 ### 
@@ -1316,38 +1316,38 @@ the limited information.
 Given the knowledge of a realization higher than 2, probabilities of
 values below become zero:
 	
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens14.png)
+![](pics/intro_pics/generCondDens14.png)
 
 ### 
 
 Without changing relative proportions, the density has to be rescaled
 in order to enclose an area of 1:
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens15.png)
+![](pics/intro_pics/generCondDens15.png)
 
 ###
 
 - original density function compared to updated conditional density
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/generCondDens16.png)
+![](pics/intro_pics/generCondDens16.png)
 
 
 ### Decomposing density
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp20.png)
+![](pics/intro_pics/uncondDecomp20.png)
 
 
 ### 
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp21.png)
+![](pics/intro_pics/uncondDecomp21.png)
 
 
 ### 
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp22.png)
+![](pics/intro_pics/uncondDecomp22.png)
 
 
 ### 
 
-![](/home/chris/research/teaching/riskMan/pics/intro_pics/uncondDecomp23.png)
+![](pics/intro_pics/uncondDecomp23.png)
 
