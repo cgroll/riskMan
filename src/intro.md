@@ -6,6 +6,20 @@
 
 ### General problem
 
+<aside class="notes">
+- no time for lunch
+- any intersection with other lectures, 2pm to 4pm, start s.t.?
+- git (github), research tools: 27.4. Seminarraum
+- english: questions allowed in german
+- remarks to lecture:
+	- more lecture than exercise, due to practitioners we have to
+     tackle a lot of theory in exercises
+	- risk management requires computers in reality: focus on
+     understanding, not grading
+	- each type of exercise will be done at least once
+- implement for better understanding
+</aside>
+
 **Quantity of interest**
 
 \begin{equation*}
@@ -57,7 +71,26 @@
 . . .
 
 - many financial variables tend to exhibit almost constant mean over
-  time: how they are distributed around their mean is important
+  time, but low signal to noise ratio
+
+### 
+
+#### Modeling a die
+
+- it is impossible to predict the realization of a die
+
+. . .
+
+- still: we do know its distribution, which is already worth a lot
+
+. . .
+
+- due to low signal to noise ratio, real prediction of financial
+  instruments is usually not possible
+
+. . .
+
+- still: it is possible to determine their distribution
 
 
 ### Certain future payments
