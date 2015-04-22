@@ -1,0 +1,2773 @@
+
+
+Fixed-income assets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+for 
+\series bold
+continuously compounded
+\series default
+ interest rates, end-of-period wealth is given by
+
+\begin{align*}
+W_{\infty,t} & =\left(\lim_{m\rightarrow\infty}\left(1+\frac{r_{0}}{m}\right)^{m}\right)\cdot...\cdot\left(\lim_{m\rightarrow\infty}\left(1+\frac{r_{t-1}}{m}\right)^{m}\right)\\
+ & =e^{r_{0}}\cdot e^{r_{1}}\cdot...\cdot e^{r_{t-1}}\\
+ & =e^{r_{0}+...+r_{t-1}}\\
+ & =exp\left(\sum_{i=0}^{t-1}r_{i}\right)
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+Regarding continuous compounding 
+
+
+
+
+\series bold
+Why
+\series default
+ bother with 
+\series bold
+continuous compounding
+\series default
+, as interest rates in the real world are always given at finite frequency?
+
+
+
+$\rightarrow$
+
+
+ the key to the answer of this question lies in the transformation of the
+ 
+\series bold
+product
+\series default
+ of returns 
+\series bold
+into a sum
+
+
+
+as 
+\series bold
+interest rates
+\series default
+ of fixed-income assets are assumed to be 
+\series bold
+perfectly known
+\series default
+, summation instead of multiplication only yields 
+\series bold
+minor advantages
+\series default
+ in a world of computers
+
+
+
+however, as soon as 
+\series bold
+payments
+\series default
+ are 
+\series bold
+uncertain
+\series default
+ and have to be modelled as random variables, this transformation will make
+ a 
+\series bold
+huge difference
+
+
+
+
+
+
+
+Speculative assets
+
+
+
+
+
+
+
+Aggregating returns
+
+
+
+compounded gross return over 
+$n+1$
+
+
+ sub-periods:
+
+
+
+
+\begin{alignat*}{1}
+R_{t,t+n} & :=R_{t}\cdot R_{t+1}\cdot R_{t+2}\cdot\ldots\cdot R_{t+n}\\
+ & =\frac{P_{t}}{P_{t-1}}\cdot\frac{P_{t+1}}{P_{t}}\cdot...\cdot\frac{P_{t+n}}{P_{t+n-1}}\\
+ & =\frac{P_{t+n}}{P_{t-1}}
+\end{alignat*}
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+{Example}
+
+
+
+
+
+
+
+\begin_deeper
+
+investment 
+$P_{0}=100,$
+
+
+ net returns in percent 
+$\left[3,-2,4,3,-1\right]:$
+
+
+
+
+\[
+R_{0,4}=\left(1.03\right)\left(0.98\right)\left(1.04\right)\left(1.03\right)\left(0.99\right)=1.075
+\]
+
+
+
+
+
+\[
+P_{4}=100\cdot1.075=107.5
+\]
+
+
+
+
+
+\[
+R_{0,4}=\frac{P_{4}}{P_{0}}=\frac{107.5}{100}=1.075
+\]
+
+
+
+
+
+
+\end_deeper
+
+
+
+
+
+
+Annualized gross return
+
+
+
+in order to compare returns that are measured with respect to different
+ time horizons (for example: monthly returns and quaterly returns), the
+ 
+\begin_inset Quotes eld
+
+
+average
+\begin_inset Quotes erd
+
+
+ returns have to be converted to an annual basis
+
+
+
+given 
+$m$
+
+
+ equally spaced periods a year, the 
+\series bold
+annualized gross return 
+\series default
+after 
+$n$
+
+
+ interest payments is computed by
+
+\[
+\bar{R}_{t,t+n}^{ann}:=\left(\prod_{i=0}^{n-1}R_{t+i}\right)^{m/n},
+\]
+
+
+
+or, in 
+\series bold
+net returns
+\series default
+, by
+
+\[
+\bar{r}_{t,t+n}^{ann}=\left(\prod_{i=0}^{n-1}\left(1+r_{t+i}\right)\right)^{m/n}-1
+\]
+
+
+
+
+
+
+
+again: the 
+\series bold
+annualized gross return 
+\series default
+is not an 
+\series bold
+arithmetic 
+\series default
+mean, but a 
+\series bold
+geometric 
+\series default
+mean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Outlook: returns under uncertainty
+
+
+
+
+
+
+
+
+zeigen: echte welt log-normally distributed
+
+
+
+wieso nicht perfekt normal: nicht iid, keine endlche Varianz; aber: Grenzwertsat
+z gilt auch fr stabile Verteilungen
+
+
+
+
+
+
+
+
+
+
+
+
+Probability theory
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Functions of random variables
+
+
+
+Functions of random variables: example
+
+
+
+\begin_inset Note Note
+status open
+
+
+auskommentieren
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg24
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/funcOfRV24.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end24
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg24a
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/funcOfRV24a.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end24a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg24b
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/funcOfRV24b.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end24b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg24c
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/funcOfRV24c.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end24c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg25
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/initVsAfter25.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end25
+
+
+
+
+
+
+
+
+
+
+
+
+Example: call option
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg26
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/optionOfRV26.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end26
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg26a
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/optionOfRV26a.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end26a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg26b
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/optionOfRV26b.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end26b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg26c
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/optionOfRV26c.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end26c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg27
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/initVsAfter27.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end27
+
+
+
+
+
+
+
+
+
+
+
+
+Analytical formula
+
+
+
+\begin_inset ERT
+status open
+
+
+
+{transformation theorem}
+
+
+
+
+
+
+
+\begin_deeper
+
+Let 
+$X$
+
+
+ be a random variable with density function 
+$f\left(x\right),$
+
+
+ and 
+$g\left(x\right)$
+
+
+ be an 
+\series bold
+invertible bijective
+\series default
+ function.
+ Then the density function of the 
+\series bold
+transformed random variable
+\series default
+ 
+$Y=g\left(X\right)$
+
+
+ in any point 
+$z$
+
+
+ is given by
+
+\[
+f_{Y}\left(z\right)=f_{X}\left(g^{-1}\left(z\right)\right)\cdot\left|\left(g^{-1}\right)^{'}\left(z\right)\right|.
+\]
+
+
+
+
+
+
+\end_deeper
+
+problems:
+
+
+
+given that we can calculate a measure 
+$\varrho_{X}$
+
+
+ of the random variable 
+$X$
+
+
+, it is not ensured that 
+$\varrho_{Y}$
+
+
+ can be calculated for the new random variable 
+$Y$
+
+
+, too: e.g.
+ if 
+$\varrho$
+
+
+ envolves integration
+
+
+
+what about non-invertible functions?
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg35
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/expFuncNorm35.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end35
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg36
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/expFuncNorm36.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end36
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg37
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/expFuncNorm37.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end37
+
+
+
+
+
+
+
+
+
+
+
+
+Analytical solution
+
+
+
+Traditional financial modelling assumes 
+\series bold
+logarithmic returns 
+\series default
+to be distributed according to a normal distribution, so that, for example,
+ 
+$100\cdot r^{log}$
+
+
+ is modelled by 
+$R^{log}:=100\cdot r^{log}\sim\mathcal{N}\left(1,1\right).$
+
+
+ 
+
+
+
+given a 
+\series bold
+percentage logarithmic return 
+$R^{log}$
+
+
+
+\series default
+, the 
+\series bold
+net return 
+\series default
+we observe in the real world can be calculated as a function of 
+$R^{log}$
+
+
+ by
+
+\[
+r=e^{R^{log}/100}-1
+\]
+
+
+
+
+
+
+
+hence, the associated distribution of the 
+\series bold
+net return 
+\series default
+has to be calculated according to the transformation theorem:
+
+\[
+f_{r}\left(z\right)=f_{R^{log}}\left(g^{-1}\left(z\right)\right)\cdot\left|\left(g^{-1}\right)^{'}\left(z\right)\right|
+\]
+
+
+
+with transformation function 
+$g\left(x\right)=e^{x/100}-1$
+
+
+
+
+
+
+calculate each part
+
+
+
+
+
+
+
+
+
+
+
+calculation of 
+$g^{-1}:$
+
+
+
+
+\begin{alignat*}{2}
+x & =e^{y/100}-1 & \,\Leftrightarrow\\
+x+1 & =e^{y/100} & \,\Leftrightarrow\\
+\log\left(x+1\right) & =y/100 & \,\Leftrightarrow\\
+100\cdot\log\left(x+1\right) & =y
+\end{alignat*}
+
+
+
+
+
+
+
+calculation of the derivative 
+$\left(g^{-1}\right)^{'}$
+
+
+ of the inverse of 
+$g^{-1}:$
+
+
+
+
+\[
+\left(100\cdot\log\left(x+1\right)\right)^{'}=100\cdot\frac{1}{x+1}
+\]
+
+
+
+
+
+
+
+plugging in leads to:
+
+\[
+f_{r}\left(z\right)=f_{R^{log}}\left(100\cdot\log\left(z+1\right)\right)\cdot\left|\frac{100}{z+1}\right|
+\]
+
+
+
+
+
+
+
+
+
+
+
+although only visable under some magnification, there is a difference between
+ a normal distribution which is directly fitted to the net returns and the
+ distribution which arises for the net returns by fitting a normal distribution
+ to the logarithmic returns 
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg38
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/initVsAfter38.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end38
+
+
+
+
+
+
+
+
+
+
+
+
+Comparison of tails
+
+
+
+magnification of the tail behavior shows that the resulting distribution
+ from fitting a normal distribution to the logarithmic returns assigns more
+ probability to extreme negative returns as well as less probability to
+ extreme positive returns
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg39
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/fitNormToRealData39.png
+	lyxscale 30
+	scale 25
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end39
+
+
+
+
+
+
+
+
+
+
+
+
+Monte Carlo Simulation
+
+
+
+
+
+
+
+example: application of an inverse normal cumulative distribution as transformat
+ion function to a uniformly distributed random variable
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg40
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/probIntTransf40.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end40
+
+
+
+
+
+
+
+
+
+
+
+
+Monte Carlo Simulation
+
+
+
+the resulting density function of the transformed random variable seems
+ to resemble a normal distribution
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg41
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/40probIntTransf.png
+	lyxscale 15
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end41
+
+
+
+
+
+
+
+
+
+
+
+
+Monte Carlo Simulation
+
+
+
+a more detailed comparison shows: the resulting approximation has the shape
+ of the normal distribution with the exact same parameters that have been
+ used for the inverse cdf as transformation function 
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg42
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/postDistr42.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end42
+
+
+
+
+
+
+
+
+
+
+
+
+Monte Carlo Simulation
+
+
+
+Let 
+$X$
+
+
+ be a univariate random variable with distribution function 
+$F_{X}.$
+
+
+ Let 
+$F_{X}^{-1}$
+
+
+ be the quantile function of 
+$F_{X},$
+
+
+ i.e.
+
+\[
+F_{X}^{-1}\left(p\right)=\inf\left\{ x|F_{X}\left(x\right)\geq p\right\} ,\quad p\in\left(0,1\right).
+\]
+
+
+
+Then for any standard-uniformly distributed 
+$U\sim\mathbb{U}\left[0,1\right]$
+
+
+ we have 
+$F_{X}^{-1}\left(U\right)\sim F_{X}.$
+
+
+ This gives a simple method for simulating random variables with arbitrary
+ distribution function 
+$F.$
+
+
+ 
+
+
+
+
+
+
+
+Proof
+
+
+
+Let 
+$X$
+
+
+ be a continuous random variable with cumulative distribution function 
+$F_{X},$
+
+
+ and let 
+$Y$
+
+
+ denote the transformed random variable 
+$Y:=F_{X}^{-1}\left(U\right).$
+
+
+ Then
+
+\[
+F_{Y}\left(x\right)=\mathbb{P}\left(Y\leq x\right)=\mathbb{P}\left(F_{X}^{-1}\left(U\right)\leq x\right)=\mathbb{P}\left(U\leq F_{X}\left(x\right)\right)=F_{X}\left(x\right)
+\]
+
+
+
+so that 
+$Y$
+
+
+ has the same distribution function as 
+$X$
+
+
+.
+ 
+
+
+
+
+
+
+
+Measures under transformation
+
+
+
+Linear transformation functions
+
+
+
+a one-dimensional 
+\series bold
+linear 
+\series default
+transformation function is given by
+
+\[
+g\left(x\right)=ax+b
+\]
+
+
+
+
+
+
+
+examples of linear functions:
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg42a
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/linFunc42.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end42a
+
+
+
+
+
+
+
+
+
+
+
+
+Effect on measures
+
+
+
+determine effects of 
+\series bold
+linear transformation 
+\series default
+on measures derived from the distribution function
+
+
+
+
+\series bold
+example: 
+\series default
+given 
+$X\sim\mathcal{N}\left(2,2\right),$
+
+
+ calculate mean and variance of 
+$Y:=g\left(X\right)=3X-2$
+
+
+ via 
+\series bold
+Monte Carlo Simulation
+
+
+\begin_deeper
+
+simulate 10,000 uniformly distributed random numbers
+
+
+
+transform uniformly distributed numbers via inverse of 
+$\mathcal{N}\left(2,2\right)$
+
+
+ into 
+$\mathcal{N}\left(2,2\right)$
+
+
+-distributed random numbers
+
+
+
+apply linear function 
+$g\left(x\right)=3x-2$
+
+
+ on each number
+
+
+
+calculate sample mean and sample variance
+
+
+\end_deeper
+
+
+
+
+
+\align center
+
+\series bold
+Matlab code
+
+
+
+\begin_inset listings
+inline false
+status open
+
+
+
+   U = rand(10000,1); 
+
+
+
+
+   returns = norminv(U,2,2); 
+
+
+
+
+   transformedReturns = 3*returns-2; 
+
+
+
+
+   sampleMean = mean(transformedReturns); 
+
+
+
+
+   sampleVariance = var(transformedReturns);
+
+
+
+
+
+
+
+
+Solution
+
+
+
+
+\[
+\hat{\mu}=4.0253,\quad\hat{\sigma}^{2}=36.1843\Leftrightarrow\hat{\sigma}=6.0153
+\]
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg43
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/linFunc43.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end43
+
+
+
+
+
+
+
+
+
+
+
+
+Analytical solution: general case
+
+
+
+calculate inverse 
+$g^{-1}:$
+
+
+
+
+\[
+x=ay+b\,\Leftrightarrow\, x-b=ay\,\Leftrightarrow\frac{x}{a}-\frac{b}{a}=y
+\]
+
+
+
+
+
+
+
+calculate derivative 
+$\left(g^{-1}\right)^{'}:$
+
+
+
+
+\[
+\left(\frac{x}{a}-\frac{b}{a}\right)^{'}=\frac{1}{a}
+\]
+
+
+
+
+
+
+
+putting together gives:
+
+\begin{align*}
+f_{g\left(X\right)}\left(z\right) & =f_{X}\left(g^{-1}\left(z\right)\right)\cdot\left|\left(g^{-1}\right)^{'}\right|=f_{X}\left(\frac{z}{a}-\frac{b}{a}\right)\cdot\left|\frac{1}{a}\right|
+\end{align*}
+
+
+
+
+
+
+
+interpretation: 
+\series bold
+stretching 
+\series default
+by factor 
+$a,$
+
+
+ 
+\series bold
+shifting 
+\series default
+
+$b$
+
+
+ units to the right
+
+
+
+
+
+
+
+Effect on expectation
+
+
+
+
+\series bold
+stretching 
+\series default
+and 
+\series bold
+shifting 
+\series default
+the distribution also directly translates into the formula for the expectation
+ of a 
+\series bold
+linearly transformed random variable 
+\series default
+
+$Y:=aX+b$
+
+
+: 
+
+\[
+\mathbb{E}\left[Y\right]=\mathbb{E}\left[aX+b\right]=a\mathbb{E}\left[X\right]+b
+\]
+
+
+
+
+
+
+
+
+\series bold
+possible application
+\series default
+: given expectation 
+$\mathbb{E}\left[X\right]$
+
+
+ of stock return, find expected wealth when investing initial wealth 
+$W_{0}$
+
+
+ and subtracting the fixed transaction costs 
+$c$
+
+
+
+
+
+
+hence, focus on linearly transformed random variable 
+
+\[
+\mathbb{E}\left[Y\right]=\mathbb{E}\left[W_{0}\cdot X-c\right],
+\]
+
+
+
+calculated by
+
+\[
+W_{0}\mathbb{E}\left[X\right]-c
+\]
+
+
+
+
+
+
+
+
+
+
+
+Effect on variance
+
+
+
+using the formula for the expectation, the effect of a linear transformation
+ on the variance 
+
+\[
+\mathbb{V}\left[Y\right]=\mathbb{E}\left[\left(Y-\mathbb{E}\left[Y\right]\right)^{2}\right]
+\]
+
+
+
+of the random variable can be calculated by
+
+\begin{align*}
+\mathbb{V}\left[aX+b\right] & =\mathbb{E}\left[\left(aX+b-\mathbb{E}\left[aX+b\right]\right)^{2}\right]\\
+ & =\mathbb{E}\left[\left(aX+b-a\mathbb{E}\left[X\right]-b\right)^{2}\right]\\
+ & =\mathbb{E}\left[\left(a\left(X-\mathbb{E}\left[X\right]\right)+b-b\right)^{2}\right]\\
+ & =a^{2}\mathbb{E}\left[\left(X-\mathbb{E}\left[X\right]\right)^{2}\right]\\
+ & =a^{2}\mathbb{V}\left[X\right]
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+note: calculation of mean and variance of a linearly transformed variable
+ neither requires detailed information about the distribution of the original
+ random variable, nor about the distribution of the transformed random variable
+
+
+
+knowledge of the respective values of the original distribution is sufficient
+
+
+
+the analytically computated values for expectation and variance of the example
+ amount to
+
+\[
+\mathbb{E}\left[3X-2\right]=3\mathbb{E}\left[X\right]-2=3\cdot2-2=4
+\]
+
+
+
+
+
+\[
+\mathbb{V}\left[3X-2\right]=3^{2}\mathbb{V}\left[X\right]=9\cdot\sigma_{X}^{2}=9\cdot2^{2}=36
+\]
+
+
+
+
+
+
+
+for 
+\series bold
+non-linear 
+\series default
+transformations, such simple formulas do 
+\series bold
+not exist
+
+
+
+most situations require simulation of the transformed random variable and
+ subsequent calculation of the sample value of a given measure 
+
+
+
+
+
+
+
+Summary / outlook
+
+
+
+given random variable 
+$X$
+
+
+ of 
+\series bold
+arbitrary distribution
+\series default
+ 
+$F_{X}$
+
+
+, associated values 
+$\mathbb{E}\left[X\right]$
+
+
+ and 
+$\mathbb{V}\left(X\right)$
+
+
+, and a 
+\series bold
+linear 
+\series default
+transformation 
+$Y=f\left(X\right)$
+
+
+, we can also get 
+$\mathbb{E}\left[Y\right]$
+
+
+ and 
+$\mathbb{V}\left(X\right)$
+
+
+ very simple
+
+
+
+
+\series bold
+modelling practices
+\series default
+: taking hypothetical considerations as given, 
+\series bold
+continuous returns
+\series default
+ are modelled as 
+\series bold
+normally distributed
+
+
+
+consequences:
+
+
+\begin_deeper
+
+$\mathbb{E}\left[X\right]$
+
+
+ and 
+$\mathbb{V}\left(X\right)$
+
+
+ are easily obtainable
+
+
+
+since discrete real world returns are non-linear transformation of log-returns,
+ 
+$\mathbb{E}$
+
+
+ and 
+$\mathbb{V}$
+
+
+ are not trivially obtained here
+
+
+\end_deeper
+
+
+
+
+
+\begin_inset listings
+inline false
+status open
+
+
+
+U = rand(10000,1); % generate uniformly distributed RV
+
+
+
+
+t = tinv(U,3);	 % transform to t-distributed values
+
+
+
+
+
+
+
+
+% transform to net returns
+
+
+
+
+netRets = (exp(t/100)-1)*100; 
+
+
+
+
+
+
+
+
+% transform net returns via butterfly option payoff function: 
+
+
+
+
+payoff = subplus(netRets+2)-2*subplus(netRets)+subplus(netRets-2);
+
+
+
+
+
+
+
+
+% calculate 95 percent quantile: 
+
+
+
+
+value = quantile(payoff,0.95)
+
+
+
+
+
+
+
+
+Example
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg44
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/quantButterflyOpt44.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end44
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg45
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/quantButterflyOpt45.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end45
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+payoff profile butterfly option
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg46
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/quantButterflyOpt46.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end46
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+expected payoff approximated via Monte Carlo simulation: 1.9305
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->beg47
+
+
+
+
+
+
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\align center
+    
+\begin_inset Graphics
+	filename pics/quantButterflyOpt47.png
+	lyxscale 30
+	scale 30
+
+
+
+
+
+
+
+
+
+
+
+
+\begin_inset ERT
+status open
+
+
+
+%%->end47
+
+
+
+
+
+
+
+
+
+
+
+\end_body
+\end_document
