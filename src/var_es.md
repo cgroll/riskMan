@@ -2,7 +2,7 @@
 % 	VaR and Expected Shortfall
 % Christian Groll
 
-# Risk intro
+# Introduction
 
 ### Definition
 
@@ -387,6 +387,10 @@ Again, there are two approaches to derive $ES$:
 - estimate model for underlying **loss distribution**, and calculate
   **expectation** of **conditional** loss distribution
 
+. . .
+
+Both approaches come with the same risks as for the case of $VaR$.
+
 ## ES with normally distributed losses
 
 ###
@@ -416,15 +420,21 @@ ES_{\alpha} & =\mathbb{E}\left[L|L\geq VaR_{\alpha}\right]\\
 
 ###
 
-Furthermore,
+Furthermore, for
+$\mathbb{P}\left(Y\geq\Phi^{-1}\left(\alpha\right)\right)$ we get:
+
+. . .
 
 \begin{equation*}
 \mathbb{P}\left(Y\geq\Phi^{-1}\left(\alpha\right)\right)=1-\mathbb{P}\left(Y\leq\Phi^{-1}\left(\alpha\right)\right)=1-\Phi\left(\Phi^{-1}\left(\alpha\right)\right)=1-\alpha, 
 \end{equation*}
 
+. . .
 
-so that the conditional density as the scaled version of the standard normal
-density function is given by
+so that we get as **conditional density**
+$\phi_{Y|Y\geq\Phi^{-1}\left(\alpha\right)}\left(y\right)$:
+
+. . .
 
 \begin{align*}
 \phi_{Y|Y\geq\Phi^{-1}\left(\alpha\right)}\left(y\right) & =\frac{\phi\left(y\right)\mathbf{1}_{\left\{ y\geq\Phi^{-1}\left(\alpha\right)\right\} }}{\mathbb{P}\left(Y\geq\Phi^{-1}\left(\alpha\right)\right)}\\
@@ -436,7 +446,7 @@ density function is given by
 Hence, the integral can be calculated as 
 
 \begin{align*}
-\mathbb{E}\left[Y|Y\geq\Phi^{-1}\left(\alpha\right)\right] & =\int_{\Phi^{-1}\left(\alpha\right)}^{\infty}y\cdot\phi_{Y|Y\geq\Phi^{-1}\left(\alpha\right)}\left(y\right)dy\\
+\mathbb{E}\left[Y|Y\geq\Phi^{-1}\left(\alpha\right)\right] & =\int_{-\infty}^{\infty}y\cdot\phi_{Y|Y\geq\Phi^{-1}\left(\alpha\right)}\left(y\right)dy\\
  & =\int_{\Phi^{-1}\left(\alpha\right)}^{\infty}y\cdot\frac{\phi\left(y\right)}{1-\alpha}dy\\
  & =\frac{1}{1-\alpha}\int_{\Phi^{-1}\left(\alpha\right)}^{\infty}y\cdot\phi\left(y\right)dy\\
  & \overset{\left(\star\right)}{=}\frac{1}{1-\alpha}\left[-\phi\left(y\right)\right]_{\Phi^{-1}\left(\alpha\right)}^{\infty}\\
@@ -454,63 +464,126 @@ with $(\star)$:
 
 ## Exercise
 
-### Example: Meaning of VaR
+### Example: Meaning of *VaR*
 
-You have invested 500,000 € in an investment fonds. The manager of the
-fonds tells you that the 99% Value-at-Risk for a time horizon of one
-year amounts to 5% of the portfolio value. Explain the information
-conveyed by this statement.
+You have invested in an investment fonds of size 500,000 €. The
+manager of the fonds tells you that the **99% Value-at-Risk** for a
+time horizon of one year **amounts to 5% of the portfolio value**.
+Explain the information conveyed by this statement.
 
 ### Solution
 
 - for continuous loss distribution we have equality 
 \begin{equation*}
-\mathbb{P}\left(L\geq VaR_{\alpha}\right)=1-\alpha
+\mathbb{P}\left(L\geq \text{VaR}_{\alpha}\right)=1-\alpha
 \end{equation*}
+
+. . .
 
 - transform relative statement about losses into absolute quantity
 
+. . .
+
 \begin{equation*}
-VaR_{\alpha}=0.05\cdot500,000=25,000
+\text{VaR}_{\alpha}=0.05\cdot500,000=25,000
 \end{equation*}
+
+. . .
 
 - pluggin into formula leads to
 
 \begin{equation*}
-\mathbb{P}\left(L\geq25,000\right)=0.01,
+\mathbb{P}\left(L\geq25,000\right)=0.01
 \end{equation*}
 
-interpretable as "with probability 1% you will lose 25,000 € 
-**or more**"
 
-- a capital cushion of height $VaR_{0.99}=25000$ is sufficient in
-  exactly 99% of the times for continuous distributions 
+###
+
+Interpretation: 
+
+. . .
+
+- "with probability 1% you will lose 25,000 € **or more**"
+
+. . .
+
+- a capital cushion of height $\text{VaR}_{0.99}=25000$ is sufficient
+  in exactly 99% of the times for continuous distributions
 
 
 ### Example: discrete case
 
-- example possible discrete loss distribution:
+- exemplary discrete loss distribution:
 
 ![](pics/var_es_pics/08Example_VaR_1.png)
 
+###
+
 - the capital cushion provided by $VaR_{\alpha}$ would be sufficient
-  even in 99.3% of the times 
+  in even 99.3% of the times 
+
+. . .
 
 - interpretation of statement: "with **probability of maximal** 1% you
   will lose 25,000 € **or more**" 
 
-### Example: Meaning of ES
+### Example: Meaning of *ES*
 
 The fondsmanager corrects himself. Instead of the Value-at-Risk, it is
-the Expected Shortfall that amounts to 5% of the portfolio value. How
-does this statement have to be interpreted? Which of both cases does
-imply the riskier portfolio?
+the **Expected Shortfall** that **amounts to 5% of the portfolio**
+value. How does this statement have to be interpreted? Which of both
+cases does imply the riskier portfolio?
 
-### Solution
+### Interpretation
 
 - given that one of the 1% worst years occurs, the expected loss in
   this year will amount to 25,000 €
 
-- since always $VaR_{\alpha}\leq ES_{\alpha},$ the first statement
-  implies $ES_{\alpha}\geq25,000$ € $\Rightarrow$ the first statement
-  implies the riskier portfolio  
+. . .
+
+###
+
+Due to
+
+\begin{equation*}
+\text{VaR}_{\alpha}\leq \text{ES}_{\alpha}
+\end{equation*}
+
+. . .
+
+the first statement implies:
+
+. . .
+
+\begin{equation*}
+\text{ES}_{\alpha}\geq25,000€
+\end{equation*}
+
+. . .
+
+$\Rightarrow$ the first statement implies the riskier portfolio
+
+<aside class="notes">
+- data:
+	- prices / log prices
+	- get log returns
+	- vola clustering
+- normality:
+	- fit distribution
+	- compare to ecdf
+	- qq-plot
+	- Phi(X) \neq uniform distribution
+- VaR / ES estimation:
+	- historical simulation
+	- normality
+- estimation risk
+	- simulation study (parametric bootstrap)
+- model risk: backtesting
+
+- functions of random variables
+- linear functions: t-location-scale distribution
+- multiple variables
+- volatility clustering: GARCH
+- GARCH distribution
+</aside>
+
