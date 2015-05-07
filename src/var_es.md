@@ -584,6 +584,33 @@ the first statement implies:
 
 $\Rightarrow$ the first statement implies the riskier portfolio
 
+### Real world: model risk
+
+- besides sophisticated modeling approaches even Deutsche Bank seems
+  to fail at $VaR$-estimation: $VaR_{0.99}$ 
+
+![](pics/var_es_pics/08DeutschBank_2008.PNG)
+
+###
+![](pics/var_es_pics/08DeutschBank_2009.PNG)
+
+###
+![](pics/var_es_pics/08DeutschBank_2010.PNG)
+
+### Backtesting
+
+How good did estimated $VaR$ values perform in-sample?
+
+. . .
+
+- compare exceedance / hit rate with desired confidence level
+
+\begin{equation*}
+\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}_{\{L_{i}>\text{VaR}\}}\overset{?}{=}\alpha 
+\end{equation*}
+
+
+
 <aside class="notes">
 - data:
 	- prices / log prices
