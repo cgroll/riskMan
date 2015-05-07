@@ -185,10 +185,31 @@ model.
 
 $\Rightarrow$ **model risk**
 
+### Estimation risk vs model risk
+
+Estimation risk:
+
 . . .
 
-For a detailed example illustrating the difference between inherent,
-estimation and model risk, see this [blog
+- **vanishes** with increasing sample size
+
+. . .
+
+- can be **quantified** (confidence intervals)
+
+. . .
+
+Model risk:
+
+. . .
+
+- increasing sample size only increases likelihood of detecting wrong
+  model assumptions
+
+. . .
+
+For a **detailed example** illustrating the difference between
+inherent, estimation and model risk, see this [blog
 post](https://grollchristian.wordpress.com/2013/12/02/estimation-risk-and-model-risk/).
 
 
@@ -579,7 +600,6 @@ $\Rightarrow$ the first statement implies the riskier portfolio
 - estimation risk
 	- simulation study (parametric bootstrap)
 - model risk: backtesting
-
 - functions of random variables
 - linear functions: t-location-scale distribution
 - multiple variables
