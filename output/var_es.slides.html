@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+        <meta name="author" content="VaR and Expected Shortfall" />
+            <title>Risk management</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+            <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme">
+            <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = '../reveal.js/css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+            <style type="text/css">
+    p { text-align: left; }
+    .reveal ul {
+        width: 900px;
+    }
+    
+    .reveal strong { color: lawngreen;
+                     font-style: normal;
+                     font-weight: bold;
+                   }
+    
+    /* all headers are transformed to h1 by reveal.js, */
+    /* even individual slide headers. */
+    /* hence, h1 font size should not be too large */
+    .reveal h1 { 
+        font-style: normal;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    </style>
+        
+    <!-- include local MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      "HTML-CSS": {
+      scale: 80,
+      },
+      extensions: ["tex2jax.js"],
+      TeX: { equationNumbers: { autoNumber: "AMS" } },
+      jax: ["input/TeX","output/HTML-CSS"],
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}});
+    </script>
+    <script type="text/javascript" src="../MathJax/MathJax.js"></script>
+    
+  </head>
+  <body>
+        <div class="reveal">
+      <div class="slides">
+        
+                <section>
+          <h1 class="title">Risk management</h1>
+                              <h2 class="author">VaR and Expected Shortfall</h2>
+                    <h3 class="date">Christian Groll</h3>
+        </section>
+                        <section id="TOC">
+          <ul>
+          <li><a href="#/introduction">Introduction</a></li>
+          <li><a href="#/risk-measures">Risk measures</a></li>
+          </ul>
+        </section>
+                
+        <section><section id="introduction" class="titleslide slide level1"><h1>Introduction</h1></section><section id="definition" class="slide level3">
+        <h1>Definition</h1>
+        <ul>
+        <li>risk often is defined as <strong>negative deviation</strong> of a given target payoff</li>
+        </ul>
+        </section><section id="convention" class="slide level3">
+        <h1>Convention</h1>
+        <ul>
+        <li>risk management is mainly concerned with <strong>downsiderisk</strong></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>focus on the <strong>distribution of losses</strong> instead of profits</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>for prices denoted by <span class="math"><em>P</em><sub><em>t</em></sub></span> , the random variable quantifying losses is given by</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        L_{t+1}=-(P_{t+1}-P_{t})
+        \end{equation*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>distribution of losses equals distribution of profits flipped at x-axis</li>
+        </ul>
+        </div>
+        </section><section id="from-profits-to-losses" class="slide level3">
+        <h1>From profits to losses</h1>
+        <figure>
+        <img src="pics/var_es_pics/01flip_profit_distr.png" />
+        </figure>
+        </section><section id="quantification-of-risk" class="slide level3">
+        <h1>Quantification of risk</h1>
+        <p><strong>Decisions</strong> concerned with managing, mitigating or hedging of risks have to be <strong>based on quantification of risk</strong> as basis of decision-making:</p>
+        <div class="fragment">
+        <ul>
+        <li>regulatory purposes: capital buffer proportional to exposure to risk</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>interior management decisions: freedom of daily traders restricted by capping allowed risk level</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>corporate management: identification of key risk factors (comparability through risk measures)</li>
+        </ul>
+        </div>
+        </section><section class="slide level3">
+        <h1>Risk measurement frameworks</h1>
+        </section><section id="notional-amount-approach" class="slide level3">
+        <h1>notional-amount approach</h1>
+        <ul>
+        <li>component of standardized approach of Basel capital adequacy framework</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>nominal value as substitute for <strong>outstanding</strong> amount at risk</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>weighting factor representing riskiness of associated asset class as substitute for <strong>riskiness</strong> of individual asset</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>advantage: no individual risk assessment necessary - applicable even without empirical data</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>weakness: diversification benefits and netting unconsidered, strong simplification</li>
+        </ul>
+        </div>
+        </section><section id="scenario-analysis" class="slide level3">
+        <h1>scenario analysis</h1>
+        <ul>
+        <li><strong>define</strong> possible future economic scenarios (stock market crash of -20 percent in major economies, default of Greece government securities,...)</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li><strong>derive</strong> associated <strong>losses</strong></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>determine risk as specified quantile of scenario losses (5th largest loss, worst loss, protection against at least 90 percent of scenarios,...)</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>since scenarios are not accompanied by statements about likelihood of occurrence, probability dimension is completely left unconsidered</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>scenario analysis can be conducted without any empirical data on the sole grounds of expert knowledge</li>
+        </ul>
+        </div>
+        </section><section id="quantitative-risk-management-modeling-the-loss-distribution" class="slide level3">
+        <h1>Quantitative risk management: modeling the loss distribution</h1>
+        <ul>
+        <li>incorporates all information about <strong>both probability and magnitude</strong> of losses</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>includes <strong>diversification and netting effects</strong></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>usually relies on empirical data</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>full information of loss distribution reduced to charateristics of distribution for better comprehensibility: <strong>risk measures</strong></li>
+        </ul>
+        </div>
+        </section><section class="slide level3">
+        <h1>Types of risk</h1>
+        </section><section id="section" class="slide level3">
+        <h1></h1>
+        <p>You are casino owner.</p>
+        <p>You only have one table of roulette, with one gambler, who plays one game.</p>
+        <div class="fragment">
+        <p>He bets 100€ on number 12, and while the odds of winning are 1:36, his payment in case of success will be 3500€ only.</p>
+        </div>
+        <div class="fragment">
+        <p>With expected positive payoff, what is your risk of loosing money?</p>
+        </div>
+        <div class="fragment">
+        <p><span class="math"> ⇒ </span> <strong>inherent risk</strong>: completely computable</p>
+        </div>
+        </section><section id="section-1" class="slide level3">
+        <h1></h1>
+        <p>Now assume that you have multiple gamblers per day.</p>
+        <div class="fragment">
+        <p>Although you have a pretty good record of the number of gamblers over the last year, you still have to make an estimate about the number of visitors today. What is your risk?</p>
+        </div>
+        <div class="fragment">
+        <p><span class="math"> ⇒ </span> additional risk due to <strong>estimation error</strong></p>
+        </div>
+        </section><section id="section-2" class="slide level3">
+        <h1></h1>
+        <p>You have been owner of The Mirage Casino in Las Vegas. What was your biggest loss within the last years?</p>
+        </section><section id="section-3" class="slide level3">
+        <h1></h1>
+        <p>The closing of the show of Siegfried and Roy due to the attack of a tiger led to losses of hundreds of millions of dollars:</p>
+        <figure>
+        <img src="pics/var_es_pics/s_and_r_model_risk.png" />
+        </figure>
+        </section><section id="section-4" class="slide level3">
+        <h1></h1>
+        <p>Focusing on gambling losses only left crucial risks outside of the model.</p>
+        <div class="fragment">
+        <p><span class="math"> ⇒ </span> <strong>model risk</strong></p>
+        </div>
+        </section><section id="estimation-risk-vs-model-risk" class="slide level3">
+        <h1>Estimation risk vs model risk</h1>
+        <p>Estimation risk:</p>
+        <div class="fragment">
+        <ul>
+        <li><strong>vanishes</strong> with increasing sample size</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>can be <strong>quantified</strong> (confidence intervals)</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p>Model risk:</p>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>increasing sample size only increases likelihood of detecting wrong model assumptions</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p>For a <strong>detailed example</strong> illustrating the difference between inherent, estimation and model risk, see this <a href="https://grollchristian.wordpress.com/2013/12/02/estimation-risk-and-model-risk/">blog post</a>.</p>
+        </div>
+        </section></section>
+        <section><section id="risk-measures" class="titleslide slide level1"><h1>Risk measures</h1></section><section id="standard-deviation" class="slide level3">
+        <h1>Standard deviation</h1>
+        <ul>
+        <li><strong>symmetrically</strong> capturing positive and negative risks dilutes information about downsiderisk</li>
+        </ul>
+        </section><section id="var" class="slide level3">
+        <h1>VaR</h1>
+        <p><strong>Value-at-Risk</strong> (VaR) at confidence level <span class="math"><em>α</em></span> associated with a given loss distribution <em>L</em> is defined as the smallest value <em>l</em> that is not exceeded with probability higher than <span class="math">(1 − <em>α</em>)</span>.</p>
+         <br /><span class="math">$$\begin{align*}
+        \text{VaR}_{\alpha}&amp;=\inf\{l \in \mathbb{R}: \mathbb{P}(L&gt;l)\leq 1-\alpha\} \\
+        &amp;=\inf\{l \in \mathbb{R}: F_{L}(l\geq \alpha)\}
+        \end{align*}$$</span><br />
+        </section><section id="section-5" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>typical values for <span class="math"><em>α</em></span>: <span class="math"><em>α</em></span> = 0.95, <span class="math"><em>α</em></span> = 0.99 or <span class="math"><em>α</em></span> = 0.999</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>as a measure of location, <em>VaR</em> does <strong>not</strong> provide any <strong>information</strong> about the nature of losses <strong>beyond</strong> its value</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>the losses incurred by investments held on a daily basis exceed the value given by <span class="math"><em>V</em><em>a</em><em>R</em><sub><em>α</em></sub></span> only in <span class="math">(1 − <em>α</em>)100</span> percent of days</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>with capital buffer equal to <span class="math"><em>V</em><em>a</em><em>R</em><sub><em>α</em></sub></span>, financial entity is <strong>protected</strong> in <strong>at least</strong> <span class="math"><em>α</em></span>-percent of days</li>
+        </ul>
+        </div>
+        </section><section id="illustration" class="slide level3">
+        <h1>Illustration</h1>
+        <figure>
+        <img src="pics/var_es_pics/02stock_distr.png" />
+        </figure>
+        </section><section id="section-6" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/var_es_pics/03loss_distr.png" />
+        </figure>
+        </section><section id="section-7" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/var_es_pics/04VaR.png" />
+        </figure>
+        </section><section id="modeling-approaches" class="slide level3">
+        <h1>Modeling approaches</h1>
+        <p>In general: underlying loss distribution is <strong>not known</strong>.</p>
+        <div class="fragment">
+        <p>Two modeling approaches <em>VaR</em>:</p>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><strong>directly</strong> estimate the associated <strong>quantile</strong> of <strong>historical data</strong> (historical simulation)</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>estimate model for underlying <strong>loss distribution</strong>, and evaluate inverse cdf at required <strong>quantile</strong></li>
+        </ul>
+        </div>
+        </section><section id="involved-risks" class="slide level3">
+        <h1>Involved risks</h1>
+        <ul>
+        <li>both approaches entail <strong>estimation risk</strong></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>estimation risk might be of different magnitude</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><strong>historical simulation</strong> does not require any assumptions <span class="math"> ⇒ </span> <strong>no model risk</strong> involved</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><strong>modeling</strong> the loss distribution generally involves <strong>distributional assumptions</strong> <span class="math"> ⇒ </span> <strong>model risk</strong> due to misspecifications</li>
+        </ul>
+        </div>
+        </section><section id="mathematical-tractability" class="slide level3">
+        <h1>Mathematical tractability</h1>
+        <p>Derivation of <em>VaR</em> from a model for the loss distribution can be further divided into two situations:</p>
+        <div class="fragment">
+        <ul>
+        <li><strong>analytical</strong> solution for quantile exists</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li><strong>Monte Carlo Simulation</strong> when analytic formulas are not available</li>
+        </ul>
+        </div>
+        </section><section class="slide level3">
+        <h1>VaR with normally distributed losses</h1>
+        </section><section id="section-8" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>introductory model: assume <strong>normally distributed</strong> loss distribution</li>
+        </ul>
+        <div class="fragment">
+        <p><strong>VaR normal distribution</strong></p>
+        <p>For given parameters <span class="math"><em>μ</em><sub><em>L</em></sub></span> and <span class="math"><em>σ</em></span> <span class="math"><em>V</em><em>a</em><em>R</em><sub><em>α</em></sub></span> can be calculated <strong>analytically</strong> by</p>
+         <br /><span class="math">$$\begin{equation*}
+        \text{VaR}_{\alpha}=\mu_{L}+\sigma\Phi^{-1}(\alpha)
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="proof" class="slide level3">
+        <h1>Proof</h1>
+         <br /><span class="math">$$\begin{align*}
+        \mathbb{P}(L\leq VaR_{\alpha})&amp;=\mathbb{P}(L\leq \mu_{L}+\sigma\Phi^{-1}(\alpha))\\
+        &amp;=\mathbb{P}\left( \frac{L-\mu_{L}}{\sigma} \leq \Phi^{-1}(\alpha)\right) \\
+        &amp;=\Phi\left( \Phi^{-1}(\alpha) \right) \\
+        &amp;=\alpha
+        \end{align*}$$</span><br />
+        </section><section id="remarks" class="slide level3">
+        <h1>Remarks</h1>
+        <ul>
+        <li><strong>note</strong>: <span class="math"><em>μ</em><sub><em>L</em></sub></span> in <span class="math"><em>V</em><em>a</em><em>R</em><sub><em>α</em></sub> = <em>μ</em><sub><em>L</em></sub> + <em>σ</em>Φ<sup> − 1</sup>(<em>α</em>)</span> is the expectation of the loss distribution</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>if <span class="math"><em>μ</em></span> denotes the expectation of the asset return, i.e. the expectation of the profit, then the formula has to be modified to</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        VaR_{\alpha}=-\mu+\sigma\Phi^{-1}(\alpha)
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="model-risk" class="slide level3">
+        <h1>Model risk</h1>
+        <p>In practice, the assumption of <strong>normally distributed</strong> returns usually can be <strong>rejected</strong> both for loss distributions associated with credit and operational risk, as well as for loss distributions associated with market risk at high levels of confidence.</p>
+        </section><section class="slide level3">
+        <h1>Expected Shortfall</h1>
+        </section><section id="section-9" class="slide level3">
+        <h1></h1>
+        <p><strong>Expected Shortfall</strong></p>
+        <p>The <strong>Expected Shortfall</strong> (ES) with confidence level <span class="math"><em>α</em></span> denotes the <strong>conditional expected loss</strong>, given that the realized loss is equal to or exceeds the corresponding value of <span class="math"><em>V</em><em>a</em><em>R</em><sub><em>α</em></sub></span>:</p>
+         <br /><span class="math">$$\begin{equation*}
+        \text{ES}_{\alpha}=\mathbb{E}[L \vert L \geq \text{VaR}_{\alpha}]
+        \end{equation*}$$</span><br />
+        <div class="fragment">
+        <p>Interpretation: given that we are in one of the <span class="math">(1 − <em>α</em>)100</span> percent worst periods, how high is the loss that we have to expect?</p>
+        </div>
+        </section><section id="section-10" class="slide level3">
+        <h1></h1>
+        <p>Expected Shortfall as expectation of <strong>conditional loss distribution</strong>:</p>
+        <figure>
+        <img src="pics/var_es_pics/08ES_cond_loss.png" />
+        </figure>
+        </section><section id="section-11" class="slide level3">
+        <h1></h1>
+        <p>ES contains information about nature of losses <strong>beyond</strong> <span class="math"><em>V</em><em>a</em><em>R</em></span>:</p>
+        <figure>
+        <img src="pics/var_es_pics/08ES_more_info.png" />
+        </figure>
+        </section><section id="modeling-approaches-1" class="slide level3">
+        <h1>Modeling approaches</h1>
+        <p>Again, there are two approaches to derive <span class="math"><em>E</em><em>S</em></span>:</p>
+        <div class="fragment">
+        <ul>
+        <li><strong>directly</strong> estimate the <strong>mean</strong> of all values greater than the associated <strong>quantile</strong> of <strong>historical data</strong></li>
+        <li>estimate model for underlying <strong>loss distribution</strong>, and calculate <strong>expectation</strong> of <strong>conditional</strong> loss distribution</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <p>Both approaches come with the same risks as for the case of <span class="math"><em>V</em><em>a</em><em>R</em></span>.</p>
+        </div>
+        </section><section class="slide level3">
+        <h1>ES with normally distributed losses</h1>
+        </section><section id="section-12" class="slide level3">
+        <h1></h1>
+        <p><strong>ES normal distribution</strong></p>
+        <p>Given that <span class="math"><em>L</em> ∼ 𝒩(<em>μ</em><sub><em>L</em></sub>, <em>σ</em><sup>2</sup>)</span>, the <strong>Expected Shortfall</strong> of <span class="math"><em>L</em></span> is given by</p>
+         <br /><span class="math">$$\begin{equation*}
+        \text{ES}_{\alpha}=\mu_{L}+\sigma \frac{\phi\left( \Phi^{-1}(\alpha) \right) }{1-\alpha}
+        \end{equation*}$$</span><br />
+        </section><section id="section-13" class="slide level3">
+        <h1></h1>
+        <p>Proof:</p>
+         <br /><span class="math">$$\begin{align*}
+        ES_{\alpha} &amp; =\mathbb{E}\left[L|L\geq VaR_{\alpha}\right]\\
+         &amp; =\mathbb{E}\left[L|L\geq\mu_{L}+\sigma\Phi^{-1}\left(\alpha\right)\right]\\
+         &amp; =\mathbb{E}\left[L|\frac{L-\mu_{L}}{\sigma}\geq\Phi^{-1}\left(\alpha\right)\right]\\
+         &amp; =\mu_{L}-\mu_{L}+\mathbb{E}\left[L|\frac{L-\mu_{L}}{\sigma}\geq\Phi^{-1}\left(\alpha\right)\right]\\
+         &amp; =\mu_{L}+\mathbb{E}\left[L-\mu_{L}|\frac{L-\mu_{L}}{\sigma}\geq\Phi^{-1}\left(\alpha\right)\right]\\
+         &amp; =\mu_{L}+\sigma\mathbb{E}\left[\frac{L-\mu_{L}}{\sigma}|\frac{L-\mu_{L}}{\sigma}\geq\Phi^{-1}\left(\alpha\right)\right]\\
+         &amp; =\mu_{L}+\sigma\mathbb{E}\left[Y|Y\geq\Phi^{-1}\left(\alpha\right)\right],\,\mbox{ with }Y\sim\mathcal{N}\left(0,1\right)
+        \end{align*}$$</span><br />
+        </section><section id="section-14" class="slide level3">
+        <h1></h1>
+        <p>Furthermore, for <span class="math">ℙ(<em>Y</em> ≥ Φ<sup> − 1</sup>(<em>α</em>))</span> we get:</p>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{P}\left(Y\geq\Phi^{-1}\left(\alpha\right)\right)=1-\mathbb{P}\left(Y\leq\Phi^{-1}\left(\alpha\right)\right)=1-\Phi\left(\Phi^{-1}\left(\alpha\right)\right)=1-\alpha, 
+        \end{equation*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <p>so that we get as <strong>conditional density</strong> <span class="math"><em>ϕ</em><sub><em>Y</em>|<em>Y</em> ≥ Φ<sup> − 1</sup>(<em>α</em>)</sub>(<em>y</em>)</span>:</p>
+        </div>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{align*}
+        \phi_{Y|Y\geq\Phi^{-1}\left(\alpha\right)}\left(y\right) &amp; =\frac{\phi\left(y\right)\mathbf{1}_{\left\{ y\geq\Phi^{-1}\left(\alpha\right)\right\} }}{\mathbb{P}\left(Y\geq\Phi^{-1}\left(\alpha\right)\right)}\\
+         &amp; =\frac{\phi\left(y\right)\mathbf{1}_{\left\{ y\geq\Phi^{-1}\left(\alpha\right)\right\} }}{1-\alpha}.
+        \end{align*}$$</span><br />
+        </div>
+        </section><section id="section-15" class="slide level3">
+        <h1></h1>
+        <p>Hence, the integral can be calculated as</p>
+         <br /><span class="math">$$\begin{align*}
+        \mathbb{E}\left[Y|Y\geq\Phi^{-1}\left(\alpha\right)\right] &amp; =\int_{-\infty}^{\infty}y\cdot\phi_{Y|Y\geq\Phi^{-1}\left(\alpha\right)}\left(y\right)dy\\
+         &amp; =\int_{\Phi^{-1}\left(\alpha\right)}^{\infty}y\cdot\frac{\phi\left(y\right)}{1-\alpha}dy\\
+         &amp; =\frac{1}{1-\alpha}\int_{\Phi^{-1}\left(\alpha\right)}^{\infty}y\cdot\phi\left(y\right)dy\\
+         &amp; \overset{\left(\star\right)}{=}\frac{1}{1-\alpha}\left[-\phi\left(y\right)\right]_{\Phi^{-1}\left(\alpha\right)}^{\infty}\\
+         &amp; =\frac{1}{1-\alpha}\left(0+\phi\left(\Phi^{-1}\left(\alpha\right)\right)\right)\\
+         &amp; =\frac{\phi\left(\Phi^{-1}\left(\alpha\right)\right)}{1-\alpha},
+        \end{align*}$$</span><br />
+        </section><section id="section-16" class="slide level3">
+        <h1></h1>
+        <p>with <span class="math">( ⋆ )</span>:</p>
+         <br /><span class="math">$$\begin{equation*}
+        \left(-\phi\left(y\right)\right)^{'}=-\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{y^{2}}{2}\right)\cdot\left(-\frac{2y}{2}\right)=y\cdot\phi\left(y\right)
+        \end{equation*}$$</span><br />
+        </section><section class="slide level3">
+        <h1>Exercise</h1>
+        </section><section id="example-meaning-of-var" class="slide level3">
+        <h1>Example: Meaning of <em>VaR</em></h1>
+        <p>You have invested in an investment fonds of size 500,000 €. The manager of the fonds tells you that the <strong>99% Value-at-Risk</strong> for a time horizon of one year <strong>amounts to 5% of the portfolio value</strong>. Explain the information conveyed by this statement.</p>
+        </section><section id="solution" class="slide level3">
+        <h1>Solution</h1>
+        <ul>
+        <li>for continuous loss distribution we have equality
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{P}\left(L\geq \text{VaR}_{\alpha}\right)=1-\alpha
+        \end{equation*}$$</span><br /></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>transform relative statement about losses into absolute quantity</li>
+        </ul>
+        </div>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{equation*}
+        \text{VaR}_{\alpha}=0.05\cdot500,000=25,000
+        \end{equation*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>pluggin into formula leads to</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{P}\left(L\geq25,000\right)=0.01
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="section-17" class="slide level3">
+        <h1></h1>
+        <p>Interpretation:</p>
+        <div class="fragment">
+        <ul>
+        <li>&quot;with probability 1% you will lose 25,000 € <strong>or more</strong>&quot;</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>a capital cushion of height <span class="math">VaR<sub>0.99</sub> = 25000</span> is sufficient in exactly 99% of the times for continuous distributions</li>
+        </ul>
+        </div>
+        </section><section id="example-discrete-case" class="slide level3">
+        <h1>Example: discrete case</h1>
+        <ul>
+        <li>exemplary discrete loss distribution:</li>
+        </ul>
+        <figure>
+        <img src="pics/var_es_pics/08Example_VaR_1.png" />
+        </figure>
+        </section><section id="section-18" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>the capital cushion provided by <span class="math"><em>V</em><em>a</em><em>R</em><sub><em>α</em></sub></span> would be sufficient in even 99.3% of the times</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>interpretation of statement: &quot;with <strong>probability of maximal</strong> 1% you will lose 25,000 € <strong>or more</strong>&quot;</li>
+        </ul>
+        </div>
+        </section><section id="example-meaning-of-es" class="slide level3">
+        <h1>Example: Meaning of <em>ES</em></h1>
+        <p>The fondsmanager corrects himself. Instead of the Value-at-Risk, it is the <strong>Expected Shortfall</strong> that <strong>amounts to 5% of the portfolio</strong> value. How does this statement have to be interpreted? Which of both cases does imply the riskier portfolio?</p>
+        </section><section id="interpretation" class="slide level3">
+        <h1>Interpretation</h1>
+        <ul>
+        <li>given that one of the 1% worst years occurs, the expected loss in this year will amount to 25,000 €</li>
+        </ul>
+        </section><section id="section-19" class="slide level3">
+        <h1></h1>
+        <p>Due to</p>
+         <br /><span class="math">$$\begin{equation*}
+        \text{VaR}_{\alpha}\leq \text{ES}_{\alpha}
+        \end{equation*}$$</span><br />
+        <div class="fragment">
+        <p>the first statement implies:</p>
+        </div>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{equation*}
+        \text{ES}_{\alpha}\geq25,000€
+        \end{equation*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <p><span class="math"> ⇒ </span> the first statement implies the riskier portfolio</p>
+        </div>
+        </section><section id="real-world-model-risk" class="slide level3">
+        <h1>Real world: model risk</h1>
+        <ul>
+        <li>besides sophisticated modeling approaches even Deutsche Bank seems to fail at <span class="math"><em>V</em><em>a</em><em>R</em></span>-estimation: <span class="math"><em>V</em><em>a</em><em>R</em><sub>0.99</sub></span></li>
+        </ul>
+        <figure>
+        <img src="pics/var_es_pics/08DeutschBank_2008.PNG" />
+        </figure>
+        </section><section id="section-20" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/var_es_pics/08DeutschBank_2009.PNG" />
+        </figure>
+        </section><section id="section-21" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/var_es_pics/08DeutschBank_2010.PNG" />
+        </figure>
+        </section><section id="backtesting" class="slide level3">
+        <h1>Backtesting</h1>
+        <p>How good did estimated <span class="math"><em>V</em><em>a</em><em>R</em></span> values perform in-sample?</p>
+        <div class="fragment">
+        <ul>
+        <li>compare exceedance / hit rate with desired confidence level</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        \frac{1}{N}\sum_{i=1}^{N}\mathbf{1}_{\{L_{i}&gt;\text{VaR}\}}\overset{?}{=}\alpha 
+        \end{equation*}$$</span><br />
+        <aside class="notes">
+        <ul>
+        <li>data:
+        <ul>
+        <li>prices / log prices</li>
+        <li>get log returns</li>
+        <li>vola clustering</li>
+        </ul></li>
+        <li>normality:
+        <ul>
+        <li>fit distribution</li>
+        <li>compare to ecdf</li>
+        <li>qq-plot</li>
+        <li>Phi(X) uniform distribution</li>
+        </ul></li>
+        <li>VaR / ES estimation:
+        <ul>
+        <li>historical simulation</li>
+        <li>normality</li>
+        </ul></li>
+        <li>estimation risk
+        <ul>
+        <li>simulation study (parametric bootstrap)</li>
+        </ul></li>
+        <li>model risk: backtesting</li>
+        <li>functions of random variables</li>
+        <li>linear functions: t-location-scale distribution</li>
+        <li>multiple variables</li>
+        <li>volatility clustering: GARCH</li>
+        <li>GARCH distribution</li>
+        </ul>
+        </aside>
+        <div class="references">
+        
+        </div>
+        </div>
+        </section></section>
+      </div>
+    </div>
+    
+    
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.js"></script>
+    
+    <script>
+      
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,         // Display controls in the bottom right corner
+      progress: true,         // Display a presentation progress bar
+      history: true,          // Push each slide change to the browser history
+      center: true,                       // Vertical centering of slides
+      maxScale: 1.5,                  // Bounds for smallest/largest possible content scale
+      slideNumber: true,                // Display the page number of the current slide
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+      
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      //          { src: '../reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+      //          { src: '../reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]});
+    </script>
+      </body>
+</html>
