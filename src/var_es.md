@@ -611,7 +611,7 @@ How good did estimated $VaR$ values perform in-sample?
 
 
 
-<aside class="notes">
+<div class="notes">
 - data:
 	- prices / log prices
 	- get log returns
@@ -632,5 +632,5 @@ How good did estimated $VaR$ values perform in-sample?
 - multiple variables
 - volatility clustering: GARCH
 - GARCH distribution
-</aside>
+</div>
 
