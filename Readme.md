@@ -2,6 +2,7 @@ Slides:
 
 - [Introductory slides](http://cgroll.github.io/riskMan/output/intro.slides.html#/)
 - [VaR and ES slides](http://cgroll.github.io/riskMan/output/var_es.slides.html#/)
+- [Functions of random variables slides](http://cgroll.github.io/riskMan/output/func_rand_var.slides.html#/)
 
 
 Remark:
