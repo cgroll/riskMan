@@ -6,7 +6,7 @@ FILES = intro.slides.html intro.pdf var_es.slides.html var_es.pdf func_rand_var.
 OUTDIR = output
 
 # speficy default target
-CURRENT_TARGET = $(OUTDIR)/var_es
+CURRENT_TARGET = $(OUTDIR)/func_rand_var
 current: $(CURRENT_TARGET).slides.html
 
 reveal: $(CURRENT_TARGET).slides.html
