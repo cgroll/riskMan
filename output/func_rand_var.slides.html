@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+        <meta name="author" content="Functions applied to random variables" />
+            <title>Risk management</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+            <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme">
+            <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = '../reveal.js/css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+            <style type="text/css">
+    p { text-align: left; }
+    .reveal ul {
+        width: 900px;
+    }
+    
+    .reveal strong { color: lawngreen;
+                     font-style: normal;
+                     font-weight: bold;
+                   }
+    
+    /* all headers are transformed to h1 by reveal.js, */
+    /* even individual slide headers. */
+    /* hence, h1 font size should not be too large */
+    .reveal h1 { 
+        font-style: normal;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    </style>
+        
+    <!-- include local MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      "HTML-CSS": {
+      scale: 80,
+      },
+      extensions: ["tex2jax.js"],
+      TeX: { equationNumbers: { autoNumber: "AMS" } },
+      jax: ["input/TeX","output/HTML-CSS"],
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}});
+    </script>
+    <script type="text/javascript" src="../MathJax/MathJax.js"></script>
+    
+  </head>
+  <body>
+        <div class="reveal">
+      <div class="slides">
+        
+                <section>
+          <h1 class="title">Risk management</h1>
+                              <h2 class="author">Functions applied to random variables</h2>
+                    <h3 class="date">Christian Groll</h3>
+        </section>
+                        <section id="TOC">
+          <ul>
+          <li><a href="#/univariate-transformations">Univariate transformations</a></li>
+          </ul>
+        </section>
+                
+        <section><section id="univariate-transformations" class="titleslide slide level1"><h1>Univariate transformations</h1></section><section id="target" class="slide level3">
+        <h1>Target</h1>
+        <ul>
+        <li>target random variable <span class="math"><em>Y</em></span>: <strong>function of random variable</strong> with know distribution</li>
+        </ul>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{align*}
+        X&amp;\sim F_{X}\\
+        Y&amp;=g(X)\\
+        Y&amp;\sim ?
+        \end{align*}$$</span><br />
+        </div>
+        </section><section id="example-discrete-case" class="slide level3">
+        <h1>Example: discrete case</h1>
+        </section><section id="section" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/funcOfRV24.png" />
+        </figure>
+        </section><section id="section-1" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/funcOfRV24a.png" />
+        </figure>
+        </section><section id="section-2" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/funcOfRV24b.png" />
+        </figure>
+        </section><section id="section-3" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/funcOfRV24c.png" />
+        </figure>
+        </section><section id="section-4" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/initVsAfter25.png" />
+        </figure>
+        </section><section id="example-call-option-payoff" class="slide level3">
+        <h1>Example: call option payoff</h1>
+        </section><section id="section-5" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/optionOfRV26.png" />
+        </figure>
+        </section><section id="section-6" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/optionOfRV26a.png" />
+        </figure>
+        </section><section id="section-7" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/optionOfRV26b.png" />
+        </figure>
+        </section><section id="section-8" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/optionOfRV26c.png" />
+        </figure>
+        </section><section id="transformations-of-continuous-random-variables" class="slide level3">
+        <h1>Transformations of continuous random variables</h1>
+        </section><section id="analytical-formula" class="slide level3">
+        <h1>Analytical formula</h1>
+        <p><strong>Transformation theorem</strong></p>
+        <p>Let <span class="math"><em>X</em></span> be a random variable with density function <span class="math"><em>f</em>(<em>x</em>)</span>, and <span class="math"><em>g</em>(<em>x</em>)</span> be an <strong>invertible bijective</strong> function. Then the density function of the <strong>transformed random variable</strong> <span class="math"><em>Y</em> = <em>g</em>(<em>X</em>)</span> in any point <span class="math"><em>z</em></span> is given by</p>
+         <br /><span class="math">$$\begin{equation*}
+        f_{Y}\left(z\right)=f_{X}\left(g^{-1}\left(z\right)\right)\cdot\left|\left(g^{-1}\right)^{'}\left(z\right)\right|.
+        \end{equation*}$$</span><br />
+        </section><section id="problems" class="slide level3">
+        <h1>Problems</h1>
+        <ul>
+        <li><strong>given</strong> that we can calculate <strong>some measure <span class="math">$\varrho_{X}$</span></strong> of the original random variable <span class="math"><em>X</em></span>, it is <strong>not ensured</strong> that <strong><span class="math">$\varrho_{Y}$</span> can be calculated</strong> for the new random variable <span class="math"><em>Y</em></span>, too: e.g. if <span class="math">$\varrho$</span> envolves integration</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>what about non-invertible functions?</li>
+        </ul>
+        </div>
+        </section><section id="example-return-distribution" class="slide level3">
+        <h1>Example: return distribution</h1>
+        <ul>
+        <li>traditional financial modeling: normally distributed <strong>logarithmic returns</strong></li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>for example: <strong>percentage logarithmic returns</strong></li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        R^{\log}:=100 r^{\log}
+        \end{equation*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>net returns as function of <span class="math"><em>R</em><sup>log</sup></span>:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        r=\exp (R^{log}/100)-1
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="section-9" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/expFuncNorm35.png" />
+        </figure>
+        </section><section id="section-10" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/expFuncNorm36.png" />
+        </figure>
+        </section><section id="section-11" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/expFuncNorm37.png" />
+        </figure>
+        </section><section id="analytical-calculation" class="slide level3">
+        <h1>Analytical calculation</h1>
+        <ul>
+        <li>according to the transformation theorem, we get for the distribution of <strong>net returns</strong>:</li>
+        </ul>
+         <br /><span class="math">$$\begin{align*}
+        f_{r}\left(z\right)&amp;=f_{R^{log}}\left(g^{-1}\left(z\right)\right)\cdot\left|\left(g^{-1}\right)^{'}\left(z\right)\right|\\
+        g\left(x\right)&amp;=e^{x/100}-1
+        \end{align*}$$</span><br />
+        <div class="fragment">
+        <p><span class="math"> ⇒ </span> calculating each part</p>
+        </div>
+        </section><section id="section-12" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>calculation of <span class="math"><em>g</em><sup> − 1</sup> : </span></li>
+        </ul>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{alignat*}{2}
+        x &amp; =e^{y/100}-1 &amp; \,\Leftrightarrow\\
+        x+1 &amp; =e^{y/100} &amp; \,\Leftrightarrow\\
+        \log\left(x+1\right) &amp; =y/100 &amp; \,\Leftrightarrow\\
+        100\cdot\log\left(x+1\right) &amp; =y
+        \end{alignat*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>calculation of <span class="math">(<em>g</em><sup> − 1</sup>)<sup>′</sup></span>:</li>
+        </ul>
+        </div>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{equation*}
+        \left(100\cdot\log\left(x+1\right)\right)^{'}=100\cdot\frac{1}{x+1}
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="section-13" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>plugging in leads to:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        f_{r}\left(z\right)=f_{R^{log}}\left(100\cdot\log\left(z+1\right)\right)\cdot\left|\frac{100}{z+1}\right|
+        \end{equation*}$$</span><br />
+        </section><section id="section-14" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/fitNormToRealData39.png" />
+        </figure>
+        </section><section id="section-15" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>although only visable under magnification, there is a difference between a normal distribution which is directly fitted to net returns and the distribution which arises for net returns by fitting a normal distribution to logarithmic returns</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>the resulting distribution from fitting a normal distribution to logarithmic returns assigns more probability to extreme negative returns as well as less probability to extreme positive returns</li>
+        </ul>
+        </div>
+        </section><section id="example-inverse-normal-distribution" class="slide level3">
+        <h1>Example: inverse normal distribution</h1>
+        <ul>
+        <li>application of an inverse normal cumulative distribution as transformation function to a uniformly distributed random variable</li>
+        </ul>
+        </section><section id="section-16" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/39probIntTransf.png" />
+        </figure>
+        </section><section id="section-17" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/40probIntTransf.png" />
+        </figure>
+        </section><section id="section-18" class="slide level3">
+        <h1></h1>
+        <figure>
+        <img src="pics/func_rand_var_pics/postDistr42.png" />
+        </figure>
+        </section><section id="section-19" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>the resulting distribution really is the normal distribution</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>application of an inverse cdf to a uniformly distributed random variable forms the basis of Monte Carlo simulation</li>
+        </ul>
+        </div>
+        </section><section id="section-20" class="slide level3">
+        <h1></h1>
+        <p><strong>Monte Carlo simulation</strong></p>
+        <p>Let <span class="math"><em>X</em></span> be a univariate random variable with distribution function <span class="math"><em>F</em><sub><em>X</em></sub></span>. Let <span class="math"><em>F</em><sub><em>X</em></sub><sup> − 1</sup></span> be the quantile function of <span class="math"><em>F</em><sub><em>X</em></sub></span>, i.e.</p>
+         <br /><span class="math">$$\begin{equation*}
+        F_{X}^{-1}\left(p\right)=\inf\left\{ x|F_{X}\left(x\right)\geq p\right\} ,\quad p\in\left(0,1\right).
+        \end{equation*}$$</span><br />
+        <p>Then, we can simulate random variables with arbitrary distribution function <span class="math"><em>F</em><sub><em>X</em></sub></span> through:</p>
+         <br /><span class="math">$$\begin{equation*}
+        F_{X}^{-1}\left(U\right)\sim F_{X},\quad \text{for } U\sim\mathbb{U}\left[0,1\right]
+        \end{equation*}$$</span><br />
+        </section><section id="proof" class="slide level3">
+        <h1>Proof</h1>
+        <p>Let <span class="math"><em>X</em></span> be a continuous random variable with cumulative distribution function <span class="math"><em>F</em><sub><em>X</em></sub></span>, and let <span class="math"><em>Y</em></span> denote the transformed random variable <span class="math"><em>Y</em> := <em>F</em><sub><em>X</em></sub><sup> − 1</sup>(<em>U</em>)</span>. Then</p>
+         <br /><span class="math">$$\begin{equation*}
+        F_{Y}\left(x\right)=\mathbb{P}\left(Y\leq x\right)=\mathbb{P}\left(F_{X}^{-1}\left(U\right)\leq x\right)=\mathbb{P}\left(U\leq F_{X}\left(x\right)\right)=F_{X}\left(x\right)
+        \end{equation*}$$</span><br />
+        <p>so that <span class="math"><em>Y</em></span> has the same distribution function as <span class="math"><em>X</em></span>.</p>
+        </section><section id="section-21" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>the reverse direction also is important:</li>
+        </ul>
+        <p><strong>Probability integral transformation</strong></p>
+        <p>If <span class="math"><em>F</em><sub><em>X</em></sub></span> is continuous, then the random variable <span class="math"><em>F</em><sub><em>X</em></sub>(<em>X</em>)</span> is standard uniformly distributed, i.e.</p>
+         <br /><span class="math">$$\begin{equation*}
+        F_{X}(X)\sim \mathbb{U}([0,1])
+        \end{equation*}$$</span><br />
+        <p>and is called <strong>probability integral transform</strong>.</p>
+        </section><section id="proof-1" class="slide level3">
+        <h1>Proof</h1>
+         <br /><span class="math">$$\begin{align*}
+        \mathbb{P}(F_{X}(X)\leq u)&amp;=\mathbb{P}(X\leq F^{-1}_{X}(u))\\
+        &amp;=F_{X}(F_{X}^{-1}(u))\\
+        &amp;=u
+        \end{align*}$$</span><br />
+         <br /><span class="math">$$\begin{equation*}
+        \Rightarrow\quad \mathbb{P}(F_{X}(X)\leq u)=\mathbb{P}(U\leq u) \quad U\sim \mathbb{U}([0,1])
+        \end{equation*}$$</span><br />
+        </section><section class="slide level3">
+        <h1>Linear transformations</h1>
+        </section><section id="section-22" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li><strong>linear</strong> transformation functions are given by</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        g(x)=ax+b
+        \end{equation*}$$</span><br />
+        </section><section id="section-23" class="slide level3">
+        <h1></h1>
+        <p>examples of linear functions:</p>
+        <figure>
+        <img src="pics/func_rand_var_pics/linFunc42.png" />
+        </figure>
+        </section><section id="analytical-solution" class="slide level3">
+        <h1>Analytical solution</h1>
+        <ul>
+        <li>calculate inverse <span class="math"><em>g</em><sup> − 1</sup> : </span></li>
+        </ul>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{equation*}
+        x=ay+b\,\Leftrightarrow\, x-b=ay\,\Leftrightarrow\frac{x}{a}-\frac{b}{a}=y
+        \end{equation*}$$</span><br />
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>calculate derivative <span class="math">(<em>g</em><sup> − 1</sup>)<sup>′</sup> : </span></li>
+        </ul>
+        </div>
+        <div class="fragment">
+         <br /><span class="math">$$\begin{equation*}
+        \left(\frac{x}{a}-\frac{b}{a}\right)^{'}=\frac{1}{a}
+        \end{equation*}$$</span><br />
+        </div>
+        </section><section id="section-24" class="slide level3">
+        <h1></h1>
+        <ul>
+        <li>putting parts together:</li>
+        </ul>
+         <br /><span class="math">$$\begin{align*}
+        f_{g\left(X\right)}\left(z\right) &amp; =f_{X}\left(g^{-1}\left(z\right)\right)\cdot\left|\left(g^{-1}\right)^{'}\right|=f_{X}\left(\frac{z}{a}-\frac{b}{a}\right)\cdot\left|\frac{1}{a}\right|
+        \end{align*}$$</span><br />
+        <div class="fragment">
+        <ul>
+        <li>interpretation: <strong>shifting</strong> <span class="math"><em>b</em></span> units to the right, <strong>stretching</strong> by factor <span class="math"><em>a</em></span></li>
+        </ul>
+        </div>
+        </section><section id="linear-transformation-expectation" class="slide level3">
+        <h1>Linear transformation: expectation</h1>
+        <ul>
+        <li><strong>stretching</strong> and <strong>shifting</strong> also is transferred to the expectation of a <strong>linearly transformed random variable</strong> <span class="math"><em>Y</em> := <em>a</em><em>X</em> + <em>b</em></span>:</li>
+        </ul>
+         <br /><span class="math">$$\begin{equation*}
+        \mathbb{E}\left[Y\right]=\mathbb{E}\left[aX+b\right]=a\mathbb{E}\left[X\right]+b
+        \end{equation*}$$</span><br />
+        </section><section id="linear-transformation-variance" class="slide level3">
+        <h1>Linear transformation: variance</h1>
+         <br /><span class="math">$$\begin{align*}
+        \mathbb{V}\left[Y\right]&amp;=\mathbb{E}\left[\left(Y-\mathbb{E}\left[Y\right]\right)^{2}\right]\\
+        &amp; =\mathbb{E}\left[\left(aX+b-\mathbb{E}\left[aX+b\right]\right)^{2}\right]\\
+         &amp; =\mathbb{E}\left[\left(aX+b-a\mathbb{E}\left[X\right]-b\right)^{2}\right]\\
+         &amp; =\mathbb{E}\left[\left(a\left(X-\mathbb{E}\left[X\right]\right)+b-b\right)^{2}\right]\\
+         &amp; =a^{2}\mathbb{E}\left[\left(X-\mathbb{E}\left[X\right]\right)^{2}\right]\\
+         &amp; =a^{2}\mathbb{V}\left[X\right]
+        \end{align*}$$</span><br />
+        </section><section id="section-25" class="slide level3">
+        <h1></h1>
+        <p><strong>Remarks</strong></p>
+        <ul>
+        <li><strong>calculation</strong> of mean and variance of a linearly transformed variable <strong>neither requires</strong> detailed information about the <strong>distribution of</strong> the <strong>original</strong> random variable, <strong>nor</strong> about the distribution of the <strong>transformed</strong> random variable</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>knowledge of the respective values of the original distribution is sufficient</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>for <strong>non-linear</strong> transformations, such simple formulas do <strong>not exist</strong></li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>most situations require <strong>simulation</strong> of the transformed random variable <strong>and subsequent calculation</strong> of the sample value of a given measure</li>
+        </ul>
+        <div class="references">
+        
+        </div>
+        </div>
+        </section></section>
+      </div>
+    </div>
+    
+    
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.js"></script>
+    
+    <script>
+      
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,         // Display controls in the bottom right corner
+      progress: true,         // Display a presentation progress bar
+      history: true,          // Push each slide change to the browser history
+      center: true,                       // Vertical centering of slides
+      maxScale: 1.5,                  // Bounds for smallest/largest possible content scale
+      slideNumber: true,                // Display the page number of the current slide
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+      
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      //          { src: '../reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+      //          { src: '../reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]});
+    </script>
+      </body>
+</html>
