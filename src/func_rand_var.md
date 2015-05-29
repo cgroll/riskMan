@@ -75,10 +75,10 @@ f_{Y}\left(z\right)=f_{X}\left(g^{-1}\left(z\right)\right)\cdot\left|\left(g^{-1
 
 ### Problems
 
-- given that we can calculate some measure $\varrho_{X}$ of the
-  original random variable $X$, it is not ensured that $\varrho_{Y}$
-  can be calculated for the new random variable $Y$, too: e.g. if
-  $\varrho$ envolves integration
+- **given** that we can calculate **some measure $\varrho_{X}$** of
+  the original random variable $X$, it is **not ensured** that
+  **$\varrho_{Y}$ can be calculated** for the new random variable $Y$,
+  too: e.g. if $\varrho$ envolves integration
 
 . . .
 
@@ -168,7 +168,7 @@ f_{r}\left(z\right)=f_{R^{log}}\left(100\cdot\log\left(z+1\right)\right)\cdot\le
 
 ###
 
-- although only visable under magnification, there is a difference
+- although only visable under magnification, **there is a difference**
   between a normal distribution which is directly fitted to net
   returns and the distribution which arises for net returns by fitting
   a normal distribution to logarithmic returns
@@ -176,8 +176,8 @@ f_{r}\left(z\right)=f_{R^{log}}\left(100\cdot\log\left(z+1\right)\right)\cdot\le
 . . .
 
 - the resulting distribution from fitting a normal distribution to
-  logarithmic returns assigns more probability to extreme negative
-  returns as well as less probability to extreme positive returns
+  logarithmic returns assigns **more probability to extreme negative
+  returns** as well as less probability to extreme positive returns
 
 ### Example: inverse normal distribution
 
@@ -203,7 +203,7 @@ f_{r}\left(z\right)=f_{R^{log}}\left(100\cdot\log\left(z+1\right)\right)\cdot\le
 . . .
 
 - application of an inverse cdf to a uniformly distributed random
-  variable forms the basis of Monte Carlo simulation
+  variable forms the basis of **Monte Carlo simulation**
 
 ### 
 
@@ -216,7 +216,7 @@ $F_{X}$. Let $F_{X}^{-1}$ be the quantile function of $F_{X}$, i.e.
 F_{X}^{-1}\left(p\right)=\inf\left\{ x|F_{X}\left(x\right)\geq p\right\} ,\quad p\in\left(0,1\right).
 \end{equation*}
 
-Then, we can simulate random variables with arbitrary distribution
+Then, we can **simulate random variables** with arbitrary distribution
 function $F_{X}$ through:
 
 \begin{equation*}
@@ -357,9 +357,4 @@ f_{g\left(X\right)}\left(z\right) & =f_{X}\left(g^{-1}\left(z\right)\right)\cdot
 - most situations require **simulation** of the transformed random
   variable **and subsequent calculation** of the sample value of a
   given measure
-
-
-# Multivariate transformations
-
-### Dependency
 

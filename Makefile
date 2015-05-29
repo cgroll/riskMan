@@ -31,6 +31,7 @@ $(OUTDIR)/func_rand_var.slides.html: src/func_rand_var.md Makefile refs.bib
 	--filter pandoc_custom/filters/adaptHeaders.hs \
 	--filter pandoc_custom/filters/amsmath.hs \
 	-V slideNumber=true \
+	-V transition=none \
 	--include-in-header=pandoc_custom/css/reveal_left_strong.css \
 	-s -V revealjs-url=../reveal.js -t revealjs -f markdown \
 	--filter pandoc-citeproc --csl=$(CSL) \
