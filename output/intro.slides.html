@@ -78,6 +78,21 @@
                 
         <section><section id="interest-rates-and-returns" class="titleslide slide level1"><h1>Interest rates and returns</h1></section><section id="general-problem" class="slide level3">
         <h1>General problem</h1>
+        <aside class="notes">
+        <ul>
+        <li>no time for lunch</li>
+        <li>any intersection with other lectures, 2pm to 4pm, start s.t.?</li>
+        <li>git (github), research tools: 27.4. Seminarraum</li>
+        <li>english: questions allowed in german</li>
+        <li>remarks to lecture:
+        <ul>
+        <li>more lecture than exercise, due to practitioners we have to tackle a lot of theory in exercises</li>
+        <li>risk management requires computers in reality: focus on understanding, not grading</li>
+        <li>each type of exercise will be done at least once</li>
+        </ul></li>
+        <li>implement for better understanding</li>
+        </ul>
+        </aside>
         <p><strong>Quantity of interest</strong></p>
          <br /><span class="math">$$\begin{equation*}
         \bf{Z}=g(\bf{X}),\quad \bf{X}=(X_{1},\ldots, X_{d})
@@ -126,7 +141,28 @@
         </div>
         <div class="fragment">
         <ul>
-        <li>many financial variables tend to exhibit almost constant mean over time: how they are distributed around their mean is important</li>
+        <li>many financial variables tend to exhibit almost constant mean over time, but low signal to noise ratio</li>
+        </ul>
+        </div>
+        </section><section id="section" class="slide level3">
+        <h1></h1>
+        <p><strong>Modeling a die</strong></p>
+        <ul>
+        <li>it is impossible to predict the realization of a die</li>
+        </ul>
+        <div class="fragment">
+        <ul>
+        <li>still: we do know its distribution, which is already worth a lot</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>due to low signal to noise ratio, real prediction of financial instruments is usually not possible</li>
+        </ul>
+        </div>
+        <div class="fragment">
+        <ul>
+        <li>still: it is possible to determine their distribution</li>
         </ul>
         </div>
         </section><section id="certain-future-payments" class="slide level3">
@@ -153,7 +189,7 @@
         </div>
         </section><section class="slide level3">
         <h1>Interest and compounding</h1>
-        </section><section id="section" class="slide level3">
+        </section><section id="section-1" class="slide level3">
         <h1></h1>
         <ul>
         <li><p>given an interest rate of <span class="math"><em>r</em></span> per period and initial wealth <span class="math"><em>W</em><sub><em>t</em></sub></span>, the wealth one period ahead is calculated as</p>
@@ -170,7 +206,7 @@
         <div class="fragment">
         <p><br /><span class="math">$$500.000\left(1+\frac{5}{100}\right)= 500.000\left(1+0.05\right)=525.000$$</span><br /></p>
         </div>
-        </section><section id="section-1" class="slide level3">
+        </section><section id="section-2" class="slide level3">
         <h1></h1>
         <ul>
         <li>multi-period compound interest:</li>
@@ -260,7 +296,7 @@
         W_{m,T}(r)=\left(1+\frac{r}{m}\right)^{mT}
         \end{equation*}$$</span><br />
         </div>
-        </section><section id="section-2" class="slide level3">
+        </section><section id="section-3" class="slide level3">
         <h1></h1>
         <p>wealth is an increasing function of the interest payment frequency:</p>
          <br /><span class="math">$$\begin{equation*}
@@ -282,7 +318,7 @@
         \end{equation*}$$</span><br /></li>
         </ul>
         </div>
-        </section><section id="section-3" class="slide level3">
+        </section><section id="section-4" class="slide level3">
         <h1></h1>
         <ul>
         <li>under continuous compounding the value of an initial investment of <span class="math"><em>W</em><sub>0</sub></span> grows <em>exponentially fast</em></li>
@@ -292,7 +328,7 @@
         <li>comparatively simple for calculation of interest accrued in between dates of interest <em>payments</em></li>
         </ul>
         </div>
-        </section><section id="section-4" class="slide level3">
+        </section><section id="section-5" class="slide level3">
         <h1></h1>
         <table>
         <thead>
@@ -367,7 +403,7 @@
         &amp;\overset{m\rightarrow\infty}{\rightarrow}\ln(\exp{(r)})\\
         &amp;=r
         \end{align*}$$</span><br />
-        </section><section id="section-5" class="slide level3">
+        </section><section id="section-6" class="slide level3">
         <h1></h1>
         <p><strong>Interpretation</strong>: If the bank were compounding interest rates continuously, the nominal interest rate <span class="math"><em>r</em></span> would equal the logarithmic effective rate.</p>
         <div class="fragment">
@@ -416,7 +452,7 @@
         <li>returns on speculative assets usually vary from period to period</li>
         </ul>
         </div>
-        </section><section id="section-6" class="slide level3">
+        </section><section id="section-7" class="slide level3">
         <h1></h1>
         <ul>
         <li>let <span class="math"><em>P</em><sub><em>t</em></sub></span> denote the price of a speculative asset at time <span class="math"><em>t</em></span></li>
@@ -469,7 +505,7 @@
         \end{align*}$$</span><br /></li>
         </ul>
         </div>
-        </section><section id="section-7" class="slide level3">
+        </section><section id="section-8" class="slide level3">
         <h1></h1>
         <ul>
         <li><p>investor <span class="math"><em>B</em> : </span></p>
@@ -506,7 +542,7 @@
         r_{B}=\frac{\left(\ln340-\ln230\right)}{5}=0.0782
         \end{equation*}$$</span><br /></li>
         </ul>
-        </section><section id="section-8" class="slide level3">
+        </section><section id="section-9" class="slide level3">
         <h1></h1>
         <ul>
         <li>conclusion: while the case of discrete returns involves calculation of the <span class="math"><em>n</em></span>-th root, the continuous case is computationally less demanding</li>
@@ -537,7 +573,7 @@
         P_{t}\left(1+\bar{r}\right)^{n}\overset{!}{=}P_{t}\left(1+r_{t}\right)\cdot\ldots\cdot\left(1+r_{t+n-1}\right)
         \end{equation*}$$</span><br />
         </div>
-        </section><section id="section-9" class="slide level3">
+        </section><section id="section-10" class="slide level3">
         <h1></h1>
         <ul>
         <li>solving for <span class="math">$\bar{r}$</span> leads to</li>
@@ -556,7 +592,7 @@
         <img src="pics/intro_pics/ex_annual_intRates.png" />
         </figure>
         <p>Left: randomly generated returns between 0 and 8 percent, plotted against annualized net return rate. Right: comparison of associated compound interest rates.</p>
-        </section><section id="section-10" class="slide level3">
+        </section><section id="section-11" class="slide level3">
         <h1></h1>
         <p>The annualized return of 1.0392 is <em>unequal</em> to the simple arithmetic mean over the randomly generated interest rates of 1.0395!</p>
         </section><section id="example-4" class="slide level3">
@@ -599,7 +635,7 @@
         <figure>
         <img src="pics/intro_pics/ex_annual_logRets.png" />
         </figure>
-        </section><section id="section-11" class="slide level3">
+        </section><section id="section-12" class="slide level3">
         <h1></h1>
         <ul>
         <li>convert result back to <em>normal world</em>:</li>
@@ -617,7 +653,7 @@
          <br /><span class="math">$$\begin{equation*}
         r_{t}=\frac{P_{t}-P_{t-1}}{P_{t}}\quad\quad r_{t}^{log}=\ln\left(\frac{P_{t}}{P_{t-1}}\right)=\ln P_{t}-\ln P_{t-1}
         \end{equation*}$$</span><br />
-        </section><section id="section-12" class="slide level3">
+        </section><section id="section-13" class="slide level3">
         <h1></h1>
         <p>However, because of</p>
          <br /><span class="math">$$\begin{equation*}
@@ -627,7 +663,7 @@
          <br /><span class="math">$$\begin{equation*}
         r_{t}^{log}=\ln\left(R_{t}\right)=\ln\left(1+r_{t}\right)\approx r_{t}
         \end{equation*}$$</span><br />
-        </section><section id="section-13" class="slide level3">
+        </section><section id="section-14" class="slide level3">
         <h1></h1>
         <ul>
         <li>given that prices / returns are already known, with <em>no uncertainty</em> left, <em>continuous</em> returns are computationally <em>more efficient</em></li>
@@ -716,7 +752,7 @@
         <li>returns can be decomposed into <em>summation</em> over returns of <em>higher</em> frequency: e.g. annual returns are the sum of 12 monthly returns, 52 weakly returns, 365 daily returns,...</li>
         </ul>
         </div>
-        </section><section id="section-14" class="slide level3">
+        </section><section id="section-15" class="slide level3">
         <h1></h1>
         <p><strong>The central limit theorem states:</strong></p>
         <p>Independent of the distribution of high frequency returns, any sum of them follows a <em>normal distribution</em>, provided that the sum involves sufficiently many summands, and the following requirements are fulfilled:</p>
@@ -730,7 +766,7 @@
         <li>the distribution of the low frequency returns allows finite second moments (variance)</li>
         </ul>
         </div>
-        </section><section id="section-15" class="slide level3">
+        </section><section id="section-16" class="slide level3">
         <h1></h1>
         <ul>
         <li>this reasoning <em>does not apply to net / gross returns</em>, since they can not be decomposed into a <em>sum</em> of lower frequency returns</li>
@@ -741,7 +777,7 @@
         </ul>
         </div>
         </section></section>
-        <section><section id="probability-theory" class="titleslide slide level1"><h1>Probability theory</h1></section><section id="section-16" class="slide level3">
+        <section><section id="probability-theory" class="titleslide slide level1"><h1>Probability theory</h1></section><section id="section-17" class="slide level3">
         <h1></h1>
         <ul>
         <li><em>randomness</em>: the result is not known in advance</li>
@@ -749,7 +785,7 @@
         </ul>
         </section><section class="slide level3">
         <h1>Probability spaces and random variables</h1>
-        </section><section id="section-17" class="slide level3">
+        </section><section id="section-18" class="slide level3">
         <h1></h1>
         <ul>
         <li><em>sample space</em> <span class="math">Ω</span>: set of all possible outcomes or elementary events <span class="math"><em>ω</em></span></li>
@@ -826,7 +862,7 @@
         <p><strong>Example</strong></p>
         <p>If the performance happens to be <span class="math"><em>ω</em> = {<em>g</em><em>o</em><em>o</em><em>d</em>}, </span> then also the event <span class="math"><em>A</em> = </span> &quot;at least moderate performance&quot; has occured, since <span class="math"><em>ω</em> ⊂ <em>A</em></span>.</p>
         </div>
-        </section><section id="section-18" class="slide level3">
+        </section><section id="section-19" class="slide level3">
         <h1></h1>
         <p><strong>Probability measure</strong></p>
         <p>A real-valued set function <span class="math">ℙ : ℱ → ℝ</span>, with properties</p>
@@ -889,7 +925,7 @@
         \end{equation*}$$</span><br />
         <p>assigns a value corresponding to the probability.</p>
         </div>
-        </section><section id="section-19" class="slide level3">
+        </section><section id="section-20" class="slide level3">
         <h1></h1>
         <p><strong>Continuous density function</strong></p>
         <p>In contrast, the values of a continuous density function <span class="math"><em>f</em>(<em>x</em>), </span> <span class="math"><em>x</em> ∈ {<em>x</em>|<em>x</em> = <em>X</em>(<em>ω</em>), <em>ω</em> ∈ Ω}</span> are not probabilities itself. However, they shed light on the relative probabilities of occurrence. Given <span class="math"><em>f</em>(<em>y</em>) = 2 ⋅ <em>f</em>(<em>z</em>), </span> the occurrence of <span class="math"><em>y</em></span> is twice as probable as the occurrence of <span class="math"><em>z</em></span>.</p>
@@ -898,14 +934,14 @@
         <figure>
         <img src="pics/intro_pics/exDiscCont02.png" />
         </figure>
-        </section><section id="section-20" class="slide level3">
+        </section><section id="section-21" class="slide level3">
         <h1></h1>
         <p><strong>Cumulative distribution function The <em>cumulative distribution function</em> (cdf) of random variable <span class="math"><em>X</em></span>, denoted by <span class="math"><em>F</em>(<em>x</em>), </span></strong></p>
         <p>indicates the probability that <span class="math"><em>X</em></span> takes on a value that is lower than or equal to <span class="math"><em>x</em>, </span> where <span class="math"><em>x</em></span> is any real number. That is</p>
          <br /><span class="math">$$\begin{equation*}
         F\left(x\right)=\mathbb{P}\left(X\leq x\right),\quad-\infty&lt;x&lt;\infty.
         \end{equation*}$$</span><br />
-        </section><section id="section-21" class="slide level3">
+        </section><section id="section-22" class="slide level3">
         <h1></h1>
         <p>a cdf has the following properties:</p>
         <div class="fragment">
@@ -931,7 +967,7 @@
         \end{equation*}$$</span><br /></li>
         </ul>
         </div>
-        </section><section id="section-22" class="slide level3">
+        </section><section id="section-23" class="slide level3">
         <h1></h1>
         <p>Interrelation pdf and cdf: <strong>discrete case</strong></p>
          <br /><span class="math">$$\begin{equation*}
@@ -940,7 +976,7 @@
         <figure>
         <img src="pics/intro_pics/discrPdfCdf03.png" />
         </figure>
-        </section><section id="section-23" class="slide level3">
+        </section><section id="section-24" class="slide level3">
         <h1></h1>
         <p>Interrelation pdf and cdf: <strong>continuous case</strong></p>
          <br /><span class="math">$$\begin{equation*}
@@ -981,7 +1017,7 @@
         \end{align*}$$</span><br /></li>
         </ul>
         </div>
-        </section><section id="section-24" class="slide level3">
+        </section><section id="section-25" class="slide level3">
         <h1></h1>
         <ul>
         <li><p>example of event space representing incomplete information could be</p>
@@ -1029,7 +1065,7 @@
         <li>example: knowing &quot;central location&quot; together with an idea by how much <span class="math"><em>X</em></span> may fluctuate around the center may be sufficient</li>
         </ul>
         </div>
-        </section><section id="section-25" class="slide level3">
+        </section><section id="section-26" class="slide level3">
         <h1></h1>
         <p>Classification with respect to several measures can be sufficient:</p>
         <ul>
@@ -1063,7 +1099,7 @@
         \mathbb{E}\left[X\right]=\mu_{X}=\sum_{i=1}^{N}x_{i}\mathbb{P}\left(X=x_{i}\right).
         \end{equation*}$$</span><br />
         </div>
-        </section><section id="section-26" class="slide level3">
+        </section><section id="section-27" class="slide level3">
         <h1></h1>
         <p><strong>Continuous random variables</strong></p>
         <p>For a continuous random variable with density function <span class="math"><em>f</em>(<em>x</em>) : </span></p>
@@ -1081,12 +1117,12 @@
          <br /><span class="math">$$\begin{equation*}
         \mathbb{E}\left[X\right]=-2\cdot0.1-1\cdot0.2+7\cdot0.6+8\cdot0.06+9\cdot0.0067=4.34
         \end{equation*}$$</span><br />
-        </section><section id="section-29" class="slide level3">
+        </section><section id="section-30" class="slide level3">
         <h1></h1>
         <figure>
         <img src="pics/intro_pics/discrExp08.png" />
         </figure>
-        </section><section id="section-30" class="slide level3">
+        </section><section id="section-31" class="slide level3">
         <h1></h1>
         <figure>
         <img src="pics/intro_pics/discrExp09.png" />
@@ -1102,7 +1138,7 @@
         \end{equation*}$$</span><br />
         <p>where <span class="math">$\sigma_{X}=\sqrt{\mathbb{V}\left[X\right]}$</span> denotes the <em>standard deviation</em> of <span class="math"><em>X</em>.</span></p>
         </div>
-        </section><section id="section-31" class="slide level3">
+        </section><section id="section-32" class="slide level3">
         <h1></h1>
         <p><strong>Continuous random variables</strong></p>
         <p>For continuous variables, the <em>variance</em> is defined by</p>
@@ -1116,7 +1152,7 @@
          &amp; =3.34^{2}\cdot0.1+1.34^{2}\cdot0.2+0.66^{2}\cdot0.6+1.66^{2}\cdot0.06+2.66^{2}\cdot0.04\\
          &amp; =2.1844\neq14.913
         \end{align*}$$</span><br />
-        </section><section id="section-32" class="slide level3">
+        </section><section id="section-33" class="slide level3">
         <h1></h1>
         <figure>
         <img src="pics/intro_pics/discrExp10.png" />
@@ -1166,7 +1202,7 @@
         <figure>
         <img src="pics/intro_pics/quantNorm14.png" />
         </figure>
-        </section><section id="section-33" class="slide level3">
+        </section><section id="section-34" class="slide level3">
         <h1></h1>
         <p><strong>Summary: information reduction</strong></p>
         <p><em>Incomplete information</em> can occur in two ways:</p>
@@ -1199,7 +1235,7 @@
         </ul>
         </section><section class="slide level3">
         <h1>Updating information</h1>
-        </section><section id="section-34" class="slide level3">
+        </section><section id="section-35" class="slide level3">
         <h1></h1>
         <ul>
         <li><p>opposite direction: <em>updating</em> information on the basis of new arriving information</p></li>
@@ -1225,24 +1261,24 @@
         <figure>
         <img src="pics/intro_pics/generCondDens12.png" />
         </figure>
-        </section><section id="section-35" class="slide level3">
+        </section><section id="section-36" class="slide level3">
         <h1></h1>
         <figure>
         <img src="pics/intro_pics/generCondDens13.png" />
         </figure>
-        </section><section id="section-36" class="slide level3">
+        </section><section id="section-37" class="slide level3">
         <h1></h1>
         <p>Given the knowledge of a realization higher than 2, probabilities of values below become zero:</p>
         <figure>
         <img src="pics/intro_pics/generCondDens14.png" />
         </figure>
-        </section><section id="section-37" class="slide level3">
+        </section><section id="section-38" class="slide level3">
         <h1></h1>
         <p>Without changing relative proportions, the density has to be rescaled in order to enclose an area of 1:</p>
         <figure>
         <img src="pics/intro_pics/generCondDens15.png" />
         </figure>
-        </section><section id="section-38" class="slide level3">
+        </section><section id="section-39" class="slide level3">
         <h1></h1>
         <ul>
         <li>original density function compared to updated conditional density</li>
@@ -1255,17 +1291,17 @@
         <figure>
         <img src="pics/intro_pics/uncondDecomp20.png" />
         </figure>
-        </section><section id="section-39" class="slide level3">
+        </section><section id="section-40" class="slide level3">
         <h1></h1>
         <figure>
         <img src="pics/intro_pics/uncondDecomp21.png" />
         </figure>
-        </section><section id="section-40" class="slide level3">
+        </section><section id="section-41" class="slide level3">
         <h1></h1>
         <figure>
         <img src="pics/intro_pics/uncondDecomp22.png" />
         </figure>
-        </section><section id="section-41" class="slide level3">
+        </section><section id="section-42" class="slide level3">
         <h1></h1>
         <figure>
         <img src="pics/intro_pics/uncondDecomp23.png" />

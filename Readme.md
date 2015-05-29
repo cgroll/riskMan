@@ -1,6 +1,7 @@
 Slides:
 
 - [Introductory slides](http://cgroll.github.io/riskMan/output/intro.slides.html#/)
+- [VaR and ES slides](http://cgroll.github.io/riskMan/output/var_es.slides.html#/)
 
 
 Remark:

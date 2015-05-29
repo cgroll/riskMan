@@ -6,7 +6,7 @@ FILES = intro.slides.html intro.pdf var_es.slides.html var_es.pdf func_rand_var.
 OUTDIR = output
 
 # speficy default target
-CURRENT_TARGET = $(OUTDIR)/func_rand_var
+CURRENT_TARGET = $(OUTDIR)/var_es
 current: $(CURRENT_TARGET).slides.html
 
 reveal: $(CURRENT_TARGET).slides.html
@@ -80,7 +80,6 @@ $(OUTDIR)/var_es.tex: src/var_es.md Makefile refs.bib
 	pandoc -s -t beamer -f markdown \
 	-V theme=CambridgeUS -V colortheme=dolphin \
 	--mathjax \
-	--filter pandoc_custom/filters/amsmath.hs \
 	--filter pandoc_custom/filters/skip_pause.hs \
 	--filter pandoc-citeproc --csl=pandoc_custom/csl/elsevier-harvard.csl \
 	--bibliography=refs.bib \

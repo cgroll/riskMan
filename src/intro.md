@@ -6,7 +6,7 @@
 
 ### General problem
 
-<aside class="notes">
+<div class="notes">
 - no time for lunch
 - any intersection with other lectures, 2pm to 4pm, start s.t.?
 - git (github), research tools: 27.4. Seminarraum
@@ -18,7 +18,7 @@
      understanding, not grading
 	- each type of exercise will be done at least once
 - implement for better understanding
-</aside>
+</div>
 
 **Quantity of interest**
 
